@@ -5,6 +5,10 @@
 Run
 
 ```
+  qmk compile -kb chouchou -km default
+```
+or
+```
   util/docker_build.sh chouchou:default
 ```
 
