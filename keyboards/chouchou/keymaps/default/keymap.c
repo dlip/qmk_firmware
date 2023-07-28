@@ -17,15 +17,15 @@ enum my_keycodes {
     KC_R_SPC,
     KC_R_BSPC,
 };
-#include "g/keymap_combo.h"
+// #include "g/keymap_combo.h"
 
 
 // Separating right side keycodes makes quick letter combos more reliable
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_2x4_2(
-        KC_R,    KC_S,    KC_N,    KC_I,        KC_R_I,    KC_R_N,    KC_R_S,  KC_R_R,
-        KC_A,    KC_O,    KC_T,    KC_E,        KC_R_E,    KC_R_T,    KC_R_O,  KC_R_A,
-                          KC_BSPC, KC_SPC,      KC_R_SPC,  KC_R_BSPC
+        KC_R,    KC_S,    KC_N,    KC_I,        KC_1,    KC_2,    KC_3,  KC_4,
+        KC_A,    KC_O,    KC_T,    KC_E,        KC_5,    KC_6,    KC_7,  KC_8,
+                          KC_BSPC, KC_SPC,      KC_9,  KC_0
     )
 };
 

@@ -12,7 +12,7 @@
 // #define LEADER_PER_KEY_TIMING
 // #define LEADER_TIMEOUT 1000
 
-#define COMBO_TERM 80
+// #define COMBO_TERM 30
 
 // #define COMBO_NO_TIMER
 // #define COMBO_MUST_HOLD_MODS
