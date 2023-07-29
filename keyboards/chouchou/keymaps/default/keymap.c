@@ -38,20 +38,30 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_STICKY_LALT: add_oneshot_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LALT)); break;
         case KC_STICKY_LCTL: add_oneshot_mods(MOD_BIT(KC_LCTL)); add_mods(MOD_BIT(KC_LCTL)); break;
         case KC_STICKY_LSFT: add_oneshot_mods(MOD_BIT(KC_LSFT)); add_mods(MOD_BIT(KC_LSFT)); break;
-        case KC_R_R: tap_code(KC_R); break;
-        case KC_R_S: tap_code(KC_S); break;
-        case KC_R_N: tap_code(KC_N); break;
-        case KC_R_I: tap_code(KC_I); break;
-        case KC_R_A: tap_code(KC_A); break;
-        case KC_R_O: tap_code(KC_O); break;
-        case KC_R_T: tap_code(KC_T); break;
-        case KC_R_E: tap_code(KC_E); break;
-        case KC_R_SPC: tap_code(KC_SPC); break;
-        case KC_R_BSPC: tap_code(KC_BSPC); break;
+        case KC_R_R: register_code(KC_R); break;
+        case KC_R_S: register_code(KC_S); break;
+        case KC_R_N: register_code(KC_N); break;
+        case KC_R_I: register_code(KC_I); break;
+        case KC_R_A: register_code(KC_A); break;
+        case KC_R_O: register_code(KC_O); break;
+        case KC_R_T: register_code(KC_T); break;
+        case KC_R_E: register_code(KC_E); break;
+        case KC_R_SPC: register_code(KC_SPC); break;
+        case KC_R_BSPC: register_code(KC_BSPC); break;
         }
     else
         switch(keycode) {
         case KC_STICKY_LGUI: case KC_STICKY_LALT: case KC_STICKY_LCTL: case KC_STICKY_LSFT: clear_mods(); break;
+        case KC_R_R: unregister_code(KC_R); break;
+        case KC_R_S: unregister_code(KC_S); break;
+        case KC_R_N: unregister_code(KC_N); break;
+        case KC_R_I: unregister_code(KC_I); break;
+        case KC_R_A: unregister_code(KC_A); break;
+        case KC_R_O: unregister_code(KC_O); break;
+        case KC_R_T: unregister_code(KC_T); break;
+        case KC_R_E: unregister_code(KC_E); break;
+        case KC_R_SPC: unregister_code(KC_SPC); break;
+        case KC_R_BSPC: unregister_code(KC_BSPC); break;
         }
     return true;
 }
