@@ -2,6 +2,12 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 // This is the config based on the code whorf gave me which uses custom combos
 #include QMK_KEYBOARD_H
+enum my_keycodes {
+    KC_STICKY_LGUI = SAFE_RANGE,
+    KC_STICKY_LALT,
+    KC_STICKY_LCTL,
+    KC_STICKY_LSFT,
+};
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_2x4_2(
@@ -79,15 +85,22 @@ static void process(uint16_t val) {
         case e|n: V(COMM)
         case o|r: V(SCLN)
         case i|t: V(QUES)
+        case e|i: V(STICKY_LSFT)
+        case t|n: V(STICKY_LCTL)
+        case o|s: V(STICKY_LALT)
+        case a|r: V(STICKY_LGUI)
+        case t|o|a: V(SCLN)
+        case e|t|o: V(ENTER)
+        case i|n|s: V(TAB)
         default: v=0;
     }
     switch(v){
-        case 0: tap_code16(inner?KC_SPC:(outer?KC_BSPC:KC_NO)); break;
-        case KC_A...KC_Z: 
+        case 0: tap_code16(inner?KC_BSPC:(outer?KC_SPC:KC_NO)); break;
+        case KC_A...KC_Z:
             if(inner) {
-                tap_code16(S(v)); 
-            } else if(outer) {
                 tap_code16(l2[v-KC_A]);
+            } else if(outer) {
+                tap_code16(S(v)); 
             } else {
                 tap_code16(v);
             }
@@ -98,6 +111,10 @@ static void process(uint16_t val) {
         case KC_COMM: tap_code16(inner?KC_DOT:(outer?KC_TILD:v)); break;
         case KC_SCLN: tap_code16(inner?KC_COLN:(outer?KC_NO:v)); break;
         case KC_QUES: tap_code16(inner?KC_EXLM:(outer?KC_NO:v)); break;
+        case KC_STICKY_LGUI: add_oneshot_mods(MOD_BIT(KC_LGUI)); add_mods(MOD_BIT(KC_LGUI)); break;
+        case KC_STICKY_LALT: add_oneshot_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LALT)); break;
+        case KC_STICKY_LCTL: add_oneshot_mods(MOD_BIT(KC_LCTL)); add_mods(MOD_BIT(KC_LCTL)); break;
+        case KC_STICKY_LSFT: add_oneshot_mods(MOD_BIT(KC_LSFT)); add_mods(MOD_BIT(KC_LSFT)); break;
         default: 
             tap_code(v);
     }
@@ -115,10 +132,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             side = keycode/10+1;
             state |= 1 << (keycode%10);
         }
+
     } else {
+        clear_mods();
         process(state);
         state = 0;
     }
     return false;
 };
-
