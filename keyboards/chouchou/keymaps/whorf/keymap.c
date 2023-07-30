@@ -7,6 +7,7 @@ enum my_keycodes {
     KC_STICKY_LALT,
     KC_STICKY_LCTL,
     KC_STICKY_LSFT,
+    KC_STICKY_RALT,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -94,6 +95,7 @@ static void process(uint16_t val) {
         case t|n: V(STICKY_LCTL)
         case o|s: V(STICKY_LALT)
         case a|r: V(STICKY_LGUI)
+        case n|s|r: V(QUOT)
         case t|o|a: V(SCLN)
         case e|t|o: V(ENTER)
         case i|n|s: V(TAB)
@@ -112,16 +114,19 @@ static void process(uint16_t val) {
                 tap_code16(v);
             }
             break;
-        case KC_MINS: tap_code16(inner?KC_UNDS:(outer?KC_PERC:v)); break;
-        case KC_SLSH: tap_code16(inner?KC_BSLS:(outer?KC_PIPE:v)); break;
-        case KC_QUOT: tap_code16(inner?KC_DQT:(outer?KC_GRV:v)); break;
-        case KC_COMM: tap_code16(inner?KC_DOT:(outer?KC_TILD:v)); break;
-        case KC_SCLN: tap_code16(inner?KC_COLN:(outer?KC_NO:v)); break;
-        case KC_QUES: tap_code16(inner?KC_EXLM:(outer?KC_NO:v)); break;
-        case KC_STICKY_LGUI: add_oneshot_mods(MOD_BIT(KC_LGUI)); add_mods(MOD_BIT(KC_LGUI)); break;
-        case KC_STICKY_LALT: add_oneshot_mods(MOD_BIT(KC_LALT)); add_mods(MOD_BIT(KC_LALT)); break;
-        case KC_STICKY_LCTL: add_oneshot_mods(MOD_BIT(KC_LCTL)); add_mods(MOD_BIT(KC_LCTL)); break;
-        case KC_STICKY_LSFT: add_oneshot_mods(MOD_BIT(KC_LSFT)); add_mods(MOD_BIT(KC_LSFT)); break;
+        case KC_MINS: tap_code16(outer?KC_UNDS:(inner?KC_PERC:v)); break;
+        case KC_SLSH: tap_code16(outer?KC_BSLS:(inner?KC_PIPE:v)); break;
+        case KC_QUOT: tap_code16(outer?KC_DQT:(inner?KC_GRV:v)); break;
+        case KC_COMM: tap_code16(outer?KC_DOT:(inner?KC_TILD:v)); break;
+        case KC_SCLN: tap_code16(outer?KC_COLN:(inner?KC_NO:v)); break;
+        case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_CAPS:v)); break;
+        case KC_ENTER: tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v)); break;
+        case KC_TAB: tap_code16(outer?KC_DEL:(inner?KC_INS:v)); break;
+        case KC_STICKY_LGUI: outer?tap_code16(KC_RIGHT):(inner?tap_code16(KC_PGUP):(add_oneshot_mods(MOD_BIT(KC_LGUI)), add_mods(MOD_BIT(KC_LGUI)))); break;
+        case KC_STICKY_LALT: outer?tap_code16(KC_UP):(inner?tap_code16(KC_HOME):(add_oneshot_mods(MOD_BIT(KC_LALT)), add_mods(MOD_BIT(KC_LALT)))); break;
+        case KC_STICKY_LCTL: outer?tap_code16(KC_DOWN):(inner?tap_code16(KC_END):(add_oneshot_mods(MOD_BIT(KC_LCTL)), add_mods(MOD_BIT(KC_LCTL)))); break;
+        case KC_STICKY_LSFT: outer?tap_code16(KC_LEFT):(inner?tap_code16(KC_PGDN):(add_oneshot_mods(MOD_BIT(KC_LSFT)), add_mods(MOD_BIT(KC_LSFT)))); break;
+        case KC_STICKY_RALT: add_oneshot_mods(MOD_BIT(KC_RALT)); add_mods(MOD_BIT(KC_RALT)); break;
         default: 
             tap_code(v);
     }
