@@ -37,12 +37,17 @@ enum SIDE side = NONE;
 const uint16_t l2[32] = {
     KC_LT,KC_9, KC_1, KC_AT, KC_LPRN, KC_6, KC_HASH, KC_0, KC_RPRN, KC_EQL, KC_PLUS, KC_4, KC_DLR, KC_RBRC, KC_LCBR, KC_7, KC_3, KC_GT, KC_RCBR, KC_LBRC, KC_2, KC_ASTR, KC_AMPR, KC_CIRC, KC_5, KC_8
 };
+const uint16_t l3[32] = {
+    KC_MEDIA_NEXT_TRACK, KC_F9, KC_F1, KC_F11, KC_MEDIA_PREV_TRACK, KC_F6, KC_F12, KC_F10, KC_MEDIA_PLAY_PAUSE, C(KC_Z), C(KC_C), KC_F4, KC_NO, KC_BRIGHTNESS_DOWN, KC_KB_VOLUME_UP, KC_F7, KC_F3, KC_PRINT_SCREEN, KC_BRIGHTNESS_UP, KC_KB_VOLUME_DOWN, KC_F2, C(KC_V), KC_NO, C(KC_X), KC_F5, KC_F8
+};
+    
 
 static void process(uint16_t val) {
     uint16_t v = 0;
     #define V(x) v=KC_##x; break;
     bool inner = (val & (1 << 8)) >> 8;
     bool outer = (val & (1 << 9)) >> 9;
+    bool both = inner && outer;
     val = val & ~(1 << 8);
     val = val & ~(1 << 9);
 
@@ -97,7 +102,9 @@ static void process(uint16_t val) {
     switch(v){
         case 0: tap_code16(inner?KC_BSPC:(outer?KC_SPC:KC_NO)); break;
         case KC_A...KC_Z:
-            if(inner) {
+            if(both) {
+                tap_code16(l3[v-KC_A]);
+            } else if(inner) {
                 tap_code16(l2[v-KC_A]);
             } else if(outer) {
                 tap_code16(S(v)); 
