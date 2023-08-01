@@ -22,8 +22,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                     8,            9,            19,         18
     ),
     [GAMING] = LAYOUT_split_2x4_2(
-        KC_TAB,       KC_Q,      KC_W,     KC_E,            KC_U,        KC_UP,           KC_O,           KC_ESC,
-        KC_LSFT,      KC_A,      KC_S,     KC_D,            KC_LEFT,     KC_DOWN,     KC_RIGHT,           KC_SCLN,
+        KC_TAB,       KC_Q,      KC_W,     KC_E,            KC_U,          KC_UP,         KC_O,      KC_ESC,
+        KC_LSFT,      KC_A,      KC_S,     KC_D,            KC_LEFT,     KC_DOWN,     KC_RIGHT,     KC_SCLN,
                               KC_LCTL,   KC_SPC,            KC_ENTER,   TO(TAIPO)
     )
 };
