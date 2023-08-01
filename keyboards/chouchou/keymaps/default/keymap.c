@@ -1,6 +1,5 @@
 // Copyright 2023 Dane Lipscombe (@dlip)
 // SPDX-License-Identifier: GPL-2.0-or-later
-// Special thanks to Whorf for his help with this
 #include QMK_KEYBOARD_H
 #include "taipo.h"
 #include "gamepad.h"
@@ -38,5 +37,4 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     }  else {
         return true;
     }
-
 };

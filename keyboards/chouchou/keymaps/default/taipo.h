@@ -1,3 +1,7 @@
+// Copyright 2023 Dane Lipscombe (@dlip)
+// SPDX-License-Identifier: GPL-2.0-or-later
+// Special thanks to Whorf for his help with this
+
 #pragma once
 #include "keycodes.h"
 #include "quantum_keycodes.h"

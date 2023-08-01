@@ -1,3 +1,6 @@
+// Copyright 2023 Dane Lipscombe (@dlip)
+// SPDX-License-Identifier: GPL-2.0-or-later
+// Code forked from https://github.com/brentaro/QMK_HID_Gamepad_with_SOCD
 #pragma once
 #include "keycodes.h"
 #include "quantum_keycodes.h"
