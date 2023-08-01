@@ -53,6 +53,7 @@ enum SIDE side = NONE;
 //a b c d e f g h i j k l m n o p q r s t u v w x y z 
 //< 9 1 @ ( 6 # 0 ) = + 4 $ ] { 7 3 > } [ 2 * & ^ 5 8
 const uint16_t l2[32] = {
+    KC_LT,KC_9, KC_1, KC_AT, KC_LPRN, KC_6, KC_HASH, KC_0, KC_RPRN, KC_EQL, KC_PLUS, KC_4, KC_DLR, KC_RBRC, KC_LCBR, KC_7, KC_3, KC_GT, KC_RCBR, KC_LBRC, KC_2, KC_ASTR, KC_AMPR, KC_CIRC, KC_5, KC_8
 };
 const uint16_t l3[32] = {
     KC_MEDIA_NEXT_TRACK, KC_F9, KC_F1, KC_F11, KC_MEDIA_PREV_TRACK, KC_F6, KC_F12, KC_F10, KC_MEDIA_PLAY_PAUSE, C(KC_Z), C(KC_C), KC_F4, KC_NO, KC_BRIGHTNESS_DOWN, KC_KB_VOLUME_UP, KC_F7, KC_F3, KC_PRINT_SCREEN, KC_BRIGHTNESS_UP, KC_KB_VOLUME_DOWN, KC_F2, C(KC_V), KC_NO, C(KC_X), KC_F5, KC_F8
