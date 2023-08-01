@@ -10,11 +10,21 @@ enum my_keycodes {
     KC_STICKY_RALT,
 };
 
+enum layers {
+  TAIPO,
+  GAMING,
+};
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-    [0] = LAYOUT_split_2x4_2(
+    [TAIPO] = LAYOUT_split_2x4_2(
         0,            1,            2,            3,            13,         12,           11,           10,
         4,            5,            6,            7,            17,         16,           15,           14,
                                     8,            9,            19,         18
+    ),
+    [GAMING] = LAYOUT_split_2x4_2(
+        KC_TAB,       KC_Q,      KC_W,     KC_E,            KC_U,        KC_UP,           KC_O,           KC_ESC,
+        KC_LSFT,      KC_A,      KC_S,     KC_D,            KC_LEFT,     KC_DOWN,     KC_RIGHT,           KC_SCLN,
+                              KC_LCTL,   KC_SPC,            KC_ENTER,   TO(TAIPO)
     )
 };
 
@@ -120,7 +130,7 @@ static void process(uint16_t val) {
         case KC_COMM: tap_code16(outer?KC_DOT:(inner?KC_TILD:v)); break;
         case KC_SCLN: tap_code16(outer?KC_COLN:(inner?KC_NO:v)); break;
         case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_CAPS:v)); break;
-        case KC_ENTER: tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v)); break;
+        case KC_ENTER: both?layer_move(GAMING):(tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v))); break;
         case KC_TAB: tap_code16(outer?KC_DEL:(inner?KC_INS:v)); break;
         case KC_STICKY_LGUI: outer?tap_code16(KC_RIGHT):(inner?tap_code16(KC_PGUP):(add_oneshot_mods(MOD_BIT(KC_LGUI)), add_mods(MOD_BIT(KC_LGUI)))); break;
         case KC_STICKY_LALT: outer?tap_code16(KC_UP):(inner?tap_code16(KC_HOME):(add_oneshot_mods(MOD_BIT(KC_LALT)), add_mods(MOD_BIT(KC_LALT)))); break;
@@ -133,6 +143,10 @@ static void process(uint16_t val) {
 }
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (IS_LAYER_OFF(TAIPO)) {
+        return true;
+    }
+
     if(record->event.pressed) {
         if(side == keycode/10+1){
             state |= 1 << (keycode%10); 

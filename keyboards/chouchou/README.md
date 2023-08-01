@@ -133,7 +133,7 @@ Input Output Outer Inner Both
 -###  Tab    Del   Ins
 ----
 
-----  Enter  Esc   AltGr
+----  Enter  Esc   AltGr Gaming Layer
 -###
 
 #---  Gui    Right PgUp
@@ -148,3 +148,8 @@ Input Output Outer Inner Both
 ---#  Shift  Left  PgDn
 ---#
 ```
+
+## Todo
+
+- Implement combo term/timeouts
+- Holdable sticky mods
