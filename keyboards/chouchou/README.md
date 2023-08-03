@@ -136,13 +136,13 @@ Input Output Outer Inner Both
 ----  Enter  Esc   AltGr
 -###
 
-#---  Gui    Right PgUp Gaming Layer
+#---  Gui    Right PgUp
 #---
 
 -#--  Alt    Up    Home Gamepad Layer
 -#--
 
---#-  Ctrl   Down  End
+--#-  Ctrl   Down  End  Gaming Layer
 --#-
 
 ---#  Shift  Left  PgDn
