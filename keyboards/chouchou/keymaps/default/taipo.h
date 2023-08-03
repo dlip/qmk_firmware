@@ -166,7 +166,7 @@ static void process(uint16_t val) {
         case KC_QUOT: tap_code16(outer?KC_DQT:(inner?KC_GRV:v)); break;
         case KC_COMM: tap_code16(outer?KC_DOT:(inner?KC_TILD:v)); break;
         case KC_SCLN: tap_code16(outer?KC_COLN:(inner?KC_NO:v)); break;
-        case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_CAPS:v)); break;
+        case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_NO:v)); break;
         case KC_ENTER: tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v)); break;
         case KC_TAB:   tap_code16(outer?KC_DEL:(inner?KC_INS:v)); break;
         case KC_STICKY_LGUI: process_sticky(mod,KC_LGUI,KC_RIGHT,KC_PGUP,3); break;

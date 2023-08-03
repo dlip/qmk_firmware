@@ -23,7 +23,6 @@ This configuration has some modifications from the original layout:
 - Inner and outer thumbs are flipped since i find space to be more natural on the outer thumb
 - Uses extra keybindings which use both thumb keys together
 - Fn layer key switched to 'insert'
-- Adds Caps to '?'
 - Adds alternate mappings for ''' and ';' since my ring and pinkie fingers don't get along
 
 ```
@@ -112,7 +111,7 @@ Input Output Outer Inner Both
 --#-  -      _     %
 -#--
 
----#  ?      !     Caps
+---#  ?      !
 --#-
 
 --#-  ,      .     ~
