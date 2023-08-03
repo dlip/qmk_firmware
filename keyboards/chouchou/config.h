@@ -9,7 +9,8 @@
 #define DEBOUNCE 20
 // #define COMBO_NO_TIMER
 #define COMBO_TERM 80
- 
+#define ONESHOT_TIMEOUT 500
+
  // 1000hz Polling Rate
 #define USB_POLLING_INTERVAL_MS 1
 

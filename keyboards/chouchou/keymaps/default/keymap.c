@@ -33,8 +33,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  _______,      _______,         _______ ,   _______
     )
 };
-
-
+    
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     if (IS_LAYER_ON(_TAIPO)) {
         return taipo_process_record_user(keycode, record);

@@ -6,7 +6,7 @@
 #include "keycodes.h"
 #include "quantum_keycodes.h"
 
-enum taipo_keycodes {
+enum taipo_keycode {
     TP_TLP,
     TP_TLR,
     TP_TLM,
@@ -38,6 +38,12 @@ enum taipo_keycodes {
 static uint16_t state;
 uint16_t start = 0;
 enum SIDE{NONE,RIGHT,LEFT};
+enum taipo_mod{
+    TM_NONE,
+    TM_INNER,
+    TM_OUTER,
+    TM_BOTH,
+};
 enum SIDE side = NONE;
 #define r 1<<0
 #define s 1<<1
@@ -59,11 +65,36 @@ const uint16_t l3[32] = {
     KC_MEDIA_NEXT_TRACK, KC_F9, KC_F1, KC_F11, KC_MEDIA_PREV_TRACK, KC_F6, KC_F12, KC_F10, KC_MEDIA_PLAY_PAUSE, C(KC_Z), C(KC_C), KC_F4, KC_NO, KC_BRIGHTNESS_DOWN, KC_KB_VOLUME_UP, KC_F7, KC_F3, KC_PRINT_SCREEN, KC_BRIGHTNESS_UP, KC_KB_VOLUME_DOWN, KC_F2, C(KC_V), KC_NO, C(KC_X), KC_F5, KC_F8
 };
     
+void process_sticky(enum taipo_mod mod, enum taipo_keycode output, enum taipo_keycode outer, enum taipo_keycode inner, uint16_t both) {
+    switch(mod){
+        case TM_OUTER:
+        tap_code16(outer);
+        break;
+        case TM_INNER:
+        tap_code16(inner);
+        break;
+        case TM_BOTH:
+        layer_move(both);
+        break;
+        default:
+        add_oneshot_mods(MOD_BIT(output));
+        add_mods(MOD_BIT(output)); 
+    }
+}
+
 static void process(uint16_t val) {
     uint16_t v = 0;
     #define V(x) v=KC_##x; break;
+    enum taipo_mod mod = TM_NONE;
     bool inner = (val & (1 << 8)) >> 8;
     bool outer = (val & (1 << 9)) >> 9;
+    if (inner && outer) {
+        mod = TM_BOTH;
+    } else if (inner) {
+        mod = TM_INNER;
+    } else if (outer) {
+        mod = TM_OUTER;
+    }
     bool both = inner && outer;
     val = val & ~(1 << 8);
     val = val & ~(1 << 9);
@@ -138,10 +169,10 @@ static void process(uint16_t val) {
         case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_CAPS:v)); break;
         case KC_ENTER: tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v)); break;
         case KC_TAB:   tap_code16(outer?KC_DEL:(inner?KC_INS:v)); break;
-        case KC_STICKY_LGUI: both?layer_move(1):(outer?tap_code16(KC_RIGHT):(inner?tap_code16(KC_PGUP):(add_oneshot_mods(MOD_BIT(KC_LGUI)), add_mods(MOD_BIT(KC_LGUI))))); break;
-        case KC_STICKY_LALT: both?layer_move(2):(outer?tap_code16(KC_UP):(inner?tap_code16(KC_HOME):(add_oneshot_mods(MOD_BIT(KC_LALT)), add_mods(MOD_BIT(KC_LALT))))); break;
-        case KC_STICKY_LCTL: outer?tap_code16(KC_DOWN):(inner?tap_code16(KC_END):(add_oneshot_mods(MOD_BIT(KC_LCTL)), add_mods(MOD_BIT(KC_LCTL)))); break;
-        case KC_STICKY_LSFT: outer?tap_code16(KC_LEFT):(inner?tap_code16(KC_PGDN):(add_oneshot_mods(MOD_BIT(KC_LSFT)), add_mods(MOD_BIT(KC_LSFT)))); break;
+        case KC_STICKY_LGUI: process_sticky(mod,KC_LGUI,KC_RIGHT,KC_PGUP,3); break;
+        case KC_STICKY_LALT: process_sticky(mod,KC_LALT,KC_UP,KC_HOME,2); break;
+        case KC_STICKY_LCTL: process_sticky(mod,KC_LCTL,KC_DOWN,KC_END,1); break;
+        case KC_STICKY_LSFT: process_sticky(mod,KC_LSFT,KC_LEFT,KC_PGDN,0); break;
         case KC_STICKY_RALT: add_oneshot_mods(MOD_BIT(KC_RALT)); add_mods(MOD_BIT(KC_RALT)); break;
         default: 
             tap_code(v);
