@@ -3,11 +3,14 @@
 // Special thanks to Whorf for his help with this
 
 #pragma once
+#include "print.h"
 #include "keycodes.h"
 #include "quantum_keycodes.h"
+#define IDLE_TIMEOUT_MS 100 // Idle timeout in milliseconds.
+#define TAIPO_KEYCODE_OFFSET (SAFE_RANGE + 500)
 
 enum taipo_keycode {
-    TP_TLP,
+    TP_TLP = TAIPO_KEYCODE_OFFSET,
     TP_TLR,
     TP_TLM,
     TP_TLI,
@@ -27,67 +30,99 @@ enum taipo_keycode {
     TP_BRI,
     TP_RIT,
     TP_ROT,
-    KC_STICKY_LGUI = SAFE_RANGE,
+    KC_STICKY_LGUI,
     KC_STICKY_LALT,
     KC_STICKY_LCTL,
     KC_STICKY_LSFT,
     KC_STICKY_RALT,
 };
 
+struct keypress {
+    uint16_t keycode;
+    bool     shifted;
+};
 
-static uint16_t state;
-uint16_t start = 0;
-enum SIDE{NONE,RIGHT,LEFT};
-enum taipo_mod{
+struct state {
+    uint16_t        combo;
+    uint16_t        timer;
+    struct keypress key;
+};
+
+static struct state left_state;
+static struct state right_state;
+
+enum SIDE { NONE, RIGHT, LEFT };
+enum taipo_mod {
     TM_NONE,
     TM_INNER,
     TM_OUTER,
     TM_BOTH,
 };
-enum SIDE side = NONE;
-#define r 1<<0
-#define s 1<<1
-#define n 1<<2
-#define i 1<<3
-#define a 1<<4
-#define o 1<<5
-#define t 1<<6
-#define e 1<<7
-#define it 1<<8
-#define ot 1<<9
+// enum SIDE side = NONE;
+#define r 1 << 0
+#define s 1 << 1
+#define n 1 << 2
+#define i 1 << 3
+#define a 1 << 4
+#define o 1 << 5
+#define t 1 << 6
+#define e 1 << 7
+#define it 1 << 8
+#define ot 1 << 9
 
-//a b c d e f g h i j k l m n o p q r s t u v w x y z 
+// a b c d e f g h i j k l m n o p q r s t u v w x y z
 //< 9 1 @ ( 6 # 0 ) = + 4 $ ] { 7 3 > } [ 2 * & ^ 5 8
-const uint16_t l2[32] = {
-    KC_LT,KC_9, KC_1, KC_AT, KC_LPRN, KC_6, KC_HASH, KC_0, KC_RPRN, KC_EQL, KC_PLUS, KC_4, KC_DLR, KC_RBRC, KC_LCBR, KC_7, KC_3, KC_GT, KC_RCBR, KC_LBRC, KC_2, KC_ASTR, KC_AMPR, KC_CIRC, KC_5, KC_8
-};
-const uint16_t l3[32] = {
-    KC_MEDIA_NEXT_TRACK, KC_F9, KC_F1, KC_F11, KC_MEDIA_PREV_TRACK, KC_F6, KC_F12, KC_F10, KC_MEDIA_PLAY_PAUSE, C(KC_Z), C(KC_C), KC_F4, KC_NO, KC_BRIGHTNESS_DOWN, KC_KB_VOLUME_UP, KC_F7, KC_F3, KC_PRINT_SCREEN, KC_BRIGHTNESS_UP, KC_KB_VOLUME_DOWN, KC_F2, C(KC_V), KC_NO, C(KC_X), KC_F5, KC_F8
-};
-    
-void process_sticky(enum taipo_mod mod, enum taipo_keycode output, enum taipo_keycode outer, enum taipo_keycode inner, uint16_t both) {
-    switch(mod){
-        case TM_OUTER:
-        tap_code16(outer);
-        break;
-        case TM_INNER:
-        tap_code16(inner);
-        break;
-        case TM_BOTH:
-        layer_move(both);
-        break;
-        default:
-        add_oneshot_mods(MOD_BIT(output));
-        add_mods(MOD_BIT(output)); 
+const uint16_t l2[32] = {KC_LT, KC_9, KC_1, KC_AT, KC_LPRN, KC_6, KC_HASH, KC_0, KC_RPRN, KC_EQL, KC_PLUS, KC_4, KC_DLR, KC_RBRC, KC_LCBR, KC_7, KC_3, KC_GT, KC_RCBR, KC_LBRC, KC_2, KC_ASTR, KC_AMPR, KC_CIRC, KC_5, KC_8};
+const uint16_t l3[32] = {KC_MEDIA_NEXT_TRACK, KC_F9, KC_F1, KC_F11, KC_MEDIA_PREV_TRACK, KC_F6, KC_F12, KC_F10, KC_MEDIA_PLAY_PAUSE, C(KC_Z), C(KC_C), KC_F4, KC_NO, KC_BRIGHTNESS_DOWN, KC_KB_VOLUME_UP, KC_F7, KC_F3, KC_PRINT_SCREEN, KC_BRIGHTNESS_UP, KC_KB_VOLUME_DOWN, KC_F2, C(KC_V), KC_NO, C(KC_X), KC_F5, KC_F8};
+
+void process_sticky(enum taipo_mod mod, enum taipo_keycode output, enum taipo_keycode outer, enum taipo_keycode inner, uint16_t both, bool hold, bool release) {
+    if (mod == TM_NONE) {
+        if (hold) {
+            add_mods(MOD_BIT(output));
+            send_keyboard_report();
+        } else if (release) {
+            del_mods(MOD_BIT(output));
+            send_keyboard_report();
+        } else {
+            add_oneshot_mods(MOD_BIT(output));
+        }
+    } else {
+        uint16_t v = 0;
+        switch (mod) {
+            case TM_OUTER:
+                v = outer;
+                break;
+            case TM_INNER:
+                v = inner;
+                break;
+            case TM_BOTH:
+                v = both;
+                break;
+            default:
+        }
+        if (hold) {
+            register_code(v);
+        } else if (release) {
+            unregister_code(v);
+        } else {
+            tap_code16(v);
+        }
     }
 }
-
+/*
 static void process(uint16_t val) {
     uint16_t v = 0;
-    #define V(x) v=KC_##x; break;
+#define V(x)    \
+    v = KC_##x; \
+    break;
     enum taipo_mod mod = TM_NONE;
-    bool inner = (val & (1 << 8)) >> 8;
-    bool outer = (val & (1 << 9)) >> 9;
+    // check in the 9th or 10th key are set
+    bool inner   = (val & (1 << 8)) >> 8;
+    bool outer   = (val & (1 << 9)) >> 9;
+    bool hold    = (val & (1 << 10)) >> 10;
+    bool release = (val & (1 << 11)) >> 11;
+
+#define TAP(x) (hold ? register_code(x) : (release ? unregister_code(x) : tap_code16(x)));
     if (inner && outer) {
         mod = TM_BOTH;
     } else if (inner) {
@@ -96,106 +131,316 @@ static void process(uint16_t val) {
         mod = TM_OUTER;
     }
     bool both = inner && outer;
+    // this is removing the mods
+    val = val & ~(1 << 8);
+    val = val & ~(1 << 9);
+    val = val & ~(1 << 10);
+    val = val & ~(1 << 11);
+
+    switch (val) {
+        case e:
+            V(E)
+        case t:
+            V(T)
+        case o:
+            V(O)
+        case a:
+            V(A)
+        case i:
+            V(I)
+        case n:
+            V(N)
+        case s:
+            V(S)
+        case r:
+            V(R)
+
+        case e | t:
+            V(H)
+        case o | a:
+            V(L)
+        case i | n:
+            V(Y)
+        case s | r:
+            V(B)
+
+        case i | r:
+            V(G)
+        case t | o:
+            V(U)
+        case e | a:
+            V(D)
+        case n | s:
+            V(P)
+
+        case e | o:
+            V(C)
+        case t | a:
+            V(Q)
+        case i | s:
+            V(F)
+        case n | r:
+            V(Z)
+
+        case e | s:
+            V(V)
+        case t | r:
+            V(X)
+        case i | o:
+            V(K)
+        case n | a:
+            V(J)
+
+        case i | a:
+            V(W)
+        case e | r:
+            V(M)
+
+        case n | o:
+            V(MINS)
+        case t | s:
+            V(SLSH)
+        case s | a:
+            V(QUOT)
+        case e | n:
+            V(COMM)
+        case o | r:
+            V(SCLN)
+        case i | t:
+            V(QUES)
+        case e | i:
+            V(STICKY_LSFT)
+        case t | n:
+            V(STICKY_LCTL)
+        case o | s:
+            V(STICKY_LALT)
+        case a | r:
+            V(STICKY_LGUI)
+        case n | s | r:
+            V(QUOT)
+        case t | o | a:
+            V(SCLN)
+        case e | t | o:
+            V(ENTER)
+        case i | n | s:
+            V(TAB)
+        default:
+            v = 0;
+    }
+    switch (v) {
+        case 0:
+            tap_code16(inner ? KC_BSPC : (outer ? KC_SPC : KC_NO));
+            break;
+        case KC_A ... KC_Z:
+            if (both) {
+                v = l3[v - KC_A];
+            } else if (inner) {
+                v = l2[v - KC_A];
+                if (hold) {
+                    register_code(v);
+                } else if (release) {
+                    unregister_code(v);
+                } else {
+                    tap_code16(v);
+                }
+            } else if (outer) {
+                if (hold) {
+                    add_mods(MOD_BIT(KC_LSFT));
+                    register_code(v);
+                } else if (release) {
+                    del_mods(MOD_BIT(KC_LSFT));
+                    unregister_code(v);
+                } else {
+                    tap_code16(S(v));
+                }
+            } else {
+                if (hold) {
+                    register_code(v);
+                } else if (release) {
+                    unregister_code(v);
+                } else {
+                    tap_code16(v);
+                }
+            }
+            break;
+        case KC_MINS:
+            tap_code16(outer ? KC_UNDS : (inner ? KC_PERC : v));
+            break;
+        case KC_SLSH:
+            tap_code16(outer ? KC_BSLS : (inner ? KC_PIPE : v));
+            break;
+        case KC_QUOT:
+            tap_code16(outer ? KC_DQT : (inner ? KC_GRV : v));
+            break;
+        case KC_COMM:
+            tap_code16(outer ? KC_DOT : (inner ? KC_TILD : v));
+            break;
+        case KC_SCLN:
+            tap_code16(outer ? KC_COLN : (inner ? KC_NO : v));
+            break;
+        case KC_QUES:
+            tap_code16(outer ? KC_EXLM : (inner ? KC_NO : v));
+            break;
+        case KC_ENTER:
+            tap_code16(outer ? KC_ESC : (inner ? KC_STICKY_RALT : v));
+            break;
+        case KC_TAB:
+            tap_code16(outer ? KC_DEL : (inner ? KC_INS : v));
+            break;
+        case KC_STICKY_LGUI:
+            process_sticky(mod, KC_LGUI, KC_RIGHT, KC_PGUP, 3, hold, release);
+            break;
+        case KC_STICKY_LALT:
+            process_sticky(mod, KC_LALT, KC_UP, KC_HOME, 2, hold, release);
+            break;
+        case KC_STICKY_LCTL:
+            process_sticky(mod, KC_LCTL, KC_DOWN, KC_END, 1, hold, release);
+            break;
+        case KC_STICKY_LSFT:
+            process_sticky(mod, KC_LSFT, KC_LEFT, KC_PGDN, 0, hold, release);
+            break;
+        case KC_STICKY_RALT:
+            add_oneshot_mods(MOD_BIT(KC_RALT));
+            add_mods(MOD_BIT(KC_RALT));
+            break;
+        default:
+            tap_code(v);
+    }
+    if (hold) {
+        state |= 1 << 11;
+        state = state & ~(1 << 10);
+    }
+}
+*/
+
+static void handle_key(struct keypress key) {
+    tap_code16(key.keycode);
+}
+
+static struct keypress determine_key(uint16_t val) {
+    // enum taipo_mod mod = TM_NONE;
+    // check in the 9th or 10th key are set
+    // bool inner = (val & (1 << 8)) >> 8;
+    // bool outer = (val & (1 << 9)) >> 9;
+
+    // if (inner && outer) {
+    //     mod = TM_BOTH;
+    // } else if (inner) {
+    //     mod = TM_INNER;
+    // } else if (outer) {
+    //     mod = TM_OUTER;
+    // }
+    // bool both = inner && outer;
     val = val & ~(1 << 8);
     val = val & ~(1 << 9);
 
+    struct keypress result = {KC_NO, false};
+
     switch (val) {
-        case e: V(E)
-        case t: V(T)
-        case o: V(O)
-        case a: V(A)
-        case i: V(I)
-        case n: V(N)
-        case s: V(S)
-        case r: V(R)
-
-        case e|t: V(H)
-        case o|a: V(L)
-        case i|n: V(Y)
-        case s|r: V(B)
-                            
-        case i|r: V(G)
-        case t|o: V(U)
-        case e|a: V(D)
-        case n|s: V(P)
-                            
-        case e|o: V(C)
-        case t|a: V(Q)
-        case i|s: V(F)
-        case n|r: V(Z)
-                            
-        case e|s: V(V)
-        case t|r: V(X)
-        case i|o: V(K)
-        case n|a: V(J)
-                            
-        case i|a: V(W)
-        case e|r: V(M)
-
-        case n|o: V(MINS)
-        case t|s: V(SLSH)
-        case s|a: V(QUOT)
-        case e|n: V(COMM)
-        case o|r: V(SCLN)
-        case i|t: V(QUES)
-        case e|i: V(STICKY_LSFT)
-        case t|n: V(STICKY_LCTL)
-        case o|s: V(STICKY_LALT)
-        case a|r: V(STICKY_LGUI)
-        case n|s|r: V(QUOT)
-        case t|o|a: V(SCLN)
-        case e|t|o: V(ENTER)
-        case i|n|s: V(TAB)
-        default: v=0;
-    }
-    switch(v){
-        case 0: tap_code16(inner?KC_BSPC:(outer?KC_SPC:KC_NO)); break;
-        case KC_A...KC_Z:
-            if(both) {
-                tap_code16(l3[v-KC_A]);
-            } else if(inner) {
-                tap_code16(l2[v-KC_A]);
-            } else if(outer) {
-                tap_code16(S(v)); 
-            } else {
-                tap_code16(v);
-            }
+        case e:
+            result.keycode = KC_E;
             break;
-        case KC_MINS: tap_code16(outer?KC_UNDS:(inner?KC_PERC:v)); break;
-        case KC_SLSH: tap_code16(outer?KC_BSLS:(inner?KC_PIPE:v)); break;
-        case KC_QUOT: tap_code16(outer?KC_DQT:(inner?KC_GRV:v)); break;
-        case KC_COMM: tap_code16(outer?KC_DOT:(inner?KC_TILD:v)); break;
-        case KC_SCLN: tap_code16(outer?KC_COLN:(inner?KC_NO:v)); break;
-        case KC_QUES: tap_code16(outer?KC_EXLM:(inner?KC_NO:v)); break;
-        case KC_ENTER: tap_code16(outer?KC_ESC:(inner?KC_STICKY_RALT:v)); break;
-        case KC_TAB:   tap_code16(outer?KC_DEL:(inner?KC_INS:v)); break;
-        case KC_STICKY_LGUI: process_sticky(mod,KC_LGUI,KC_RIGHT,KC_PGUP,3); break;
-        case KC_STICKY_LALT: process_sticky(mod,KC_LALT,KC_UP,KC_HOME,2); break;
-        case KC_STICKY_LCTL: process_sticky(mod,KC_LCTL,KC_DOWN,KC_END,1); break;
-        case KC_STICKY_LSFT: process_sticky(mod,KC_LSFT,KC_LEFT,KC_PGDN,0); break;
-        case KC_STICKY_RALT: add_oneshot_mods(MOD_BIT(KC_RALT)); add_mods(MOD_BIT(KC_RALT)); break;
-        default: 
-            tap_code(v);
+        case t:
+            result.keycode = KC_T;
+            break;
+        case o:
+            result.keycode = KC_O;
+            break;
+        case a:
+            result.keycode = KC_A;
+            break;
+        case i:
+            result.keycode = KC_I;
+            break;
+        case n:
+            result.keycode = KC_N;
+            break;
+        case s:
+            result.keycode = KC_S;
+            break;
+        case r:
+            result.keycode = KC_R;
+            break;
     }
+    return result;
 }
 
-bool taipo_process_record_user(uint16_t keycode, keyrecord_t *record) {
-  if(record->event.pressed) {
-      if(side == keycode/10+1){
-          state |= 1 << (keycode%10); 
-      } else {
-          if(side != NONE) {
-              process(state);
-              state = 0;
-          }
-          side = keycode/10+1;
-          state |= 1 << (keycode%10);
-      }
+bool taipo_process_record_user(uint16_t keycode, keyrecord_t* record) {
+    uint16_t      key   = keycode - TAIPO_KEYCODE_OFFSET;
+    struct state* state = (key / 10) ? &right_state : &left_state;
+uprintf("%i key", key);
+uprintf("%i keycode", keycode);
+uprintf("%i offset", TAIPO_KEYCODE_OFFSET);
+    bool right = key / 10;
+    if (right) {
+        print("right");
+    } else {
+        print("left");
+    }
 
-  } else {
-      clear_mods();
-      process(state);
-      state = 0;
-  }
-  return false;
+    if (record->event.pressed) {
+        state->timer = (record->event.time + IDLE_TIMEOUT_MS) | 1;
+        state->combo |= 1 << (key % 10);
+        // // side becomes 1 for left or 2 for right
+        // // it will only come in here the 2nd keydown event
+        // if (side == key / 10 + 1) {
+        //     // adds the keycode to the state
+        //     // eg 00000001 if tlp is pressed
+        //     // or 00000011 if tlp and tlr is pressed
+
+        //     // if its on the same side, then just add to the state
+        //     // no need to set the side again
+        //     // the mod 10 normalizes it down to on side
+        //     state |= 1 << (key % 10);
+        // } else {
+        //     // this is this if the side changes
+        //     // it processes what it had and resets the state for the other side
+        //     // interesting it only handles one side at a time
+        //     // this might make it challenging if i want to hold a mod on one side and press the other
+        //     if (side != NONE) {
+        //         process(state);
+        //         state = 0;
+        //     }
+        //     // otherwise add to the state, dont process yet
+        //     side = key / 10 + 1;
+        //     state |= 1 << (key % 10);
+        // }
+
+    } else {
+        state->key = determine_key(state->combo);
+        handle_key(state->key);
+        state->combo       = 0;
+        state->timer       = 0;
+        state->key.keycode = KC_NO;
+        state->key.shifted = false;
+
+        // if you release any key process it and reset the state
+        // clear_mods();
+        // process(state);
+        // state      = 0;
+        // left_idle_timer = 0;
+        // right_idle_timer = 0;
+    }
+    return false;
+}
+
+void taipo_matrix_scan_user(void) {
+    // if (left_idle_timer && timer_expired(timer_read(), left_idle_timer)) {
+    //     state |= 1 << 10;
+    //     process(state);
+    //     left_idle_timer = 0;
+    // }
+    // if (right_idle_timer && timer_expired(timer_read(), right_idle_timer)) {
+    //     state |= 1 << 10;
+    //     process(state);
+    //     right_idle_timer = 0;
+    // }
+}
+
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  //debug_keyboard=true;
+  //debug_mouse=true;
 }

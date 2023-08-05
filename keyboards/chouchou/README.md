@@ -150,5 +150,5 @@ Input Output Outer Inner Both
 
 ## Todo
 
-- Implement combo term/timeouts
 - Holdable sticky mods
+- Implement combo term/timeouts
