@@ -413,18 +413,25 @@ bool taipo_process_record_user(uint16_t keycode, keyrecord_t* record) {
     state*   state = (key / 10) ? &right_state : &left_state;
 
     if (record->event.pressed) {
+        if (state->key.keycode != KC_NO) {
+            handle_key(&state->key);
+            state->combo            = 0;
+            state->timer            = 0;
+            state->key.keycode      = KC_NO;
+            state->key.hold         = false;
+            state->key.hold_handled = false;
+        }
         state->timer = (record->event.time + IDLE_TIMEOUT_MS) | 1;
         state->combo |= 1 << (key % 10);
-
     } else {
         if (!state->key.hold) {
             state->key = determine_key(state->combo);
         }
         handle_key(&state->key);
-        state->combo       = 0;
-        state->timer       = 0;
-        state->key.keycode = KC_NO;
-        state->key.hold = false;
+        state->combo            = 0;
+        state->timer            = 0;
+        state->key.keycode      = KC_NO;
+        state->key.hold         = false;
         state->key.hold_handled = false;
     }
     return false;
