@@ -324,317 +324,313 @@ static keypress determine_key(uint16_t val) {
         case r | ot:
             return (keypress){.keycode = KC_R, .shifted = true};
         case r | it:
-            return (keypress){.keycode = KC_R};
+            return (keypress){.keycode = KC_GT};
         case r | ot | it:
-            return (keypress){.keycode = KC_R};
+            return (keypress){.keycode = KC_PRINT_SCREEN};
         case s:
             return (keypress){.keycode = KC_S};
         case s | ot:
             return (keypress){.keycode = KC_S, .shifted = true};
         case s | it:
-            return (keypress){.keycode = KC_S};
+            return (keypress){.keycode = KC_RCBR};
         case s | ot | it:
-            return (keypress){.keycode = KC_S};
+            return (keypress){.keycode = KC_BRIGHTNESS_UP};
         case n:
             return (keypress){.keycode = KC_N};
         case n | ot:
             return (keypress){.keycode = KC_N, .shifted = true};
         case n | it:
-            return (keypress){.keycode = KC_N};
+            return (keypress){.keycode = KC_RBRC};
         case n | ot | it:
-            return (keypress){.keycode = KC_N};
+            return (keypress){.keycode = KC_BRIGHTNESS_DOWN};
         case i:
             return (keypress){.keycode = KC_I};
         case i | ot:
             return (keypress){.keycode = KC_I, .shifted = true};
         case i | it:
-            return (keypress){.keycode = KC_I};
+            return (keypress){.keycode = KC_RPRN};
         case i | ot | it:
-            return (keypress){.keycode = KC_I};
+            return (keypress){.keycode = KC_MEDIA_PLAY_PAUSE};
         case a:
             return (keypress){.keycode = KC_A};
         case a | ot:
             return (keypress){.keycode = KC_A, .shifted = true};
         case a | it:
-            return (keypress){.keycode = KC_A};
+            return (keypress){.keycode = KC_LT};
         case a | ot | it:
-            return (keypress){.keycode = KC_A};
-        case e:
-            return (keypress){.keycode = KC_E};
-        case e | ot:
-            return (keypress){.keycode = KC_E, .shifted = true};
+            return (keypress){.keycode = KC_MEDIA_NEXT_TRACK};
         case o:
             return (keypress){.keycode = KC_O};
         case o | ot:
             return (keypress){.keycode = KC_O, .shifted = true};
         case o | it:
-            return (keypress){.keycode = KC_O};
+            return (keypress){.keycode = KC_RCBR};
         case o | ot | it:
-            return (keypress){.keycode = KC_O};
+            return (keypress){.keycode = KC_KB_VOLUME_UP};
         case t:
             return (keypress){.keycode = KC_T};
         case t | ot:
             return (keypress){.keycode = KC_T, .shifted = true};
         case t | it:
-            return (keypress){.keycode = KC_T};
+            return (keypress){.keycode = KC_LBRC};
         case t | ot | it:
-            return (keypress){.keycode = KC_T};
+            return (keypress){.keycode = KC_KB_VOLUME_DOWN};
+        case e:
+            return (keypress){.keycode = KC_E};
+        case e | ot:
+            return (keypress){.keycode = KC_E, .shifted = true};
+        case e | it:
+            return (keypress){.keycode = KC_LPRN};
+        case e | ot | it:
+            return (keypress){.keycode = KC_MEDIA_PREV_TRACK};
         case e | o:
             return (keypress){.keycode = KC_C};
         case e | o | ot:
             return (keypress){.keycode = KC_C, .shifted = true};
         case e | o | it:
-            return (keypress){.keycode = KC_C};
+            return (keypress){.keycode = KC_1};
         case e | o | ot | it:
-            return (keypress){.keycode = KC_C};
+            return (keypress){.keycode = KC_F1};
         case t | o:
             return (keypress){.keycode = KC_U};
         case t | o | ot:
             return (keypress){.keycode = KC_U, .shifted = true};
         case t | o | it:
-            return (keypress){.keycode = KC_U};
+            return (keypress){.keycode = KC_2};
         case t | o | ot | it:
-            return (keypress){.keycode = KC_U};
+            return (keypress){.keycode = KC_F2};
         case t | a:
             return (keypress){.keycode = KC_Q};
         case t | a | ot:
             return (keypress){.keycode = KC_Q, .shifted = true};
         case t | a | it:
-            return (keypress){.keycode = KC_Q};
+            return (keypress){.keycode = KC_3};
         case t | a | ot | it:
-            return (keypress){.keycode = KC_Q};
+            return (keypress){.keycode = KC_F3};
         case o | a:
             return (keypress){.keycode = KC_L};
         case o | a | ot:
             return (keypress){.keycode = KC_L, .shifted = true};
         case o | a | it:
-            return (keypress){.keycode = KC_L};
+            return (keypress){.keycode = KC_4};
         case o | a | ot | it:
-            return (keypress){.keycode = KC_L};
+            return (keypress){.keycode = KC_F4};
         case i | n:
             return (keypress){.keycode = KC_Y};
         case i | n | ot:
             return (keypress){.keycode = KC_Y, .shifted = true};
         case i | n | it:
-            return (keypress){.keycode = KC_Y};
+            return (keypress){.keycode = KC_5};
         case i | n | ot | it:
-            return (keypress){.keycode = KC_Y};
+            return (keypress){.keycode = KC_F5};
         case i | s:
             return (keypress){.keycode = KC_F};
         case i | s | ot:
             return (keypress){.keycode = KC_F, .shifted = true};
         case i | s | it:
-            return (keypress){.keycode = KC_F};
+            return (keypress){.keycode = KC_6};
         case i | s | ot | it:
-            return (keypress){.keycode = KC_F};
+            return (keypress){.keycode = KC_F6};
         case n | s:
             return (keypress){.keycode = KC_P};
         case n | s | ot:
             return (keypress){.keycode = KC_P, .shifted = true};
         case n | s | it:
-            return (keypress){.keycode = KC_P};
+            return (keypress){.keycode = KC_7};
         case n | s | ot | it:
-            return (keypress){.keycode = KC_P};
+            return (keypress){.keycode = KC_F7};
         case n | r:
             return (keypress){.keycode = KC_Z};
         case n | r | ot:
             return (keypress){.keycode = KC_Z, .shifted = true};
         case n | r | it:
-            return (keypress){.keycode = KC_Z};
+            return (keypress){.keycode = KC_8};
         case n | r | ot | it:
-            return (keypress){.keycode = KC_Z};
+            return (keypress){.keycode = KC_F8};
         case s | r:
             return (keypress){.keycode = KC_B};
         case s | r | ot:
             return (keypress){.keycode = KC_B, .shifted = true};
         case s | r | it:
-            return (keypress){.keycode = KC_B};
+            return (keypress){.keycode = KC_9};
         case s | r | ot | it:
-            return (keypress){.keycode = KC_B};
+            return (keypress){.keycode = KC_F9};
         case e | t:
             return (keypress){.keycode = KC_H};
         case e | t | ot:
             return (keypress){.keycode = KC_H, .shifted = true};
         case e | t | it:
-            return (keypress){.keycode = KC_H};
+            return (keypress){.keycode = KC_0};
         case e | t | ot | it:
-            return (keypress){.keycode = KC_H};
+            return (keypress){.keycode = KC_F10};
         case e | a:
             return (keypress){.keycode = KC_D};
         case e | a | ot:
             return (keypress){.keycode = KC_D, .shifted = true};
         case e | a | it:
-            return (keypress){.keycode = KC_D};
+            return (keypress){.keycode = KC_AT};
         case e | a | ot | it:
-            return (keypress){.keycode = KC_D};
+            return (keypress){.keycode = KC_F11};
         case i | r:
             return (keypress){.keycode = KC_G};
         case i | r | ot:
             return (keypress){.keycode = KC_G, .shifted = true};
         case i | r | it:
-            return (keypress){.keycode = KC_G};
+            return (keypress){.keycode = KC_HASH};
         case i | r | ot | it:
-            return (keypress){.keycode = KC_G};
+            return (keypress){.keycode = KC_F12};
         case t | r:
             return (keypress){.keycode = KC_X};
         case t | r | ot:
             return (keypress){.keycode = KC_X, .shifted = true};
         case t | r | it:
-            return (keypress){.keycode = KC_X};
+            return (keypress){.keycode = KC_CIRC};
         case t | r | ot | it:
-            return (keypress){.keycode = KC_X};
+            return (keypress){.keycode = C(KC_X)};
         case i | o:
             return (keypress){.keycode = KC_K};
         case i | o | ot:
             return (keypress){.keycode = KC_K, .shifted = true};
         case i | o | it:
-            return (keypress){.keycode = KC_K};
+            return (keypress){.keycode = KC_PLUS};
         case i | o | ot | it:
-            return (keypress){.keycode = KC_K};
+            return (keypress){.keycode = C(KC_C)};
         case e | s:
             return (keypress){.keycode = KC_V};
         case e | s | ot:
             return (keypress){.keycode = KC_V, .shifted = true};
         case e | s | it:
-            return (keypress){.keycode = KC_V};
+            return (keypress){.keycode = KC_ASTR};
         case e | s | ot | it:
-            return (keypress){.keycode = KC_V};
+            return (keypress){.keycode = C(KC_V)};
         case n | a:
             return (keypress){.keycode = KC_J};
         case n | a | ot:
             return (keypress){.keycode = KC_J, .shifted = true};
         case n | a | it:
-            return (keypress){.keycode = KC_J};
+            return (keypress){.keycode = KC_EQL};
         case n | a | ot | it:
-            return (keypress){.keycode = KC_J};
+            return (keypress){.keycode = C(KC_Z)};
         case e | r:
             return (keypress){.keycode = KC_M};
         case e | r | ot:
             return (keypress){.keycode = KC_M, .shifted = true};
         case e | r | it:
-            return (keypress){.keycode = KC_M};
-        case e | r | ot | it:
-            return (keypress){.keycode = KC_M};
+            return (keypress){.keycode = KC_DLR};
+        // case e | r | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case i | a:
             return (keypress){.keycode = KC_W};
         case i | a | ot:
             return (keypress){.keycode = KC_W, .shifted = true};
         case i | a | it:
-            return (keypress){.keycode = KC_W};
-        case i | a | ot | it:
-            return (keypress){.keycode = KC_W};
+            return (keypress){.keycode = KC_AMPR};
+        // case i | a | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case t | s:
             return (keypress){.keycode = KC_SLSH};
         case t | s | ot:
-            return (keypress){.keycode = KC_SLSH, .shifted = true};
+            return (keypress){.keycode = KC_BSLS};
         case t | s | it:
-            return (keypress){.keycode = KC_SLSH};
-        case t | s | ot | it:
-            return (keypress){.keycode = KC_SLSH};
+            return (keypress){.keycode = KC_PIPE};
+        // case t | s | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case n | o:
             return (keypress){.keycode = KC_MINS};
         case n | o | ot:
-            return (keypress){.keycode = KC_MINS, .shifted = true};
+            return (keypress){.keycode = KC_UNDS};
         case n | o | it:
-            return (keypress){.keycode = KC_MINS};
-        case n | o | ot | it:
-            return (keypress){.keycode = KC_MINS};
+            return (keypress){.keycode = KC_PERC};
+        // case n | o | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case i | t:
             return (keypress){.keycode = KC_QUES};
         case i | t | ot:
-            return (keypress){.keycode = KC_QUES, .shifted = true};
-        case i | t | it:
-            return (keypress){.keycode = KC_QUES};
-        case i | t | ot | it:
-            return (keypress){.keycode = KC_QUES};
+            return (keypress){.keycode = KC_EXLM};
+        // case i | t | it:
+        //     return (keypress){.keycode = KC_NO};
+        // case i | t | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case e | n:
             return (keypress){.keycode = KC_COMM};
         case e | n | ot:
-            return (keypress){.keycode = KC_COMM, .shifted = true};
+            return (keypress){.keycode = KC_DOT};
         case e | n | it:
-            return (keypress){.keycode = KC_COMM};
-        case e | n | ot | it:
-            return (keypress){.keycode = KC_COMM};
+            return (keypress){.keycode = KC_TILD};
+        // case e | n | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case o | r:
-            return (keypress){.keycode = KC_SCLN};
-        case o | r | ot:
-            return (keypress){.keycode = KC_SCLN, .shifted = true};
-        case o | r | it:
-            return (keypress){.keycode = KC_SCLN};
-        case o | r | ot | it:
-            return (keypress){.keycode = KC_SCLN};
         case t | o | a:
             return (keypress){.keycode = KC_SCLN};
+        case o | r | ot:
         case t | o | a | ot:
-            return (keypress){.keycode = KC_SCLN, .shifted = true};
-        case t | o | a | it:
-            return (keypress){.keycode = KC_SCLN};
-        case t | o | a | ot | it:
-            return (keypress){.keycode = KC_SCLN};
+            return (keypress){.keycode = KC_COLN};
+        // case o | r | it:
+        // case t | o | a | it:
+        //     return (keypress){.keycode = KC_NO};
+        // case o | r | ot | it:
+        // case t | o | a | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case s | a:
-            return (keypress){.keycode = KC_QUOT};
-        case s | a | ot:
-            return (keypress){.keycode = KC_QUOT, .shifted = true};
-        case s | a | it:
-            return (keypress){.keycode = KC_QUOT};
-        case s | a | ot | it:
-            return (keypress){.keycode = KC_QUOT};
         case n | s | r:
             return (keypress){.keycode = KC_QUOT};
+        case s | a | ot:
         case n | s | r | ot:
-            return (keypress){.keycode = KC_QUOT, .shifted = true};
+            return (keypress){.keycode = KC_DQT};
+        case s | a | it:
         case n | s | r | it:
-            return (keypress){.keycode = KC_QUOT};
-        case n | s | r | ot | it:
-            return (keypress){.keycode = KC_QUOT};
+            return (keypress){.keycode = KC_GRV};
+        // case s | a | ot | it:
+        // case n | s | r | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case i | n | s:
             return (keypress){.keycode = KC_TAB};
         case i | n | s | ot:
-            return (keypress){.keycode = KC_TAB, .shifted = true};
+            return (keypress){.keycode = KC_DEL};
         case i | n | s | it:
-            return (keypress){.keycode = KC_TAB};
-        case i | n | s | ot | it:
-            return (keypress){.keycode = KC_TAB};
+            return (keypress){.keycode = KC_INS};
+        // case i | n | s | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case e | t | o:
             return (keypress){.keycode = KC_ENTER};
         case e | t | o | ot:
-            return (keypress){.keycode = KC_ENTER, .shifted = true};
+            return (keypress){.keycode = KC_ESC};
         case e | t | o | it:
-            return (keypress){.keycode = KC_ENTER};
-        case e | t | o | ot | it:
-            return (keypress){.keycode = KC_ENTER};
+            return (keypress){.keycode = KC_STICKY_RALT};
+        // case e | t | o | ot | it:
+        //     return (keypress){.keycode = KC_NO};
         case a | r:
             return (keypress){.keycode = KC_STICKY_LGUI};
         case a | r | ot:
-            return (keypress){.keycode = KC_STICKY_LGUI, .shifted = true};
+            return (keypress){.keycode = KC_RIGHT};
         case a | r | it:
-            return (keypress){.keycode = KC_STICKY_LGUI};
+            return (keypress){.keycode = KC_PGUP};
         case a | r | ot | it:
-            return (keypress){.keycode = KC_STICKY_LGUI};
+            return (keypress){.keycode = TO(3)};
         case o | s:
             return (keypress){.keycode = KC_STICKY_LALT};
         case o | s | ot:
-            return (keypress){.keycode = KC_STICKY_LALT, .shifted = true};
+            return (keypress){.keycode = KC_UP};
         case o | s | it:
-            return (keypress){.keycode = KC_STICKY_LALT};
+            return (keypress){.keycode = KC_HOME};
         case o | s | ot | it:
-            return (keypress){.keycode = KC_STICKY_LALT};
+            return (keypress){.keycode = TO(2)};
         case t | n:
             return (keypress){.keycode = KC_STICKY_LCTL};
         case t | n | ot:
-            return (keypress){.keycode = KC_STICKY_LCTL, .shifted = true};
+            return (keypress){.keycode = KC_DOWN};
         case t | n | it:
-            return (keypress){.keycode = KC_STICKY_LCTL};
+            return (keypress){.keycode = KC_END};
         case t | n | ot | it:
-            return (keypress){.keycode = KC_STICKY_LCTL};
+            return (keypress){.keycode = TO(1)};
         case e | i:
             return (keypress){.keycode = KC_STICKY_LSFT};
         case e | i | ot:
-            return (keypress){.keycode = KC_STICKY_LSFT, .shifted = true};
+            return (keypress){.keycode = KC_LEFT};
         case e | i | it:
-            return (keypress){.keycode = KC_STICKY_LSFT};
+            return (keypress){.keycode = KC_PGDN};
         case e | i | ot | it:
-            return (keypress){.keycode = KC_STICKY_LSFT};
+            return (keypress){.keycode = TO(0)};
     }
     return (keypress){.keycode = KC_NO};
 }
