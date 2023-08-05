@@ -35,6 +35,8 @@ enum taipo_keycode {
 typedef struct {
     uint16_t keycode;
     bool     shifted;
+    bool     hold;
+    bool     hold_handled;
 } keypress;
 
 typedef struct {
@@ -300,23 +302,6 @@ static void process(uint16_t val) {
     }
 }
 */
-
-static void handle_key(keypress key) {
-    switch (key.keycode) {
-        case KC_LGUI:
-        case KC_LALT:
-        case KC_LCTL:
-        case KC_LSFT:
-        add_oneshot_mods(MOD_BIT(key.keycode));
-        break;
-        default:
-            if (key.shifted) {
-                tap_code16(S(key.keycode));
-            } else {
-                tap_code16(key.keycode);
-            }
-    }
-}
 
 static keypress determine_key(uint16_t val) {
     switch (val) {
@@ -640,6 +625,45 @@ static keypress determine_key(uint16_t val) {
     return (keypress){.keycode = KC_NO};
 }
 
+static void handle_key(keypress* key) {
+    switch (key->keycode) {
+        case KC_LGUI:
+        case KC_LALT:
+        case KC_LCTL:
+        case KC_LSFT:
+            if (key->hold_handled) {
+                del_mods(MOD_BIT(key->keycode));
+                send_keyboard_report();
+            } else if (key->hold) {
+                add_mods(MOD_BIT(key->keycode));
+                send_keyboard_report();
+                key->hold_handled = true;
+            } else {
+                 add_oneshot_mods(MOD_BIT(key->keycode));
+            }
+            break;
+        default:
+            if (key->hold_handled) {
+                if (key->shifted) {
+                    del_mods(MOD_BIT(KC_LSFT));
+                }
+                unregister_code16(key->keycode);
+            } else if (key->hold) {
+                if (key->shifted) {
+                    add_mods(MOD_BIT(KC_LSFT));
+                }
+                register_code16(key->keycode);
+                key->hold_handled = true;
+            } else {
+                if (key->shifted) {
+                    tap_code16(S(key->keycode));
+                } else {
+                    tap_code16(key->keycode);
+                }
+            }
+    }
+}
+
 bool taipo_process_record_user(uint16_t keycode, keyrecord_t* record) {
     uint16_t key   = keycode - TAIPO_KEYCODE_OFFSET;
     state*   state = (key / 10) ? &right_state : &left_state;
@@ -658,17 +682,33 @@ bool taipo_process_record_user(uint16_t keycode, keyrecord_t* record) {
         state->combo |= 1 << (key % 10);
 
     } else {
-        state->key = determine_key(state->combo);
-        handle_key(state->key);
+        if (!state->key.hold) {
+            state->key = determine_key(state->combo);
+        }
+        handle_key(&state->key);
         state->combo       = 0;
         state->timer       = 0;
         state->key.keycode = KC_NO;
         state->key.shifted = false;
+        state->key.hold = false;
+        state->key.hold_handled = false;
     }
     return false;
 }
 
 void taipo_matrix_scan_user(void) {
+    if (left_state.timer && timer_expired(timer_read(), left_state.timer)) {
+        left_state.key      = determine_key(left_state.combo);
+        left_state.key.hold = true;
+        handle_key(&left_state.key);
+        left_state.timer = 0;
+    }
+    if (right_state.timer && timer_expired(timer_read(), right_state.timer)) {
+        right_state.key      = determine_key(right_state.combo);
+        right_state.key.hold = true;
+        handle_key(&right_state.key);
+        right_state.timer = 0;
+    }
     // if (left_idle_timer && timer_expired(timer_read(), left_idle_timer)) {
     //     state |= 1 << 10;
     //     process(state);
