@@ -33,7 +33,6 @@ enum taipo_keycode {
 
 typedef struct {
     uint16_t keycode;
-    bool     shifted;
     bool     hold;
     bool     hold_handled;
 } keypress;
@@ -67,7 +66,7 @@ static keypress determine_key(uint16_t val) {
         case r:
             return (keypress){.keycode = KC_R};
         case r | ot:
-            return (keypress){.keycode = KC_R, .shifted = true};
+            return (keypress){.keycode = S(KC_R)};
         case r | it:
             return (keypress){.keycode = KC_GT};
         case r | ot | it:
@@ -75,7 +74,7 @@ static keypress determine_key(uint16_t val) {
         case s:
             return (keypress){.keycode = KC_S};
         case s | ot:
-            return (keypress){.keycode = KC_S, .shifted = true};
+            return (keypress){.keycode = S(KC_S)};
         case s | it:
             return (keypress){.keycode = KC_RCBR};
         case s | ot | it:
@@ -83,7 +82,7 @@ static keypress determine_key(uint16_t val) {
         case n:
             return (keypress){.keycode = KC_N};
         case n | ot:
-            return (keypress){.keycode = KC_N, .shifted = true};
+            return (keypress){.keycode = S(KC_N)};
         case n | it:
             return (keypress){.keycode = KC_RBRC};
         case n | ot | it:
@@ -91,7 +90,7 @@ static keypress determine_key(uint16_t val) {
         case i:
             return (keypress){.keycode = KC_I};
         case i | ot:
-            return (keypress){.keycode = KC_I, .shifted = true};
+            return (keypress){.keycode = S(KC_I)};
         case i | it:
             return (keypress){.keycode = KC_RPRN};
         case i | ot | it:
@@ -99,7 +98,7 @@ static keypress determine_key(uint16_t val) {
         case a:
             return (keypress){.keycode = KC_A};
         case a | ot:
-            return (keypress){.keycode = KC_A, .shifted = true};
+            return (keypress){.keycode = S(KC_A)};
         case a | it:
             return (keypress){.keycode = KC_LT};
         case a | ot | it:
@@ -107,7 +106,7 @@ static keypress determine_key(uint16_t val) {
         case o:
             return (keypress){.keycode = KC_O};
         case o | ot:
-            return (keypress){.keycode = KC_O, .shifted = true};
+            return (keypress){.keycode = S(KC_O)};
         case o | it:
             return (keypress){.keycode = KC_LCBR};
         case o | ot | it:
@@ -115,7 +114,7 @@ static keypress determine_key(uint16_t val) {
         case t:
             return (keypress){.keycode = KC_T};
         case t | ot:
-            return (keypress){.keycode = KC_T, .shifted = true};
+            return (keypress){.keycode = S(KC_T)};
         case t | it:
             return (keypress){.keycode = KC_LBRC};
         case t | ot | it:
@@ -123,7 +122,7 @@ static keypress determine_key(uint16_t val) {
         case e:
             return (keypress){.keycode = KC_E};
         case e | ot:
-            return (keypress){.keycode = KC_E, .shifted = true};
+            return (keypress){.keycode = S(KC_E)};
         case e | it:
             return (keypress){.keycode = KC_LPRN};
         case e | ot | it:
@@ -131,7 +130,7 @@ static keypress determine_key(uint16_t val) {
         case e | o:
             return (keypress){.keycode = KC_C};
         case e | o | ot:
-            return (keypress){.keycode = KC_C, .shifted = true};
+            return (keypress){.keycode = S(KC_C)};
         case e | o | it:
             return (keypress){.keycode = KC_1};
         case e | o | ot | it:
@@ -139,7 +138,7 @@ static keypress determine_key(uint16_t val) {
         case t | o:
             return (keypress){.keycode = KC_U};
         case t | o | ot:
-            return (keypress){.keycode = KC_U, .shifted = true};
+            return (keypress){.keycode = S(KC_U)};
         case t | o | it:
             return (keypress){.keycode = KC_2};
         case t | o | ot | it:
@@ -147,7 +146,7 @@ static keypress determine_key(uint16_t val) {
         case t | a:
             return (keypress){.keycode = KC_Q};
         case t | a | ot:
-            return (keypress){.keycode = KC_Q, .shifted = true};
+            return (keypress){.keycode = S(KC_Q)};
         case t | a | it:
             return (keypress){.keycode = KC_3};
         case t | a | ot | it:
@@ -155,7 +154,7 @@ static keypress determine_key(uint16_t val) {
         case o | a:
             return (keypress){.keycode = KC_L};
         case o | a | ot:
-            return (keypress){.keycode = KC_L, .shifted = true};
+            return (keypress){.keycode = S(KC_L)};
         case o | a | it:
             return (keypress){.keycode = KC_4};
         case o | a | ot | it:
@@ -163,7 +162,7 @@ static keypress determine_key(uint16_t val) {
         case i | n:
             return (keypress){.keycode = KC_Y};
         case i | n | ot:
-            return (keypress){.keycode = KC_Y, .shifted = true};
+            return (keypress){.keycode = S(KC_Y)};
         case i | n | it:
             return (keypress){.keycode = KC_5};
         case i | n | ot | it:
@@ -171,7 +170,7 @@ static keypress determine_key(uint16_t val) {
         case i | s:
             return (keypress){.keycode = KC_F};
         case i | s | ot:
-            return (keypress){.keycode = KC_F, .shifted = true};
+            return (keypress){.keycode = S(KC_F)};
         case i | s | it:
             return (keypress){.keycode = KC_6};
         case i | s | ot | it:
@@ -179,7 +178,7 @@ static keypress determine_key(uint16_t val) {
         case n | s:
             return (keypress){.keycode = KC_P};
         case n | s | ot:
-            return (keypress){.keycode = KC_P, .shifted = true};
+            return (keypress){.keycode = S(KC_P)};
         case n | s | it:
             return (keypress){.keycode = KC_7};
         case n | s | ot | it:
@@ -187,7 +186,7 @@ static keypress determine_key(uint16_t val) {
         case n | r:
             return (keypress){.keycode = KC_Z};
         case n | r | ot:
-            return (keypress){.keycode = KC_Z, .shifted = true};
+            return (keypress){.keycode = S(KC_Z)};
         case n | r | it:
             return (keypress){.keycode = KC_8};
         case n | r | ot | it:
@@ -195,7 +194,7 @@ static keypress determine_key(uint16_t val) {
         case s | r:
             return (keypress){.keycode = KC_B};
         case s | r | ot:
-            return (keypress){.keycode = KC_B, .shifted = true};
+            return (keypress){.keycode = S(KC_B)};
         case s | r | it:
             return (keypress){.keycode = KC_9};
         case s | r | ot | it:
@@ -203,7 +202,7 @@ static keypress determine_key(uint16_t val) {
         case e | t:
             return (keypress){.keycode = KC_H};
         case e | t | ot:
-            return (keypress){.keycode = KC_H, .shifted = true};
+            return (keypress){.keycode = S(KC_H)};
         case e | t | it:
             return (keypress){.keycode = KC_0};
         case e | t | ot | it:
@@ -211,7 +210,7 @@ static keypress determine_key(uint16_t val) {
         case e | a:
             return (keypress){.keycode = KC_D};
         case e | a | ot:
-            return (keypress){.keycode = KC_D, .shifted = true};
+            return (keypress){.keycode = S(KC_D)};
         case e | a | it:
             return (keypress){.keycode = KC_AT};
         case e | a | ot | it:
@@ -219,7 +218,7 @@ static keypress determine_key(uint16_t val) {
         case i | r:
             return (keypress){.keycode = KC_G};
         case i | r | ot:
-            return (keypress){.keycode = KC_G, .shifted = true};
+            return (keypress){.keycode = S(KC_G)};
         case i | r | it:
             return (keypress){.keycode = KC_HASH};
         case i | r | ot | it:
@@ -227,7 +226,7 @@ static keypress determine_key(uint16_t val) {
         case t | r:
             return (keypress){.keycode = KC_X};
         case t | r | ot:
-            return (keypress){.keycode = KC_X, .shifted = true};
+            return (keypress){.keycode = S(KC_X)};
         case t | r | it:
             return (keypress){.keycode = KC_CIRC};
         case t | r | ot | it:
@@ -235,7 +234,7 @@ static keypress determine_key(uint16_t val) {
         case i | o:
             return (keypress){.keycode = KC_K};
         case i | o | ot:
-            return (keypress){.keycode = KC_K, .shifted = true};
+            return (keypress){.keycode = S(KC_K)};
         case i | o | it:
             return (keypress){.keycode = KC_PLUS};
         case i | o | ot | it:
@@ -243,7 +242,7 @@ static keypress determine_key(uint16_t val) {
         case e | s:
             return (keypress){.keycode = KC_V};
         case e | s | ot:
-            return (keypress){.keycode = KC_V, .shifted = true};
+            return (keypress){.keycode = S(KC_V)};
         case e | s | it:
             return (keypress){.keycode = KC_ASTR};
         case e | s | ot | it:
@@ -251,7 +250,7 @@ static keypress determine_key(uint16_t val) {
         case n | a:
             return (keypress){.keycode = KC_J};
         case n | a | ot:
-            return (keypress){.keycode = KC_J, .shifted = true};
+            return (keypress){.keycode = S(KC_J)};
         case n | a | it:
             return (keypress){.keycode = KC_EQL};
         case n | a | ot | it:
@@ -259,7 +258,7 @@ static keypress determine_key(uint16_t val) {
         case e | r:
             return (keypress){.keycode = KC_M};
         case e | r | ot:
-            return (keypress){.keycode = KC_M, .shifted = true};
+            return (keypress){.keycode = S(KC_M)};
         case e | r | it:
             return (keypress){.keycode = KC_DLR};
         // case e | r | ot | it:
@@ -267,7 +266,7 @@ static keypress determine_key(uint16_t val) {
         case i | a:
             return (keypress){.keycode = KC_W};
         case i | a | ot:
-            return (keypress){.keycode = KC_W, .shifted = true};
+            return (keypress){.keycode = S(KC_W)};
         case i | a | it:
             return (keypress){.keycode = KC_AMPR};
         // case i | a | ot | it:
@@ -394,27 +393,17 @@ static void handle_key(keypress* key) {
                 send_keyboard_report();
                 key->hold_handled = true;
             } else {
-                 add_oneshot_mods(MOD_BIT(key->keycode));
+                add_oneshot_mods(MOD_BIT(key->keycode));
             }
             break;
         default:
             if (key->hold_handled) {
-                if (key->shifted) {
-                    del_mods(MOD_BIT(KC_LSFT));
-                }
                 unregister_code16(key->keycode);
             } else if (key->hold) {
-                if (key->shifted) {
-                    add_mods(MOD_BIT(KC_LSFT));
-                }
                 register_code16(key->keycode);
                 key->hold_handled = true;
             } else {
-                if (key->shifted) {
-                    tap_code16(S(key->keycode));
-                } else {
-                    tap_code16(key->keycode);
-                }
+                tap_code16(key->keycode);
             }
     }
 }
@@ -435,7 +424,6 @@ bool taipo_process_record_user(uint16_t keycode, keyrecord_t* record) {
         state->combo       = 0;
         state->timer       = 0;
         state->key.keycode = KC_NO;
-        state->key.shifted = false;
         state->key.hold = false;
         state->key.hold_handled = false;
     }
