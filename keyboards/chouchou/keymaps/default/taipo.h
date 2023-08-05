@@ -30,11 +30,6 @@ enum taipo_keycode {
     TP_BRI,
     TP_RIT,
     TP_ROT,
-    KC_STICKY_LGUI,
-    KC_STICKY_LALT,
-    KC_STICKY_LCTL,
-    KC_STICKY_LSFT,
-    KC_STICKY_RALT,
 };
 
 typedef struct {
@@ -201,13 +196,13 @@ static void process(uint16_t val) {
         case i | t:
             V(QUES)
         case e | i:
-            V(STICKY_LSFT)
+            V(LSFT)
         case t | n:
-            V(STICKY_LCTL)
+            V(LCTL)
         case o | s:
-            V(STICKY_LALT)
+            V(LALT)
         case a | r:
-            V(STICKY_LGUI)
+            V(LGUI)
         case n | s | r:
             V(QUOT)
         case t | o | a:
@@ -274,24 +269,25 @@ static void process(uint16_t val) {
             tap_code16(outer ? KC_EXLM : (inner ? KC_NO : v));
             break;
         case KC_ENTER:
-            tap_code16(outer ? KC_ESC : (inner ? KC_STICKY_RALT : v));
+            tap_code16(outer ? KC_ESC : (inner ? KC_RALT : v));
             break;
         case KC_TAB:
             tap_code16(outer ? KC_DEL : (inner ? KC_INS : v));
             break;
-        case KC_STICKY_LGUI:
+        case KC_LGUI:
             process_sticky(mod, KC_LGUI, KC_RIGHT, KC_PGUP, 3, hold, release);
             break;
-        case KC_STICKY_LALT:
+        case KC_LALT:
+        case KC_LGUI:
             process_sticky(mod, KC_LALT, KC_UP, KC_HOME, 2, hold, release);
             break;
-        case KC_STICKY_LCTL:
+        case KC_LCTL:
             process_sticky(mod, KC_LCTL, KC_DOWN, KC_END, 1, hold, release);
             break;
-        case KC_STICKY_LSFT:
+        case KC_LSFT:
             process_sticky(mod, KC_LSFT, KC_LEFT, KC_PGDN, 0, hold, release);
             break;
-        case KC_STICKY_RALT:
+        case KC_RALT:
             add_oneshot_mods(MOD_BIT(KC_RALT));
             add_mods(MOD_BIT(KC_RALT));
             break;
@@ -306,10 +302,19 @@ static void process(uint16_t val) {
 */
 
 static void handle_key(keypress key) {
-    if (key.shifted) {
-        tap_code16(S(key.keycode));
-    } else {
-        tap_code16(key.keycode);
+    switch (key.keycode) {
+        case KC_LGUI:
+        case KC_LALT:
+        case KC_LCTL:
+        case KC_LSFT:
+        add_oneshot_mods(MOD_BIT(key.keycode));
+        break;
+        default:
+            if (key.shifted) {
+                tap_code16(S(key.keycode));
+            } else {
+                tap_code16(key.keycode);
+            }
     }
 }
 
@@ -364,7 +369,7 @@ static keypress determine_key(uint16_t val) {
         case o | ot:
             return (keypress){.keycode = KC_O, .shifted = true};
         case o | it:
-            return (keypress){.keycode = KC_RCBR};
+            return (keypress){.keycode = KC_LCBR};
         case o | ot | it:
             return (keypress){.keycode = KC_KB_VOLUME_UP};
         case t:
@@ -596,11 +601,11 @@ static keypress determine_key(uint16_t val) {
         case e | t | o | ot:
             return (keypress){.keycode = KC_ESC};
         case e | t | o | it:
-            return (keypress){.keycode = KC_STICKY_RALT};
+            return (keypress){.keycode = KC_RALT};
         // case e | t | o | ot | it:
         //     return (keypress){.keycode = KC_NO};
         case a | r:
-            return (keypress){.keycode = KC_STICKY_LGUI};
+            return (keypress){.keycode = KC_LGUI};
         case a | r | ot:
             return (keypress){.keycode = KC_RIGHT};
         case a | r | it:
@@ -608,7 +613,7 @@ static keypress determine_key(uint16_t val) {
         case a | r | ot | it:
             return (keypress){.keycode = TO(3)};
         case o | s:
-            return (keypress){.keycode = KC_STICKY_LALT};
+            return (keypress){.keycode = KC_LALT};
         case o | s | ot:
             return (keypress){.keycode = KC_UP};
         case o | s | it:
@@ -616,7 +621,7 @@ static keypress determine_key(uint16_t val) {
         case o | s | ot | it:
             return (keypress){.keycode = TO(2)};
         case t | n:
-            return (keypress){.keycode = KC_STICKY_LCTL};
+            return (keypress){.keycode = KC_LCTL};
         case t | n | ot:
             return (keypress){.keycode = KC_DOWN};
         case t | n | it:
@@ -624,7 +629,7 @@ static keypress determine_key(uint16_t val) {
         case t | n | ot | it:
             return (keypress){.keycode = TO(1)};
         case e | i:
-            return (keypress){.keycode = KC_STICKY_LSFT};
+            return (keypress){.keycode = KC_LSFT};
         case e | i | ot:
             return (keypress){.keycode = KC_LEFT};
         case e | i | it:
