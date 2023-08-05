@@ -29,6 +29,10 @@ enum taipo_keycode {
     TP_BRI,
     TP_RIT,
     TP_ROT,
+    KC_LAYER0,
+    KC_LAYER1,
+    KC_LAYER2,
+    KC_LAYER3,
 };
 
 typedef struct {
@@ -350,7 +354,7 @@ static keypress determine_key(uint16_t val) {
         case a | r | it:
             return (keypress){.keycode = KC_PGUP};
         case a | r | ot | it:
-            return (keypress){.keycode = TO(3)};
+            return (keypress){.keycode = KC_LAYER3};
         case o | s:
             return (keypress){.keycode = KC_LALT};
         case o | s | ot:
@@ -358,7 +362,7 @@ static keypress determine_key(uint16_t val) {
         case o | s | it:
             return (keypress){.keycode = KC_HOME};
         case o | s | ot | it:
-            return (keypress){.keycode = TO(2)};
+            return (keypress){.keycode = KC_LAYER2};
         case t | n:
             return (keypress){.keycode = KC_LCTL};
         case t | n | ot:
@@ -366,7 +370,7 @@ static keypress determine_key(uint16_t val) {
         case t | n | it:
             return (keypress){.keycode = KC_END};
         case t | n | ot | it:
-            return (keypress){.keycode = TO(1)};
+            return (keypress){.keycode = KC_LAYER1};
         case e | i:
             return (keypress){.keycode = KC_LSFT};
         case e | i | ot:
@@ -374,7 +378,7 @@ static keypress determine_key(uint16_t val) {
         case e | i | it:
             return (keypress){.keycode = KC_PGDN};
         case e | i | ot | it:
-            return (keypress){.keycode = TO(0)};
+            return (keypress){.keycode = KC_LAYER0};
     }
     return (keypress){.keycode = KC_NO};
 }
@@ -395,6 +399,18 @@ static void handle_key(keypress* key) {
             } else {
                 add_oneshot_mods(MOD_BIT(key->keycode));
             }
+            break;
+        case KC_LAYER0:
+            layer_move(0);
+            break;
+        case KC_LAYER1:
+            layer_move(1);
+            break;
+        case KC_LAYER2:
+            layer_move(2);
+            break;
+        case KC_LAYER3:
+            layer_move(3);
             break;
         default:
             if (key->hold_handled) {
