@@ -62,6 +62,7 @@ static state right_state;
 #define it 1 << 8
 #define ot 1 << 9
 
+/*
 // a b c d e f g h i j k l m n o p q r s t u v w x y z
 //< 9 1 @ ( 6 # 0 ) = + 4 $ ] { 7 3 > } [ 2 * & ^ 5 8
 const uint16_t l2[32] = {KC_LT, KC_9, KC_1, KC_AT, KC_LPRN, KC_6, KC_HASH, KC_0, KC_RPRN, KC_EQL, KC_PLUS, KC_4, KC_DLR, KC_RBRC, KC_LCBR, KC_7, KC_3, KC_GT, KC_RCBR, KC_LBRC, KC_2, KC_ASTR, KC_AMPR, KC_CIRC, KC_5, KC_8};
@@ -101,7 +102,6 @@ void process_sticky(enum taipo_mod mod, enum taipo_keycode output, enum taipo_ke
         }
     }
 }
-/*
 static void process(uint16_t val) {
     uint16_t v = 0;
 #define V(x)    \
@@ -319,58 +319,6 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_BSPC};
         case ot:
             return (keypress){.keycode = KC_SPC};
-        case e:
-            return (keypress){.keycode = KC_E};
-        case e | ot:
-            return (keypress){.keycode = KC_E, .shifted = true};
-        case t:
-            return (keypress){.keycode = KC_T};
-        case t | ot:
-            return (keypress){.keycode = KC_T, .shifted = true};
-        case t | it:
-            return (keypress){.keycode = KC_T};
-        case t | ot | it:
-            return (keypress){.keycode = KC_T};
-        case o:
-            return (keypress){.keycode = KC_O};
-        case o | ot:
-            return (keypress){.keycode = KC_O, .shifted = true};
-        case o | it:
-            return (keypress){.keycode = KC_O};
-        case o | ot | it:
-            return (keypress){.keycode = KC_O};
-        case a:
-            return (keypress){.keycode = KC_A};
-        case a | ot:
-            return (keypress){.keycode = KC_A, .shifted = true};
-        case a | it:
-            return (keypress){.keycode = KC_A};
-        case a | ot | it:
-            return (keypress){.keycode = KC_A};
-        case i:
-            return (keypress){.keycode = KC_I};
-        case i | ot:
-            return (keypress){.keycode = KC_I, .shifted = true};
-        case i | it:
-            return (keypress){.keycode = KC_I};
-        case i | ot | it:
-            return (keypress){.keycode = KC_I};
-        case n:
-            return (keypress){.keycode = KC_N};
-        case n | ot:
-            return (keypress){.keycode = KC_N, .shifted = true};
-        case n | it:
-            return (keypress){.keycode = KC_N};
-        case n | ot | it:
-            return (keypress){.keycode = KC_N};
-        case s:
-            return (keypress){.keycode = KC_S};
-        case s | ot:
-            return (keypress){.keycode = KC_S, .shifted = true};
-        case s | it:
-            return (keypress){.keycode = KC_S};
-        case s | ot | it:
-            return (keypress){.keycode = KC_S};
         case r:
             return (keypress){.keycode = KC_R};
         case r | ot:
@@ -379,14 +327,82 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_R};
         case r | ot | it:
             return (keypress){.keycode = KC_R};
-        case e | t:
-            return (keypress){.keycode = KC_H};
-        case e | t | ot:
-            return (keypress){.keycode = KC_H, .shifted = true};
-        case e | t | it:
-            return (keypress){.keycode = KC_H};
-        case e | t | ot | it:
-            return (keypress){.keycode = KC_H};
+        case s:
+            return (keypress){.keycode = KC_S};
+        case s | ot:
+            return (keypress){.keycode = KC_S, .shifted = true};
+        case s | it:
+            return (keypress){.keycode = KC_S};
+        case s | ot | it:
+            return (keypress){.keycode = KC_S};
+        case n:
+            return (keypress){.keycode = KC_N};
+        case n | ot:
+            return (keypress){.keycode = KC_N, .shifted = true};
+        case n | it:
+            return (keypress){.keycode = KC_N};
+        case n | ot | it:
+            return (keypress){.keycode = KC_N};
+        case i:
+            return (keypress){.keycode = KC_I};
+        case i | ot:
+            return (keypress){.keycode = KC_I, .shifted = true};
+        case i | it:
+            return (keypress){.keycode = KC_I};
+        case i | ot | it:
+            return (keypress){.keycode = KC_I};
+        case a:
+            return (keypress){.keycode = KC_A};
+        case a | ot:
+            return (keypress){.keycode = KC_A, .shifted = true};
+        case a | it:
+            return (keypress){.keycode = KC_A};
+        case a | ot | it:
+            return (keypress){.keycode = KC_A};
+        case e:
+            return (keypress){.keycode = KC_E};
+        case e | ot:
+            return (keypress){.keycode = KC_E, .shifted = true};
+        case o:
+            return (keypress){.keycode = KC_O};
+        case o | ot:
+            return (keypress){.keycode = KC_O, .shifted = true};
+        case o | it:
+            return (keypress){.keycode = KC_O};
+        case o | ot | it:
+            return (keypress){.keycode = KC_O};
+        case t:
+            return (keypress){.keycode = KC_T};
+        case t | ot:
+            return (keypress){.keycode = KC_T, .shifted = true};
+        case t | it:
+            return (keypress){.keycode = KC_T};
+        case t | ot | it:
+            return (keypress){.keycode = KC_T};
+        case e | o:
+            return (keypress){.keycode = KC_C};
+        case e | o | ot:
+            return (keypress){.keycode = KC_C, .shifted = true};
+        case e | o | it:
+            return (keypress){.keycode = KC_C};
+        case e | o | ot | it:
+            return (keypress){.keycode = KC_C};
+        case t | o:
+            return (keypress){.keycode = KC_U};
+        case t | o | ot:
+            return (keypress){.keycode = KC_U, .shifted = true};
+        case t | o | it:
+            return (keypress){.keycode = KC_U};
+        case t | o | ot | it:
+            return (keypress){.keycode = KC_U};
+        case t | a:
+            return (keypress){.keycode = KC_Q};
+        case t | a | ot:
+            return (keypress){.keycode = KC_Q, .shifted = true};
+        case t | a | it:
+            return (keypress){.keycode = KC_Q};
+        case t | a | ot | it:
+            return (keypress){.keycode = KC_Q};
         case o | a:
             return (keypress){.keycode = KC_L};
         case o | a | ot:
@@ -403,62 +419,6 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_Y};
         case i | n | ot | it:
             return (keypress){.keycode = KC_Y};
-        case s | r:
-            return (keypress){.keycode = KC_B};
-        case s | r | ot:
-            return (keypress){.keycode = KC_B, .shifted = true};
-        case s | r | it:
-            return (keypress){.keycode = KC_B};
-        case s | r | ot | it:
-            return (keypress){.keycode = KC_B};
-        case i | r:
-            return (keypress){.keycode = KC_G};
-        case i | r | ot:
-            return (keypress){.keycode = KC_G, .shifted = true};
-        case i | r | it:
-            return (keypress){.keycode = KC_G};
-        case i | r | ot | it:
-            return (keypress){.keycode = KC_G};
-        case t | o:
-            return (keypress){.keycode = KC_U};
-        case t | o | ot:
-            return (keypress){.keycode = KC_U, .shifted = true};
-        case t | o | it:
-            return (keypress){.keycode = KC_U};
-        case t | o | ot | it:
-            return (keypress){.keycode = KC_U};
-        case e | a:
-            return (keypress){.keycode = KC_D};
-        case e | a | ot:
-            return (keypress){.keycode = KC_D, .shifted = true};
-        case e | a | it:
-            return (keypress){.keycode = KC_D};
-        case e | a | ot | it:
-            return (keypress){.keycode = KC_D};
-        case n | s:
-            return (keypress){.keycode = KC_P};
-        case n | s | ot:
-            return (keypress){.keycode = KC_P, .shifted = true};
-        case n | s | it:
-            return (keypress){.keycode = KC_P};
-        case n | s | ot | it:
-            return (keypress){.keycode = KC_P};
-        case e | o:
-            return (keypress){.keycode = KC_C};
-        case e | o | ot:
-            return (keypress){.keycode = KC_C, .shifted = true};
-        case e | o | it:
-            return (keypress){.keycode = KC_C};
-        case e | o | ot | it:
-            return (keypress){.keycode = KC_C};
-        case t | a:
-            return (keypress){.keycode = KC_Q};
-        case t | a | ot:
-            return (keypress){.keycode = KC_Q, .shifted = true};
-        case t | a | it:
-            return (keypress){.keycode = KC_Q};
-        case t | a | ot | it:
-            return (keypress){.keycode = KC_Q};
         case i | s:
             return (keypress){.keycode = KC_F};
         case i | s | ot:
@@ -467,6 +427,14 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_F};
         case i | s | ot | it:
             return (keypress){.keycode = KC_F};
+        case n | s:
+            return (keypress){.keycode = KC_P};
+        case n | s | ot:
+            return (keypress){.keycode = KC_P, .shifted = true};
+        case n | s | it:
+            return (keypress){.keycode = KC_P};
+        case n | s | ot | it:
+            return (keypress){.keycode = KC_P};
         case n | r:
             return (keypress){.keycode = KC_Z};
         case n | r | ot:
@@ -475,14 +443,38 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_Z};
         case n | r | ot | it:
             return (keypress){.keycode = KC_Z};
-        case e | s:
-            return (keypress){.keycode = KC_V};
-        case e | s | ot:
-            return (keypress){.keycode = KC_V, .shifted = true};
-        case e | s | it:
-            return (keypress){.keycode = KC_V};
-        case e | s | ot | it:
-            return (keypress){.keycode = KC_V};
+        case s | r:
+            return (keypress){.keycode = KC_B};
+        case s | r | ot:
+            return (keypress){.keycode = KC_B, .shifted = true};
+        case s | r | it:
+            return (keypress){.keycode = KC_B};
+        case s | r | ot | it:
+            return (keypress){.keycode = KC_B};
+        case e | t:
+            return (keypress){.keycode = KC_H};
+        case e | t | ot:
+            return (keypress){.keycode = KC_H, .shifted = true};
+        case e | t | it:
+            return (keypress){.keycode = KC_H};
+        case e | t | ot | it:
+            return (keypress){.keycode = KC_H};
+        case e | a:
+            return (keypress){.keycode = KC_D};
+        case e | a | ot:
+            return (keypress){.keycode = KC_D, .shifted = true};
+        case e | a | it:
+            return (keypress){.keycode = KC_D};
+        case e | a | ot | it:
+            return (keypress){.keycode = KC_D};
+        case i | r:
+            return (keypress){.keycode = KC_G};
+        case i | r | ot:
+            return (keypress){.keycode = KC_G, .shifted = true};
+        case i | r | it:
+            return (keypress){.keycode = KC_G};
+        case i | r | ot | it:
+            return (keypress){.keycode = KC_G};
         case t | r:
             return (keypress){.keycode = KC_X};
         case t | r | ot:
@@ -499,6 +491,14 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_K};
         case i | o | ot | it:
             return (keypress){.keycode = KC_K};
+        case e | s:
+            return (keypress){.keycode = KC_V};
+        case e | s | ot:
+            return (keypress){.keycode = KC_V, .shifted = true};
+        case e | s | it:
+            return (keypress){.keycode = KC_V};
+        case e | s | ot | it:
+            return (keypress){.keycode = KC_V};
         case n | a:
             return (keypress){.keycode = KC_J};
         case n | a | ot:
@@ -507,14 +507,6 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_J};
         case n | a | ot | it:
             return (keypress){.keycode = KC_J};
-        case i | a:
-            return (keypress){.keycode = KC_W};
-        case i | a | ot:
-            return (keypress){.keycode = KC_W, .shifted = true};
-        case i | a | it:
-            return (keypress){.keycode = KC_W};
-        case i | a | ot | it:
-            return (keypress){.keycode = KC_W};
         case e | r:
             return (keypress){.keycode = KC_M};
         case e | r | ot:
@@ -523,14 +515,14 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_M};
         case e | r | ot | it:
             return (keypress){.keycode = KC_M};
-        case n | o:
-            return (keypress){.keycode = KC_MINS};
-        case n | o | ot:
-            return (keypress){.keycode = KC_MINS, .shifted = true};
-        case n | o | it:
-            return (keypress){.keycode = KC_MINS};
-        case n | o | ot | it:
-            return (keypress){.keycode = KC_MINS};
+        case i | a:
+            return (keypress){.keycode = KC_W};
+        case i | a | ot:
+            return (keypress){.keycode = KC_W, .shifted = true};
+        case i | a | it:
+            return (keypress){.keycode = KC_W};
+        case i | a | ot | it:
+            return (keypress){.keycode = KC_W};
         case t | s:
             return (keypress){.keycode = KC_SLSH};
         case t | s | ot:
@@ -539,14 +531,22 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_SLSH};
         case t | s | ot | it:
             return (keypress){.keycode = KC_SLSH};
-        case s | a:
-            return (keypress){.keycode = KC_QUOT};
-        case s | a | ot:
-            return (keypress){.keycode = KC_QUOT, .shifted = true};
-        case s | a | it:
-            return (keypress){.keycode = KC_QUOT};
-        case s | a | ot | it:
-            return (keypress){.keycode = KC_QUOT};
+        case n | o:
+            return (keypress){.keycode = KC_MINS};
+        case n | o | ot:
+            return (keypress){.keycode = KC_MINS, .shifted = true};
+        case n | o | it:
+            return (keypress){.keycode = KC_MINS};
+        case n | o | ot | it:
+            return (keypress){.keycode = KC_MINS};
+        case i | t:
+            return (keypress){.keycode = KC_QUES};
+        case i | t | ot:
+            return (keypress){.keycode = KC_QUES, .shifted = true};
+        case i | t | it:
+            return (keypress){.keycode = KC_QUES};
+        case i | t | ot | it:
+            return (keypress){.keycode = KC_QUES};
         case e | n:
             return (keypress){.keycode = KC_COMM};
         case e | n | ot:
@@ -563,54 +563,6 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_SCLN};
         case o | r | ot | it:
             return (keypress){.keycode = KC_SCLN};
-        case i | t:
-            return (keypress){.keycode = KC_QUES};
-        case i | t | ot:
-            return (keypress){.keycode = KC_QUES, .shifted = true};
-        case i | t | it:
-            return (keypress){.keycode = KC_QUES};
-        case i | t | ot | it:
-            return (keypress){.keycode = KC_QUES};
-        case e | i:
-            return (keypress){.keycode = KC_STICKY_LSFT};
-        case e | i | ot:
-            return (keypress){.keycode = KC_STICKY_LSFT, .shifted = true};
-        case e | i | it:
-            return (keypress){.keycode = KC_STICKY_LSFT};
-        case e | i | ot | it:
-            return (keypress){.keycode = KC_STICKY_LSFT};
-        case t | n:
-            return (keypress){.keycode = KC_STICKY_LCTL};
-        case t | n | ot:
-            return (keypress){.keycode = KC_STICKY_LCTL, .shifted = true};
-        case t | n | it:
-            return (keypress){.keycode = KC_STICKY_LCTL};
-        case t | n | ot | it:
-            return (keypress){.keycode = KC_STICKY_LCTL};
-        case o | s:
-            return (keypress){.keycode = KC_STICKY_LALT};
-        case o | s | ot:
-            return (keypress){.keycode = KC_STICKY_LALT, .shifted = true};
-        case o | s | it:
-            return (keypress){.keycode = KC_STICKY_LALT};
-        case o | s | ot | it:
-            return (keypress){.keycode = KC_STICKY_LALT};
-        case a | r:
-            return (keypress){.keycode = KC_STICKY_LGUI};
-        case a | r | ot:
-            return (keypress){.keycode = KC_STICKY_LGUI, .shifted = true};
-        case a | r | it:
-            return (keypress){.keycode = KC_STICKY_LGUI};
-        case a | r | ot | it:
-            return (keypress){.keycode = KC_STICKY_LGUI};
-        case n | s | r:
-            return (keypress){.keycode = KC_QUOT};
-        case n | s | r | ot:
-            return (keypress){.keycode = KC_QUOT, .shifted = true};
-        case n | s | r | it:
-            return (keypress){.keycode = KC_QUOT};
-        case n | s | r | ot | it:
-            return (keypress){.keycode = KC_QUOT};
         case t | o | a:
             return (keypress){.keycode = KC_SCLN};
         case t | o | a | ot:
@@ -619,14 +571,22 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_SCLN};
         case t | o | a | ot | it:
             return (keypress){.keycode = KC_SCLN};
-        case e | t | o:
-            return (keypress){.keycode = KC_ENTER};
-        case e | t | o | ot:
-            return (keypress){.keycode = KC_ENTER, .shifted = true};
-        case e | t | o | it:
-            return (keypress){.keycode = KC_ENTER};
-        case e | t | o | ot | it:
-            return (keypress){.keycode = KC_ENTER};
+        case s | a:
+            return (keypress){.keycode = KC_QUOT};
+        case s | a | ot:
+            return (keypress){.keycode = KC_QUOT, .shifted = true};
+        case s | a | it:
+            return (keypress){.keycode = KC_QUOT};
+        case s | a | ot | it:
+            return (keypress){.keycode = KC_QUOT};
+        case n | s | r:
+            return (keypress){.keycode = KC_QUOT};
+        case n | s | r | ot:
+            return (keypress){.keycode = KC_QUOT, .shifted = true};
+        case n | s | r | it:
+            return (keypress){.keycode = KC_QUOT};
+        case n | s | r | ot | it:
+            return (keypress){.keycode = KC_QUOT};
         case i | n | s:
             return (keypress){.keycode = KC_TAB};
         case i | n | s | ot:
@@ -635,6 +595,46 @@ static keypress determine_key(uint16_t val) {
             return (keypress){.keycode = KC_TAB};
         case i | n | s | ot | it:
             return (keypress){.keycode = KC_TAB};
+        case e | t | o:
+            return (keypress){.keycode = KC_ENTER};
+        case e | t | o | ot:
+            return (keypress){.keycode = KC_ENTER, .shifted = true};
+        case e | t | o | it:
+            return (keypress){.keycode = KC_ENTER};
+        case e | t | o | ot | it:
+            return (keypress){.keycode = KC_ENTER};
+        case a | r:
+            return (keypress){.keycode = KC_STICKY_LGUI};
+        case a | r | ot:
+            return (keypress){.keycode = KC_STICKY_LGUI, .shifted = true};
+        case a | r | it:
+            return (keypress){.keycode = KC_STICKY_LGUI};
+        case a | r | ot | it:
+            return (keypress){.keycode = KC_STICKY_LGUI};
+        case o | s:
+            return (keypress){.keycode = KC_STICKY_LALT};
+        case o | s | ot:
+            return (keypress){.keycode = KC_STICKY_LALT, .shifted = true};
+        case o | s | it:
+            return (keypress){.keycode = KC_STICKY_LALT};
+        case o | s | ot | it:
+            return (keypress){.keycode = KC_STICKY_LALT};
+        case t | n:
+            return (keypress){.keycode = KC_STICKY_LCTL};
+        case t | n | ot:
+            return (keypress){.keycode = KC_STICKY_LCTL, .shifted = true};
+        case t | n | it:
+            return (keypress){.keycode = KC_STICKY_LCTL};
+        case t | n | ot | it:
+            return (keypress){.keycode = KC_STICKY_LCTL};
+        case e | i:
+            return (keypress){.keycode = KC_STICKY_LSFT};
+        case e | i | ot:
+            return (keypress){.keycode = KC_STICKY_LSFT, .shifted = true};
+        case e | i | it:
+            return (keypress){.keycode = KC_STICKY_LSFT};
+        case e | i | ot | it:
+            return (keypress){.keycode = KC_STICKY_LSFT};
     }
     return (keypress){.keycode = KC_NO};
 }
