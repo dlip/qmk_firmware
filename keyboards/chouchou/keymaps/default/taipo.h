@@ -5,7 +5,7 @@
 #pragma once
 #include "keycodes.h"
 #include "quantum_keycodes.h"
-#define IDLE_TIMEOUT_MS 100 // Idle timeout in milliseconds.
+#define IDLE_TIMEOUT_MS 150
 #define TAIPO_KEYCODE_OFFSET (SAFE_RANGE + 500)
 
 enum taipo_keycode {
@@ -387,6 +387,7 @@ static void handle_key(keypress* key) {
     switch (key->keycode) {
         case KC_LGUI:
         case KC_LALT:
+        case KC_RALT:
         case KC_LCTL:
         case KC_LSFT:
             if (key->hold_handled) {
