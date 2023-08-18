@@ -415,16 +415,16 @@ static uint16_t determine_key(uint16_t val) {
 #define c o | e
 #define w o | i
 #define m a | e
-#define g a | t
-#define y o | n
+#define g o | n
+#define y a | t
 #define p a | n | i
 #define b o | t | e
-#define v o | n | i
-#define k a | t | e
-#define j a | n | e
-#define x o | t | i
-#define q o | n | e
-#define z a | t | i
+#define v o | n | e
+#define k a | n | e
+#define j o | n | i
+#define x a | t | e
+#define q n | t | e
+#define z n | t | i
 
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
@@ -578,6 +578,70 @@ static uint16_t determine_key(uint16_t val) {
             return KC_9;
         case y | both:
             return KC_F9;
+        case p:
+            return KC_P;
+        case p | ot:
+            return S(KC_P);
+        case p | it:
+            return KC_PLUS;
+        case p | both:
+            return KC_EQL;
+        case b:
+            return KC_B;
+        case b | ot:
+            return S(KC_B);
+        case b | it:
+            return KC_MINS;
+        case b | both:
+            return KC_UNDS;
+        case v:
+            return KC_V;
+        case v | ot:
+            return S(KC_V);
+        case v | it:
+            return KC_SLSH;
+        case v | both:
+            return KC_BSLS;
+        case k:
+            return KC_K;
+        case k | ot:
+            return S(KC_K);
+        case k | it:
+            return KC_DLR;
+        case k | both:
+            return KC_HASH;
+        case j:
+            return KC_J;
+        case j | ot:
+            return S(KC_J);
+        case j | it:
+            return KC_COLN;
+        case j | both:
+            return KC_ASTR;
+        case x:
+            return KC_X;
+        case x | ot:
+            return S(KC_X);
+        case x | it:
+            return KC_SCLN;
+        case x | both:
+            return KC_PIPE;
+        case q:
+            return KC_Q;
+        case q | ot:
+            return S(KC_Q);
+        case q | it:
+            return KC_AT;
+        case q | both:
+            return KC_F11;
+        case z:
+            return KC_Z;
+        case z | ot:
+            return S(KC_Z);
+        case z | it:
+            return KC_AMPR;
+        case z | both:
+            return KC_F12;
         // case %:
         //     return KC_;
         // case % | ot:
