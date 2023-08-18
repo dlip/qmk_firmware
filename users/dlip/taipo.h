@@ -396,35 +396,35 @@ static uint16_t determine_key(uint16_t val) {
     return KC_NO;
 }
 #elif defined(TAIPO_FLAVOR_POSH)
-#define n 1 << 1
-#define t 1 << 2
-#define o 1 << 3
-#define i 1 << 5
-#define e 1 << 6
-#define a 1 << 7
+#define a 1 << 1
+#define n 1 << 2
+#define i 1 << 3
+#define o 1 << 5
+#define t 1 << 6
+#define e 1 << 7
 #define it 1 << 8
 #define ot 1 << 9
 #define both ot | it
-#define s e | a
-#define h t | o
-#define r i | e
-#define d n | t
-#define l e | o
-#define c t | a
-#define u n | o
-#define m i | a
-#define w i | o
-#define f n | a
-#define g n | e
-#define y i | t
-#define p n | t | o
-#define b i | e | a
-#define v i | t | o
-#define k n | e | a
-#define j n | t | a
-#define x i | e | o
-#define q i | t | a
-#define z n | e | o
+#define s t | e
+#define h n | i
+#define r o | t
+#define d a | n
+#define l t | i
+#define c n | e
+#define u a | i
+#define m o | e
+#define w o | i
+#define f a | e
+#define g a | t
+#define y o | n
+#define p a | n | i
+#define b o | t | e
+#define v o | n | i
+#define k a | t | e
+#define j a | n | e
+#define x o | t | i
+#define q o | n | e
+#define z a | t | i
 
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
@@ -434,55 +434,55 @@ static uint16_t determine_key(uint16_t val) {
             return KC_SPC;
         case both:
             return KC_LSFT;
-        case e:
-            return KC_E;
-        case e | ot:
-            return S(KC_E);
-        case e | it:
-            return KC_DOWN;
-        case e | both:
-            return KC_PGDN;
-        case t:
-            return KC_T;
-        case t | ot:
-            return S(KC_T);
-        case t | it:
-            return KC_UP;
-        case t | both:
-            return KC_PGUP;
         case a:
             return KC_A;
         case a | ot:
             return S(KC_A);
         case a | it:
-            return KC_RIGHT;
+            return KC_ESC;
         case a | both:
-            return KC_END;
-        case o:
-            return KC_O;
-        case o | ot:
-            return S(KC_O);
-        case o | it:
-            return KC_ENTER;
-        case o | both:
-            return KC_TAB;
-        case i:
-            return KC_I;
-        case i | ot:
-            return S(KC_I);
-        case i | it:
-            return KC_LEFT;
-        case i | both:
-            return KC_HOME;
+            return KC_DEL;
         case n:
             return KC_N;
         case n | ot:
             return S(KC_N);
         case n | it:
-            return KC_ESC;
+            return KC_UP;
         case n | both:
-            return KC_DEL;
-        case e | a:
+            return KC_PGUP;
+        case i:
+            return KC_I;
+        case i | ot:
+            return S(KC_I);
+        case i | it:
+            return KC_ENTER;
+        case i | both:
+            return KC_TAB;
+        case o:
+            return KC_O;
+        case o | ot:
+            return S(KC_O);
+        case o | it:
+            return KC_LEFT;
+        case o | both:
+            return KC_HOME;
+        case t:
+            return KC_T;
+        case t | ot:
+            return S(KC_T);
+        case t | it:
+            return KC_DOWN;
+        case t | both:
+            return KC_PGDN;
+        case e:
+            return KC_E;
+        case e | ot:
+            return S(KC_E);
+        case e | it:
+            return KC_RIGHT;
+        case e | both:
+            return KC_END;
+        case s:
             return KC_S;
         case s | ot:
             return S(KC_S);
