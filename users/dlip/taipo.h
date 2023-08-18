@@ -406,9 +406,9 @@ static uint16_t determine_key(uint16_t val) {
 #define ot 1 << 9
 #define both ot | it
 #define h t | e
-#define s n | i
+#define d n | i
 #define u o | t
-#define d a | n
+#define s a | n
 #define l t | i
 #define f n | e
 #define r a | i
@@ -490,13 +490,13 @@ static uint16_t determine_key(uint16_t val) {
             return KC_COMM;
         case h | both:
             return KC_QUOT;
-        case s:
-            return KC_S;
-        case s | ot:
-            return S(KC_S);
-        case s | it:
+        case d:
+            return KC_D;
+        case d | ot:
+            return S(KC_D);
+        case d | it:
             return KC_DOT;
-        case s | both:
+        case d | both:
             return KC_DQT;
         case u:
             return KC_U;
@@ -506,13 +506,13 @@ static uint16_t determine_key(uint16_t val) {
             return KC_0;
         case u | both:
             return KC_F10;
-        case d:
-            return KC_D;
-        case d | ot:
-            return S(KC_D);
-        case d | it:
+        case s:
+            return KC_S;
+        case s | ot:
+            return S(KC_S);
+        case s | it:
             return KC_1;
-        case d | both:
+        case s | both:
             return KC_F1;
         case l:
             return KC_L;
