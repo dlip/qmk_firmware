@@ -28,17 +28,6 @@ typedef struct {
 static state left_state;
 static state right_state;
 
-#define r 1 << 0
-#define s 1 << 1
-#define n 1 << 2
-#define i 1 << 3
-#define a 1 << 4
-#define o 1 << 5
-#define t 1 << 6
-#define e 1 << 7
-#define it 1 << 8
-#define ot 1 << 9
-
 static void clear_state(state* state) {
     state->combo            = 0;
     state->timer            = 0;
@@ -53,6 +42,16 @@ static void clear_all_state(void) {
 }
 
 #ifdef TAIPO_FLAVOR_STANDARD
+#define r 1 << 0
+#define s 1 << 1
+#define n 1 << 2
+#define i 1 << 3
+#define a 1 << 4
+#define o 1 << 5
+#define t 1 << 6
+#define e 1 << 7
+#define it 1 << 8
+#define ot 1 << 9
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
         case it:
@@ -397,10 +396,68 @@ static uint16_t determine_key(uint16_t val) {
     return KC_NO;
 }
 #elif defined(TAIPO_FLAVOR_POSH)
+#define n 1 << 1
+#define t 1 << 2
+#define o 1 << 3
+#define i 1 << 5
+#define e 1 << 6
+#define a 1 << 7
+#define it 1 << 8
+#define ot 1 << 9
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
         case it:
             return KC_BSPC;
+        case ot:
+            return KC_SPC;
+        case n:
+            return KC_N;
+        case n | ot:
+            return S(KC_N);
+        case n | it:
+            return KC_ESC;
+        case n | ot | it:
+            return KC_DEL;
+        case t:
+            return KC_T;
+        case t | ot:
+            return S(KC_T);
+        case t | it:
+            return KC_UP;
+        case t | ot | it:
+            return KC_LSFT;
+        case o:
+            return KC_O;
+        case o | ot:
+            return S(KC_O);
+        case o | it:
+            return KC_ENTER;
+        case o | ot | it:
+            return KC_TAB;
+        case i:
+            return KC_I;
+        case i | ot:
+            return S(KC_I);
+        case i | it:
+            return KC_LEFT;
+        case i | ot | it:
+            return KC_LALT;
+        case e:
+            return KC_E;
+        case e | ot:
+            return S(KC_E);
+        case e | it:
+            return KC_DOWN;
+        case e | ot | it:
+            return KC_LGUI;
+        case a:
+            return KC_A;
+        case a | ot:
+            return S(KC_A);
+        case a | it:
+            return KC_RIGHT;
+        case a | ot | it:
+            return KC_LCTL;
     }
     return KC_NO;
 }
