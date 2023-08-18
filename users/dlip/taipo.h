@@ -9,6 +9,9 @@
 #ifndef TAIPO_TAP_TIMEOUT
 #define TAIPO_TAP_TIMEOUT 150
 #endif
+#ifndef TAIPO_FLAVOR_POSH
+#define TAIPO_FLAVOR_STANDARD
+#endif
 
 typedef struct {
     uint16_t keycode;
@@ -49,6 +52,7 @@ static void clear_all_state(void) {
     clear_state(&right_state);
 }
 
+#ifdef TAIPO_FLAVOR_STANDARD
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
         case it:
@@ -392,6 +396,15 @@ static uint16_t determine_key(uint16_t val) {
     }
     return KC_NO;
 }
+#elif defined(TAIPO_FLAVOR_POSH)
+static uint16_t determine_key(uint16_t val) {
+    switch (val) {
+        case it:
+            return KC_BSPC;
+    }
+    return KC_NO;
+}
+#endif
 
 static void handle_key(keypress* key) {
     uint8_t mods = 0;

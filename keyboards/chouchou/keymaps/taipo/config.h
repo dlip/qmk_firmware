@@ -7,6 +7,7 @@
 #define ONESHOT_TIMEOUT 1000
 
 #define FORCE_NKRO
+#define TAIPO_FLAVOR_POSH
 
 // Joystick Button Count
 #define JOYSTICK_BUTTON_COUNT 32
