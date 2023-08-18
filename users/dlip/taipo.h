@@ -425,6 +425,16 @@ static uint16_t determine_key(uint16_t val) {
 #define x a | t | e
 #define q n | t | e
 #define z n | t | i
+#define grv o | t | i
+#define gui t | n
+#define ctrl e | i
+#define alt o | a
+#define altgr o | t | n
+#define play t | e | i
+#define vol n | e | i
+#define bri o | e | i
+#define layer a | e | i
+
 
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
@@ -642,6 +652,70 @@ static uint16_t determine_key(uint16_t val) {
             return KC_AMPR;
         case z | both:
             return KC_F12;
+        case grv:
+            return KC_GRV;
+        case grv | ot:
+            return KC_T;
+        case grv | it:
+            return KC_CIRC;
+        case grv | both:
+            return KC_PERC;
+        case gui:
+            return KC_LGUI;
+        case gui | ot:
+            return KC_LPRN;
+        case gui | it:
+            return KC_RPRN;
+        case gui | both:
+            return KC_MOD_GS;
+        case ctrl:
+            return KC_LCTL;
+        case ctrl | ot:
+            return KC_LBRC;
+        case ctrl | it:
+            return KC_RBRC;
+        case ctrl | both:
+            return KC_MOD_CS;
+        case alt:
+            return KC_LALT;
+        case alt | ot:
+            return KC_LCBR;
+        case alt | it:
+            return KC_RCBR;
+        case alt | both:
+            return KC_MOD_AS;
+        case play:
+            return KC_MEDIA_PLAY_PAUSE;
+        case play | ot:
+            return KC_MEDIA_NEXT_TRACK;
+        case play | it:
+            return KC_MEDIA_PREV_TRACK;
+        case play | both:
+            return KC_MEDIA_STOP;
+        case vol:
+            return KC_KB_VOLUME_DOWN;
+        case vol | ot:
+            return KC_KB_VOLUME_UP;
+        case vol | it:
+            return KC_PRINT_SCREEN;
+        case vol | both:
+            return KC_KB_MUTE;
+        case bri:
+            return KC_BRIGHTNESS_DOWN;
+        case bri | ot:
+            return KC_BRIGHTNESS_UP;
+        case bri | it:
+            return KC_INS;
+        case bri | both:
+            return KC_NO;
+        case layer:
+            return KC_LAYER0;
+        case layer | ot:
+            return KC_LAYER1;
+        case layer | it:
+            return KC_LAYER2;
+        case layer | both:
+            return KC_LAYER3;
         // case %:
         //     return KC_;
         // case % | ot:
