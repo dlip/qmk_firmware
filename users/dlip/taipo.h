@@ -405,16 +405,16 @@ static uint16_t determine_key(uint16_t val) {
 #define it 1 << 8
 #define ot 1 << 9
 #define both ot | it
-#define s t | e
-#define h n | i
-#define r o | t
+#define h t | e
+#define s n | i
+#define u o | t
 #define d a | n
 #define l t | i
-#define c n | e
-#define u a | i
-#define m o | e
+#define f n | e
+#define r a | i
+#define c o | e
 #define w o | i
-#define f a | e
+#define m a | e
 #define g a | t
 #define y o | n
 #define p a | n | i
@@ -482,29 +482,29 @@ static uint16_t determine_key(uint16_t val) {
             return KC_RIGHT;
         case e | both:
             return KC_END;
-        case s:
-            return KC_S;
-        case s | ot:
-            return S(KC_S);
-        case s | it:
-            return KC_COMM;
-        case s | both:
-            return KC_QUOT;
         case h:
             return KC_H;
         case h | ot:
             return S(KC_H);
         case h | it:
-            return KC_DOT;
+            return KC_COMM;
         case h | both:
+            return KC_QUOT;
+        case s:
+            return KC_S;
+        case s | ot:
+            return S(KC_S);
+        case s | it:
+            return KC_DOT;
+        case s | both:
             return KC_DQT;
-        case r:
-            return KC_R;
-        case r | ot:
-            return S(KC_R);
-        case r | it:
+        case u:
+            return KC_U;
+        case u | ot:
+            return S(KC_U);
+        case u | it:
             return KC_0;
-        case r | both:
+        case u | both:
             return KC_F10;
         case d:
             return KC_D;
@@ -522,29 +522,29 @@ static uint16_t determine_key(uint16_t val) {
             return KC_2;
         case l | both:
             return KC_F2;
+        case f:
+            return KC_F;
+        case f | ot:
+            return S(KC_F);
+        case f | it:
+            return KC_3;
+        case f | both:
+            return KC_F3;
+        case r:
+            return KC_R;
+        case r | ot:
+            return S(KC_R);
+        case r | it:
+            return KC_4;
+        case r | both:
+            return KC_F4;
         case c:
             return KC_C;
         case c | ot:
             return S(KC_C);
         case c | it:
-            return KC_3;
-        case c | both:
-            return KC_F3;
-        case u:
-            return KC_U;
-        case u | ot:
-            return S(KC_U);
-        case u | it:
-            return KC_4;
-        case u | both:
-            return KC_F4;
-        case m:
-            return KC_M;
-        case m | ot:
-            return S(KC_M);
-        case m | it:
             return KC_5;
-        case m | both:
+        case c | both:
             return KC_F5;
         case w:
             return KC_W;
@@ -554,13 +554,13 @@ static uint16_t determine_key(uint16_t val) {
             return KC_6;
         case w | both:
             return KC_F6;
-        case f:
-            return KC_F;
-        case f | ot:
-            return S(KC_F);
-        case f | it:
+        case m:
+            return KC_M;
+        case m | ot:
+            return S(KC_M);
+        case m | it:
             return KC_7;
-        case f | both:
+        case m | both:
             return KC_F7;
         case g:
             return KC_G;
