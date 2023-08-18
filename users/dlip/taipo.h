@@ -432,6 +432,8 @@ static uint16_t determine_key(uint16_t val) {
             return KC_BSPC;
         case ot:
             return KC_SPC;
+        case both:
+            return KC_LSFT;
         case e:
             return KC_E;
         case e | ot:
@@ -439,7 +441,7 @@ static uint16_t determine_key(uint16_t val) {
         case e | it:
             return KC_DOWN;
         case e | both:
-            return KC_LGUI;
+            return KC_PGDN;
         case t:
             return KC_T;
         case t | ot:
@@ -447,7 +449,7 @@ static uint16_t determine_key(uint16_t val) {
         case t | it:
             return KC_UP;
         case t | both:
-            return KC_LSFT;
+            return KC_PGUP;
         case a:
             return KC_A;
         case a | ot:
@@ -455,7 +457,7 @@ static uint16_t determine_key(uint16_t val) {
         case a | it:
             return KC_RIGHT;
         case a | both:
-            return KC_LCTL;
+            return KC_END;
         case o:
             return KC_O;
         case o | ot:
@@ -471,7 +473,7 @@ static uint16_t determine_key(uint16_t val) {
         case i | it:
             return KC_LEFT;
         case i | both:
-            return KC_LALT;
+            return KC_HOME;
         case n:
             return KC_N;
         case n | ot:
