@@ -420,8 +420,8 @@ static uint16_t determine_key(uint16_t val) {
 #define p a | n | i
 #define b o | t | e
 #define v o | n | e
-#define k a | n | e
-#define j o | n | i
+#define k o | n | i
+#define j a | n | e
 #define x a | t | e
 #define q n | t | e
 #define z n | t | i
@@ -431,8 +431,8 @@ static uint16_t determine_key(uint16_t val) {
 #define alt o | a
 #define altgr o | t | n
 #define play t | e | i
-#define vol n | e | i
-#define bri o | e | i
+#define circ n | e | i
+#define perc o | e | i
 #define layer a | e | i
 
 
@@ -692,21 +692,21 @@ static uint16_t determine_key(uint16_t val) {
             return KC_MEDIA_PREV_TRACK;
         case play | both:
             return KC_MEDIA_STOP;
-        case vol:
+        case circ:
             return KC_CIRC;
-        case vol | ot:
+        case circ | ot:
             return KC_KB_VOLUME_UP;
-        case vol | it:
+        case circ | it:
             return KC_KB_VOLUME_DOWN;
-        case vol | both:
+        case circ | both:
             return KC_PRINT_SCREEN;
-        case bri:
+        case perc:
             return KC_PERC;
-        case bri | ot:
+        case perc | ot:
             return KC_BRIGHTNESS_UP;
-        case bri | it:
+        case perc | it:
             return KC_BRIGHTNESS_DOWN;
-        case bri | both:
+        case perc | both:
             return KC_INS;
         case layer:
             return KC_LAYER0;
