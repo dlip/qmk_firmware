@@ -410,26 +410,26 @@ static uint16_t determine_key(uint16_t val) {
 #define u o | t
 #define s a | n
 #define l t | i
-#define f n | e
-#define r a | i
+#define f a | i
+#define r n | e
 #define c o | e
 #define w o | i
 #define m a | e
 #define g o | n
-#define y a | t
+#define y o | n | i
 #define p a | n | i
 #define b o | t | e
 #define v o | n | e
-#define k o | n | i
-#define j a | n | e
+#define k a | n | e
+#define j o | t | i
 #define x a | t | e
 #define q n | t | e
 #define z n | t | i
-#define grv o | t | i
+#define ques a | t
 #define gui t | n
 #define ctrl e | i
 #define alt o | a
-#define altgr o | t | n
+#define ralt o | t | n
 #define play t | e | i
 #define circ n | e | i
 #define perc o | e | i
@@ -652,38 +652,46 @@ static uint16_t determine_key(uint16_t val) {
             return KC_AMPR;
         case z | both:
             return KC_F12;
-        case grv:
+        case ques:
             return KC_QUES;
-        case grv | ot:
+        case ques | ot:
             return KC_EXLM;
-        case grv | it:
+        case ques | it:
             return KC_GRV;
-        case grv | both:
+        case ques | both:
             return KC_TILD;
         case gui:
             return KC_LGUI;
         case gui | ot:
-            return KC_LPRN;
-        case gui | it:
             return KC_RPRN;
+        case gui | it:
+            return KC_LPRN;
         case gui | both:
             return KC_MOD_GS;
         case ctrl:
             return KC_LCTL;
         case ctrl | ot:
-            return KC_LBRC;
-        case ctrl | it:
             return KC_RBRC;
+        case ctrl | it:
+            return KC_LBRC;
         case ctrl | both:
             return KC_MOD_CS;
         case alt:
             return KC_LALT;
         case alt | ot:
-            return KC_LCBR;
-        case alt | it:
             return KC_RCBR;
+        case alt | it:
+            return KC_LCBR;
         case alt | both:
             return KC_MOD_AS;
+        case ralt:
+            return KC_RALT;
+        case ralt | ot:
+            return KC_GT;
+        case ralt | it:
+            return KC_LT;
+        case ralt | both:
+            return KC_MOD_RS;
         case play:
             return KC_MEDIA_PLAY_PAUSE;
         case play | ot:
@@ -746,6 +754,9 @@ static void handle_key(keypress* key) {
             break;
         case KC_MOD_AS:
             mods = MOD_BIT(KC_LALT) | MOD_BIT(KC_LSFT);
+            break;
+        case KC_MOD_RS:
+            mods = MOD_BIT(KC_RALT) | MOD_BIT(KC_LSFT);
             break;
         case KC_MOD_CS:
             mods = MOD_BIT(KC_LCTL) | MOD_BIT(KC_LSFT);

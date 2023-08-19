@@ -31,6 +31,7 @@ enum custom_keycodes {
     KC_MOD_GS,
     KC_MOD_AC,
     KC_MOD_AS,
+    KC_MOD_RS,
     KC_MOD_CS,
     KC_MOD_GAC,
     KC_MOD_GAS,
