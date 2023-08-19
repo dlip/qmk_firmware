@@ -617,9 +617,9 @@ static uint16_t determine_key(uint16_t val) {
         case k | ot:
             return S(KC_K);
         case k | it:
-            return KC_DLR;
+            return KC_SCLN;
         case k | both:
-            return KC_HASH;
+            return KC_PIPE;
         case j:
             return KC_J;
         case j | ot:
@@ -633,9 +633,9 @@ static uint16_t determine_key(uint16_t val) {
         case x | ot:
             return S(KC_X);
         case x | it:
-            return KC_SCLN;
+            return KC_DLR;
         case x | both:
-            return KC_PIPE;
+            return KC_HASH;
         case q:
             return KC_Q;
         case q | ot:
@@ -653,13 +653,13 @@ static uint16_t determine_key(uint16_t val) {
         case z | both:
             return KC_F12;
         case grv:
-            return KC_GRV;
+            return KC_QUES;
         case grv | ot:
-            return KC_T;
+            return KC_EXLM;
         case grv | it:
-            return KC_CIRC;
+            return KC_GRV;
         case grv | both:
-            return KC_PERC;
+            return KC_TILD;
         case gui:
             return KC_LGUI;
         case gui | ot:
@@ -693,21 +693,21 @@ static uint16_t determine_key(uint16_t val) {
         case play | both:
             return KC_MEDIA_STOP;
         case vol:
-            return KC_KB_VOLUME_DOWN;
+            return KC_CIRC;
         case vol | ot:
             return KC_KB_VOLUME_UP;
         case vol | it:
-            return KC_PRINT_SCREEN;
+            return KC_KB_VOLUME_DOWN;
         case vol | both:
-            return KC_KB_MUTE;
+            return KC_PRINT_SCREEN;
         case bri:
-            return KC_BRIGHTNESS_DOWN;
+            return KC_PERC;
         case bri | ot:
             return KC_BRIGHTNESS_UP;
         case bri | it:
-            return KC_INS;
+            return KC_BRIGHTNESS_DOWN;
         case bri | both:
-            return KC_NO;
+            return KC_INS;
         case layer:
             return KC_LAYER0;
         case layer | ot:
