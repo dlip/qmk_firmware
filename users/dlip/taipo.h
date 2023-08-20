@@ -426,14 +426,15 @@ static uint16_t determine_key(uint16_t val) {
 #define q n | t | e
 #define z n | t | i
 #define ques a | t
+#define grv o | e | i
 #define gui t | n
 #define ctrl e | i
 #define alt o | a
 #define ralt o | t | n
 #define play t | e | i
-#define circ n | e | i
-#define perc o | e | i
-#define layer a | e | i
+#define prnt n | i | e
+#define ins a | i | e
+#define layer a | t | i
 
 
 static uint16_t determine_key(uint16_t val) {
@@ -657,9 +658,17 @@ static uint16_t determine_key(uint16_t val) {
         case ques | ot:
             return KC_EXLM;
         case ques | it:
-            return KC_GRV;
+            return KC_CIRC;
         case ques | both:
+            return KC_NO;
+        case grv:
+            return KC_GRV;
+        case grv | ot:
             return KC_TILD;
+        case grv | it:
+            return KC_PERC;
+        case grv | both:
+            return KC_NO;
         case gui:
             return KC_LGUI;
         case gui | ot:
@@ -700,22 +709,22 @@ static uint16_t determine_key(uint16_t val) {
             return KC_MEDIA_PREV_TRACK;
         case play | both:
             return KC_MEDIA_STOP;
-        case circ:
-            return KC_CIRC;
-        case circ | ot:
-            return KC_KB_VOLUME_UP;
-        case circ | it:
-            return KC_KB_VOLUME_DOWN;
-        case circ | both:
+        case prnt:
             return KC_PRINT_SCREEN;
-        case perc:
-            return KC_PERC;
-        case perc | ot:
-            return KC_BRIGHTNESS_UP;
-        case perc | it:
-            return KC_BRIGHTNESS_DOWN;
-        case perc | both:
+        case prnt | ot:
+            return KC_KB_VOLUME_UP;
+        case prnt | it:
+            return KC_KB_VOLUME_DOWN;
+        case prnt | both:
+            return KC_KB_MUTE;
+        case ins:
             return KC_INS;
+        case ins | ot:
+            return KC_BRIGHTNESS_UP;
+        case ins | it:
+            return KC_BRIGHTNESS_DOWN;
+        case ins | both:
+            return KC_NO;
         case layer:
             return KC_LAYER0;
         case layer | ot:
