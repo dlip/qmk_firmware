@@ -420,8 +420,8 @@ static uint16_t determine_key(uint16_t val) {
 #define p a | n | i
 #define b o | t | e
 #define v o | n | e
-#define k o | t | i
-#define j a | n | e
+#define k a | n | e
+#define j o | t | i
 #define x a | t | e
 #define q a | o | e
 #define z n | t | e
