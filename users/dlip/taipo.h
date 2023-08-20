@@ -432,7 +432,7 @@ static uint16_t determine_key(uint16_t val) {
 #define alt o | a
 #define ralt o | t | n
 #define play t | e | i
-#define prnt n | i | e
+#define prnt a | o | t
 #define ins a | i | e
 #define layer a | t | i
 
