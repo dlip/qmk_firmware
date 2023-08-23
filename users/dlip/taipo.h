@@ -423,7 +423,7 @@ static uint16_t determine_key(uint16_t val) {
 #define k a | n | e
 #define j o | t | i
 #define x a | t | e
-#define q a | o | e
+#define q t | e | i
 #define z n | t | e
 #define ques a | t
 #define grv o | e | i
@@ -431,7 +431,7 @@ static uint16_t determine_key(uint16_t val) {
 #define ctrl e | i
 #define alt o | a
 #define ralt a | o | t
-#define play t | e | i
+#define play a | o | e
 #define prnt o | t | n
 #define ins a | i | e
 #define layer a | t | i
@@ -636,7 +636,7 @@ static uint16_t determine_key(uint16_t val) {
         case x | it:
             return KC_DLR;
         case x | both:
-            return KC_HASH;
+            return KC_NO;
         case q:
             return KC_Q;
         case q | ot:
@@ -658,9 +658,9 @@ static uint16_t determine_key(uint16_t val) {
         case ques | ot:
             return KC_EXLM;
         case ques | it:
-            return KC_CIRC;
+            return KC_HASH;
         case ques | both:
-            return KC_NO;
+            return KC_CIRC;
         case grv:
             return KC_GRV;
         case grv | ot:
