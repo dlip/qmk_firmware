@@ -1,0 +1,21 @@
+// Copyright 2023 Dane Lipscombe (@dlip)
+// SPDX-License-Identifier: GPL-2.0-or-later
+#include QMK_KEYBOARD_H
+
+enum my_layers {
+    _BASE,
+    _ALPHA2,
+};
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [0] = LAYOUT_split_2x4_2(
+        KC_Q,         KC_W,      KC_F,         KC_P,            KC_L,       KC_U,        KC_Y,      KC_SCLN,
+        KC_A,         KC_R,      KC_S,         KC_T,            KC_N,       KC_E,        KC_I,      KC_O,
+                                 MO(_ALPHA2),  KC_SPC,          KC_LSFT,    KC_S
+    ),
+    [1] = LAYOUT_split_2x4_2(
+        KC_NO,        KC_B,      KC_G,         KC_V,            KC_K,       KC_M,        KC_J,      KC_NO,
+        KC_Z,         KC_X,      KC_C,         KC_D,            KC_H,       KC_COMMA,    KC_DOT,    KC_QUOT,
+                                 KC_TRNS,      KC_TRNS,         KC_TRNS,    KC_TRNS
+    ),
+};
