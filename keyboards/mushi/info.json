@@ -35,7 +35,7 @@
   "url": "https://github.com/dlip/mushi",
   "usb": {
     "device_version": "1.0.0",
-    "pid": "0x0000",
+    "pid": "0x0211",
     "vid": "0xBAAD"
   },
   "layouts": {
