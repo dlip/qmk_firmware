@@ -50,6 +50,35 @@ static void clear_all_state(void) {
 #define o 1 << 5
 #define t 1 << 6
 #define e 1 << 7
+#define h t | e
+#define d a | e
+#define l a | o
+#define c o | e
+#define u o | t
+#define m a | t
+#define w r | n
+#define f s | i
+#define g r | i
+#define y n | i
+#define p s | n
+#define b r | s
+#define v s | n | i
+#define k o | t | e
+#define j a | o | t
+#define x r | s | n
+#define q a | o | e
+#define z r | s | i
+#define ques a | o | t | e
+#define grv r | s | n | i
+#define gui n | t
+#define ctrl i | e
+#define alt s | o
+#define ralt r | a
+#define play a | t | e
+#define prnt r | n | i
+// #define ins a | i | e
+// #define layer a | t | i
+
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
         case it:
@@ -58,6 +87,302 @@ static uint16_t determine_key(uint16_t val) {
             return KC_SPC;
         case both:
             return KC_LSFT;
+        case e:
+            return KC_E;
+        case e | ot:
+            return S(KC_E);
+        case e | it:
+            return KC_RIGHT;
+        case e | both:
+            return KC_END;
+        case t:
+            return KC_T;
+        case t | ot:
+            return S(KC_T);
+        case t | it:
+            return KC_DOWN;
+        case t | both:
+            return KC_PGDN;
+        case a:
+            return KC_A;
+        case a | ot:
+            return S(KC_A);
+        case a | it:
+            return KC_COMM;
+        case a | both:
+            return KC_DEL;
+        case o:
+            return KC_O;
+        case o | ot:
+            return S(KC_O);
+        case o | it:
+            return KC_LEFT;
+        case o | both:
+            return KC_HOME;
+        case i:
+            return KC_I;
+        case i | ot:
+            return S(KC_I);
+        case i | it:
+            return KC_ENTER;
+        case i | both:
+            return KC_TAB;
+        case n:
+            return KC_N;
+        case n | ot:
+            return S(KC_N);
+        case n | it:
+            return KC_UP;
+        case n | both:
+            return KC_PGUP;
+        case s:
+            return KC_S;
+        case s | ot:
+            return S(KC_S);
+        case s | it:
+            return KC_ESC;
+        case s | both:
+            return KC_DQT;
+        case h:
+            return KC_H;
+        case h | ot:
+            return S(KC_H);
+        case h | it:
+            return KC_COMM;
+        case h | both:
+            return KC_QUOT;
+        case r:
+            return KC_R;
+        case r | ot:
+            return S(KC_R);
+        case r | it:
+            return KC_DOT;
+        case r | both:
+            return KC_F10;
+        case d:
+            return KC_D;
+        case d | ot:
+            return S(KC_D);
+        case d | it:
+            return KC_1;
+        case d | both:
+            return KC_F1;
+        case l:
+            return KC_L;
+        case l | ot:
+            return S(KC_L);
+        case l | it:
+            return KC_2;
+        case l | both:
+            return KC_F2;
+        case c:
+            return KC_C;
+        case c | ot:
+            return S(KC_C);
+        case c | it:
+            return KC_3;
+        case c | both:
+            return KC_F3;
+        case u:
+            return KC_U;
+        case u | ot:
+            return S(KC_U);
+        case u | it:
+            return KC_4;
+        case u | both:
+            return KC_F4;
+        case m:
+            return KC_M;
+        case m | ot:
+            return S(KC_M);
+        case m | it:
+            return KC_5;
+        case m | both:
+            return KC_F5;
+        case w:
+            return KC_W;
+        case w | ot:
+            return S(KC_W);
+        case w | it:
+            return KC_6;
+        case w | both:
+            return KC_F6;
+        case f:
+            return KC_F;
+        case f | ot:
+            return S(KC_F);
+        case f | it:
+            return KC_7;
+        case f | both:
+            return KC_F7;
+        case g:
+            return KC_G;
+        case g | ot:
+            return S(KC_G);
+        case g | it:
+            return KC_8;
+        case g | both:
+            return KC_F8;
+        case y:
+            return KC_Y;
+        case y | ot:
+            return S(KC_Y);
+        case y | it:
+            return KC_9;
+        case y | both:
+            return KC_F9;
+        case p:
+            return KC_P;
+        case p | ot:
+            return S(KC_P);
+        case p | it:
+            return KC_PLUS;
+        case p | both:
+            return KC_EQL;
+        case b:
+            return KC_B;
+        case b | ot:
+            return S(KC_B);
+        case b | it:
+            return KC_MINS;
+        case b | both:
+            return KC_UNDS;
+        case v:
+            return KC_V;
+        case v | ot:
+            return S(KC_V);
+        case v | it:
+            return KC_SLSH;
+        case v | both:
+            return KC_BSLS;
+        case k:
+            return KC_K;
+        case k | ot:
+            return S(KC_K);
+        case k | it:
+            return KC_SCLN;
+        case k | both:
+            return KC_PIPE;
+        case j:
+            return KC_J;
+        case j | ot:
+            return S(KC_J);
+        case j | it:
+            return KC_COLN;
+        case j | both:
+            return KC_ASTR;
+        case x:
+            return KC_X;
+        case x | ot:
+            return S(KC_X);
+        case x | it:
+            return KC_DLR;
+        case x | both:
+            return KC_NO;
+        case q:
+            return KC_Q;
+        case q | ot:
+            return S(KC_Q);
+        case q | it:
+            return KC_AT;
+        case q | both:
+            return KC_F11;
+        case z:
+            return KC_Z;
+        case z | ot:
+            return S(KC_Z);
+        case z | it:
+            return KC_AMPR;
+        case z | both:
+            return KC_F12;
+        case ques:
+            return KC_QUES;
+        case ques | ot:
+            return KC_EXLM;
+        case ques | it:
+            return KC_HASH;
+        case ques | both:
+            return KC_CIRC;
+        case grv:
+            return KC_GRV;
+        case grv | ot:
+            return KC_TILD;
+        case grv | it:
+            return KC_PERC;
+        case grv | both:
+            return KC_NO;
+        case gui:
+            return KC_LGUI;
+        case gui | ot:
+            return KC_RPRN;
+        case gui | it:
+            return KC_LPRN;
+        case gui | both:
+            return KC_MOD_GS;
+        case ctrl:
+            return KC_LCTL;
+        case ctrl | ot:
+            return KC_RBRC;
+        case ctrl | it:
+            return KC_LBRC;
+        case ctrl | both:
+            return KC_MOD_CS;
+        case alt:
+            return KC_LALT;
+        case alt | ot:
+            return KC_RCBR;
+        case alt | it:
+            return KC_LCBR;
+        case alt | both:
+            return KC_MOD_AS;
+        case ralt:
+            return KC_RALT;
+        case ralt | ot:
+            return KC_GT;
+        case ralt | it:
+            return KC_LT;
+        case ralt | both:
+            return KC_MOD_RS;
+        case play:
+            return KC_MEDIA_PLAY_PAUSE;
+        case play | ot:
+            return KC_MEDIA_NEXT_TRACK;
+        case play | it:
+            return KC_MEDIA_PREV_TRACK;
+        case play | both:
+            return KC_MEDIA_STOP;
+        case prnt:
+            return KC_PRINT_SCREEN;
+        case prnt | ot:
+            return KC_KB_VOLUME_UP;
+        case prnt | it:
+            return KC_KB_VOLUME_DOWN;
+        case prnt | both:
+            return KC_KB_MUTE;
+        // case ins:
+        //     return KC_INS;
+        // case ins | ot:
+        //     return KC_BRIGHTNESS_UP;
+        // case ins | it:
+        //     return KC_BRIGHTNESS_DOWN;
+        // case ins | both:
+        //     return KC_NO;
+        // case layer:
+        //     return KC_LAYER0;
+        // case layer | ot:
+        //     return KC_LAYER1;
+        // case layer | it:
+        //     return KC_LAYER2;
+        // case layer | both:
+        //     return KC_LAYER3;
+        // case %:
+        //     return KC_;
+        // case % | ot:
+        //     return S(KC_);
+        // case % | it:
+        //     return KC_;
+        // case % | both:
+        //     return KC_;
     }
     return KC_NO;
 }
