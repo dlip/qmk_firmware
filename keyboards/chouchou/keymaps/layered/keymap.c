@@ -9,17 +9,21 @@ enum custom_keycodes {
 
 enum my_layers {
     _BASE,
+    _ALPHA,
     _NAV,
     _LEFT
 };
 
-#include "g/keymap_combo.h"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BASE] = LAYOUT_split_2x4_2(
-        KC_Q,         KC_W,      KC_F,         KC_P,            KC_L,       KC_U,        KC_Y,      KC_BSPC,
-        KC_A,         KC_R,      KC_S,         KC_T,            KC_N,       KC_E,        KC_I,      KC_O,
+        KC_ESC,       KC_L,      KC_D,         KC_Y,            KC_M,       KC_O,        KC_U,      KC_BSPC,
+        KC_N,         KC_R,      KC_T,         KC_S,            KC_H,       KC_A,        KC_I,      KC_E,
                                  CB_LFT,       KC_SPC,          KC_LSFT,    CB_RGT
+    ),
+    [_ALPHA] = LAYOUT_split_2x4_2(
+        KC_DEL,       KC_X,      KC_V,         KC_G,            KC_K,       KC_Q,        KC_COMMA,  KC_ENTER,
+        KC_P,         KC_W,      KC_B,         KC_C,            KC_F,       KC_Z,        KC_DOT,    KC_J,
+                                 KC_TRNS,      KC_TRNS,         KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_2x4_2(
         KC_INS,       KC_ESC,    KC_UP,        KC_ENTER,        KC_TRNS,    KC_TRNS,     KC_TRNS,   KC_TRNS,
@@ -32,3 +36,21 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  KC_TRNS,      KC_LSFT,         KC_TRNS,    KC_TRNS
     ),
 };
+
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+  switch (keycode) {
+    case CB_RGT:
+        if (record->event.pressed) {
+           set_oneshot_layer(_ALPHA, ONESHOT_START);
+        }
+        return false;
+    default:
+        if (IS_LAYER_ON(_ALPHA) && keycode != KC_LSFT) {
+            tap_code16(keycode);
+            clear_oneshot_layer_state(_ALPHA);
+            return false;
+        }
+        return true;
+  }
+}
