@@ -42,40 +42,40 @@ static void clear_all_state(void) {
 #define it 1 << 8
 #define ot 1 << 9
 #define both ot | it
-#define r 1 << 0
-#define s 1 << 1
+#define u 1 << 0
+#define a 1 << 1
 #define n 1 << 2
 #define i 1 << 3
-#define a 1 << 4
+#define c 1 << 4
 #define o 1 << 5
 #define t 1 << 6
 #define e 1 << 7
+#define s n | i
 #define h t | e
-#define d a | e
-#define l a | o
-#define c o | e
-#define u o | t
-#define m a | t
-#define w r | n
-#define f s | i
-#define g r | i
-#define y n | i
-#define p s | n
-#define b r | s
-#define v s | n | i
-#define k o | t | e
-#define j a | o | t
-#define x r | s | n
-#define q a | o | e
-#define z r | s | i
-#define ques a | o | t | e
-#define grv r | s | n | i
+#define r o | t
+#define d a | n
+#define l o | e
+#define m n | e
+#define w t | i
+#define f a | i
+#define g a | e
+#define y o | i
+#define p a | n | i
+#define b o | t | e
+#define v c | o
+#define k u | a
+#define j c | e
+#define x u | i
+#define q u | a | n
+#define z c | o | t
+// #define ques a | o | t | e
+// #define grv r | s | n | i
 #define gui n | t
 #define ctrl i | e
 #define alt s | o
 #define ralt r | a
-#define play a | t | e
-#define prnt r | n | i
+// #define play a | t | e
+// #define prnt r | n  i
 // #define ins a | i | e
 // #define layer a | t | i
 
@@ -295,22 +295,22 @@ static uint16_t determine_key(uint16_t val) {
             return KC_AMPR;
         case z | both:
             return KC_F12;
-        case ques:
-            return KC_QUES;
-        case ques | ot:
-            return KC_EXLM;
-        case ques | it:
-            return KC_HASH;
-        case ques | both:
-            return KC_CIRC;
-        case grv:
-            return KC_GRV;
-        case grv | ot:
-            return KC_TILD;
-        case grv | it:
-            return KC_PERC;
-        case grv | both:
-            return KC_NO;
+        // case ques:
+        //     return KC_QUES;
+        // case ques | ot:
+        //     return KC_EXLM;
+        // case ques | it:
+        //     return KC_HASH;
+        // case ques | both:
+        //     return KC_CIRC;
+        // case grv:
+        //     return KC_GRV;
+        // case grv | ot:
+        //     return KC_TILD;
+        // case grv | it:
+        //     return KC_PERC;
+        // case grv | both:
+        //     return KC_NO;
         case gui:
             return KC_LGUI;
         case gui | ot:
@@ -343,22 +343,22 @@ static uint16_t determine_key(uint16_t val) {
             return KC_LT;
         case ralt | both:
             return KC_MOD_RS;
-        case play:
-            return KC_MEDIA_PLAY_PAUSE;
-        case play | ot:
-            return KC_MEDIA_NEXT_TRACK;
-        case play | it:
-            return KC_MEDIA_PREV_TRACK;
-        case play | both:
-            return KC_MEDIA_STOP;
-        case prnt:
-            return KC_PRINT_SCREEN;
-        case prnt | ot:
-            return KC_KB_VOLUME_UP;
-        case prnt | it:
-            return KC_KB_VOLUME_DOWN;
-        case prnt | both:
-            return KC_KB_MUTE;
+        // case play:
+        //     return KC_MEDIA_PLAY_PAUSE;
+        // case play | ot:
+        //     return KC_MEDIA_NEXT_TRACK;
+        // case play | it:
+        //     return KC_MEDIA_PREV_TRACK;
+        // case play | both:
+        //     return KC_MEDIA_STOP;
+        // case prnt:
+        //     return KC_PRINT_SCREEN;
+        // case prnt | ot:
+        //     return KC_KB_VOLUME_UP;
+        // case prnt | it:
+        //     return KC_KB_VOLUME_DOWN;
+        // case prnt | both:
+        //     return KC_KB_MUTE;
         // case ins:
         //     return KC_INS;
         // case ins | ot:
