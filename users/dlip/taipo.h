@@ -56,16 +56,16 @@ static void clear_all_state(void) {
 #define d a | n
 #define l o | e
 #define m n | e
-#define w t | i
+#define w o | n
 #define f a | i
-#define g a | e
-#define y o | i
+#define g t | i
+#define y a | e
 #define p a | n | i
 #define b o | t | e
 #define v c | o
 #define k u | a
-#define j c | e
-#define x u | i
+#define j u | i
+#define x c | e
 #define q u | a | n
 #define z c | o | t
 #define eql u | e
