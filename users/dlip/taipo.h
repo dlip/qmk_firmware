@@ -42,42 +42,43 @@ static void clear_all_state(void) {
 #define it 1 << 8
 #define ot 1 << 9
 #define both ot | it
-#define u 1 << 0
+#define d 1 << 0
 #define a 1 << 1
 #define n 1 << 2
 #define i 1 << 3
-#define c 1 << 4
+#define r 1 << 4
 #define o 1 << 5
 #define t 1 << 6
 #define e 1 << 7
 #define s n | i
 #define h t | e
-#define r o | t
-#define d a | n
-#define l o | e
-#define m n | e
+#define l o | t
+#define c a | n
+#define u o | e
+#define m a | i
 #define w t | i
-#define f a | i
+#define f n | e
 #define g o | i
 #define y a | e
 #define p a | n | i
 #define b o | t | e
-#define v c | o
-#define k u | a
-#define j u | i
-#define x c | e
-#define q u | a | n
-#define z c | o | t
-#define eql u | e
-#define minus c | i
+#define v r | o
+#define k d | a
+#define j d | i
+#define x r | e
+#define q d | a | n
+#define z r | o | t
+#define eql d | e
+#define minus r | i
+#define slsh o | n
 #define gui n | t
 #define ctrl i | e
 #define alt s | o
 #define ralt r | a
-#define play u | a | n | i
-#define prnt c | o | t | e
-#define ins c | o | e
-#define layer u | a | i
+#define play d | a | n | i
+#define prnt r | o | t | e
+#define ins r | o | e
+#define layer d | a | i
 
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
@@ -172,105 +173,105 @@ static uint16_t determine_key(uint16_t val) {
         case l | ot:
             return S(KC_L);
         case l | it:
-            return KC_QUES;
+            return KC_0;
         case l | both:
-            return KC_TILD;
+            return KC_F10;
         case c:
             return KC_C;
         case c | ot:
             return S(KC_C);
         case c | it:
-            return KC_EXLM;
+            return KC_1;
         case c | both:
-            return KC_NO;
+            return KC_F1;
         case u:
             return KC_U;
         case u | ot:
             return S(KC_U);
         case u | it:
-            return KC_SCLN;
+            return KC_2;
         case u | both:
-            return KC_NO;
+            return KC_F2;
         case m:
             return KC_M;
         case m | ot:
             return S(KC_M);
         case m | it:
-            return KC_0;
+            return KC_3;
         case m | both:
-            return KC_F10;
+            return KC_F3;
         case w:
             return KC_W;
         case w | ot:
             return S(KC_W);
         case w | it:
-            return KC_1;
+            return KC_4;
         case w | both:
-            return KC_F1;
+            return KC_F4;
         case f:
             return KC_F;
         case f | ot:
             return S(KC_F);
         case f | it:
-            return KC_2;
+            return KC_5;
         case f | both:
-            return KC_F2;
+            return KC_F5;
         case g:
             return KC_G;
         case g | ot:
             return S(KC_G);
         case g | it:
-            return KC_3;
+            return KC_6;
         case g | both:
-            return KC_F3;
+            return KC_F6;
         case y:
             return KC_Y;
         case y | ot:
             return S(KC_Y);
         case y | it:
-            return KC_4;
+            return KC_7;
         case y | both:
-            return KC_F4;
+            return KC_F7;
         case p:
             return KC_P;
         case p | ot:
             return S(KC_P);
         case p | it:
-            return KC_5;
+            return KC_8;
         case p | both:
-            return KC_F5;
+            return KC_F8;
         case b:
             return KC_B;
         case b | ot:
             return S(KC_B);
         case b | it:
-            return KC_6;
+            return KC_9;
         case b | both:
-            return KC_F6;
+            return KC_F9;
         case v:
             return KC_V;
         case v | ot:
             return S(KC_V);
         case v | it:
-            return KC_7;
+            return KC_QUES;
         case v | both:
-            return KC_F7;
+            return KC_F11;
         case k:
             return KC_K;
         case k | ot:
             return S(KC_K);
         case k | it:
-            return KC_8;
+            return KC_EXLM;
         case k | both:
-            return KC_F8;
+            return KC_F12;
         case j:
             return KC_J;
         case j | ot:
             return S(KC_J);
         case j | it:
-            return KC_9;
+            return KC_SCLN;
         case j | both:
-            return KC_F9;
+            return KC_NO;
         case x:
             return KC_X;
         case x | ot:
@@ -278,7 +279,7 @@ static uint16_t determine_key(uint16_t val) {
         case x | it:
             return KC_COLN;
         case x | both:
-            return KC_F11;
+            return KC_NO;
         case q:
             return KC_Q;
         case q | ot:
@@ -286,15 +287,15 @@ static uint16_t determine_key(uint16_t val) {
         case q | it:
             return KC_GRV;
         case q | both:
-            return KC_F12;
+            return KC_NO;
         case z:
             return KC_Z;
         case z | ot:
             return S(KC_Z);
         case z | it:
-            return KC_AMPR;
+            return KC_TILD;
         case z | both:
-            return KC_CIRC;
+            return KC_NO;
         case eql:
             return KC_EQL;
         case eql | ot:
@@ -302,15 +303,23 @@ static uint16_t determine_key(uint16_t val) {
         case eql | it:
             return KC_ASTR;
         case eql | both:
-            return KC_PIPE;
+            return KC_CIRC;
         case minus:
             return KC_MINUS;
         case minus | ot:
             return KC_UNDS;
         case minus | it:
-            return KC_SLSH;
+            return KC_AMPR;
         case minus | both:
+            return KC_NO;
+        case slsh:
+            return KC_SLSH;
+        case slsh | ot:
             return KC_BSLS;
+        case slsh | it:
+            return KC_PIPE;
+        case slsh | both:
+            return KC_NO;
         case gui:
             return KC_LGUI;
         case gui | ot:
