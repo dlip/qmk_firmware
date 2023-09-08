@@ -20,7 +20,7 @@ enum mylayers {
 #define KC_MED_A LT(_MED, KC_A)
 #define KC_NAV MO(_NAV)
 #define KC_NUM MO(_NUM)
-#define KC_OS_SFT OSM(KC_LSFT)
+#define KC_OS_SFT OSM(MOD_LSFT)
 
 #define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
 #define KC_GUI_BSPC MT(MOD_LGUI, KC_BSPC)
@@ -39,13 +39,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NUM] = LAYOUT_split_3x5_3(
          KC_NO,  KC_NO,      KC_NO,       KC_NO,      KC_NO,          KC_NO,    KC_7,    KC_8, KC_9, KC_NO,
-         KC_ESC, KC_ALT_DEL, KC_GUI_BSPC, KC_CTL_ENT, KC_EQL,         KC_NO,    KC_4,    KC_5, KC_6, KC_0,
+         KC_ESC, KC_ALT_DEL, KC_GUI_BSPC, KC_CTL_ENT, KC_TAB,         KC_EQL,   KC_4,    KC_5, KC_6, KC_0,
          KC_NO,  KC_NO,      KC_NO,       KC_NO,      KC_NO,          KC_MINUS, KC_1,    KC_2, KC_3, KC_SLSH,
                              KC_TRNS,     KC_TRNS,    KC_TRNS,        KC_TRNS,  KC_TRNS, KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x5_3(
          KC_NO,   KC_PGUP, KC_UP,   KC_PGDN,  KC_NO,          KC_NO,   KC_NO,        KC_NO, KC_NO, KC_NO,
-         KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,         KC_NO,   KC_CTL_ENT,   KC_GUI_BSPC,  KC_ALT_DEL, KC_ESC,
+         KC_HOME, KC_LEFT, KC_DOWN, KC_RIGHT, KC_END,         KC_TAB,  KC_CTL_ENT,   KC_GUI_BSPC,  KC_ALT_DEL, KC_ESC,
          KC_NO,   KC_NO,   KC_NO,   KC_NO,    KC_NO,          KC_NO,   KC_NO,        KC_NO, KC_NO, KC_NO,
                            KC_TRNS, KC_TRNS,  KC_TRNS,        KC_TRNS, KC_TRNS,      KC_TRNS
     ),
