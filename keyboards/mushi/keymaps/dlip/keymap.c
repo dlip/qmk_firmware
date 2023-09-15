@@ -2,12 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "dlip.h"
 
 enum mylayers {
     _BSE,
     _NUM,
     _NAV,
     _MED,
+    _TPO
 };
 
 #define KC_MED_C LT(_MED, KC_C)
@@ -52,8 +54,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_MED] = LAYOUT_split_3x5_3(
          KC_NO, KC_VOLD,     KC_NO,       KC_VOLU,     KC_NO,          KC_NO,   KC_F7,   KC_F8, KC_F9, KC_F11,
          KC_NO, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_NO,          KC_NO,   KC_F4,   KC_F5, KC_F6, KC_F10,
-         KC_NO, KC_NO,       KC_NO,       KC_NO,       KC_NO,          KC_NO,   KC_F1,   KC_F2, KC_F3, KC_F12,
+         KC_NO, KC_NO,       KC_NO,       TO(_TPO),    KC_NO,          KC_NO,   KC_F1,   KC_F2, KC_F3, KC_F12,
                              KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS
+    ),
+    [_TPO] = LAYOUT_split_3x5_3(
+         TP_TLP, TP_TLR, TP_TLM, TP_TLI, KC_NO,    KC_NO, TP_TRI, TP_TRM, TP_TRR, TP_TRP,
+         TP_BLP, TP_BLR, TP_BLM, TP_BLI, KC_NO,    KC_NO, TP_BRI, TP_BRM, TP_BRR, TP_BRP,
+         KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
+                         KC_NO,  TP_LIT, TP_LOT,   TP_ROT, TP_RIT, KC_NO
     ),
     // [_BLANK] = LAYOUT_split_3x5_3(
     //      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -62,3 +70,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     //                    KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO
     // ),
 };
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (IS_LAYER_ON(_TPO)) {
+        return taipo_process_record_user(keycode, record);
+    }  else {
+        return true;
+    }
+};
+
+void matrix_scan_user(void) {
+    taipo_matrix_scan_user();
+}

@@ -1,0 +1,2 @@
+USER_NAME := dlip
+TAIPO_ENABLE := yes

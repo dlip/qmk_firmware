@@ -3,7 +3,6 @@
 
 #pragma once
 
-#define TAIPO_ENABLE
 #define TAIPO_TAP_TIMEOUT 150
 #define TAIPO_FLAVOR_POSH
 
