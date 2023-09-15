@@ -3,11 +3,12 @@
 
 #pragma once
 
+#define TAIPO_ENABLE
 #define TAIPO_TAP_TIMEOUT 150
+
 #define ONESHOT_TIMEOUT 1000
 
 #define FORCE_NKRO
-#define TAIPO_FLAVOR_STANDARD
 
 // Joystick Button Count
 #define JOYSTICK_BUTTON_COUNT 32

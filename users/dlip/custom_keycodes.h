@@ -1,8 +1,9 @@
+// Copyright 2023 Dane Lipscombe (@dlip)
+// SPDX-License-Identifier: GPL-2.0-or-later
 #pragma once
 
 enum custom_keycodes {
-    __START__ = QK_USER, 
-    TP_TLP,
+    TP_TLP = QK_USER,
     TP_TLR,
     TP_TLM,
     TP_TLI,
@@ -31,7 +32,6 @@ enum custom_keycodes {
     KC_MOD_GS,
     KC_MOD_AC,
     KC_MOD_AS,
-    KC_MOD_RS,
     KC_MOD_CS,
     KC_MOD_GAC,
     KC_MOD_GAS,
