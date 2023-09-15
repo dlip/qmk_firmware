@@ -23,17 +23,6 @@ typedef struct {
 static state left_state;
 static state right_state;
 
-#define r 1 << 0
-#define s 1 << 1
-#define n 1 << 2
-#define i 1 << 3
-#define a 1 << 4
-#define o 1 << 5
-#define t 1 << 6
-#define e 1 << 7
-#define it 1 << 8
-#define ot 1 << 9
-
 static void clear_state(state* state) {
     state->combo            = 0;
     state->timer            = 0;
@@ -746,6 +735,16 @@ static uint16_t determine_key(uint16_t val) {
     return KC_NO;
 }
 #else
+#define r 1 << 0
+#define s 1 << 1
+#define n 1 << 2
+#define i 1 << 3
+#define a 1 << 4
+#define o 1 << 5
+#define t 1 << 6
+#define e 1 << 7
+#define it 1 << 8
+#define ot 1 << 9
 static uint16_t determine_key(uint16_t val) {
     switch (val) {
         case it:

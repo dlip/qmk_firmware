@@ -1,8 +1,7 @@
 // Copyright 2023 Dane Lipscombe (@dlip)
 // SPDX-License-Identifier: GPL-2.0-or-later
 #include QMK_KEYBOARD_H
-#include "users/dlip/taipo.h"
-#include "users/dlip/gamepad.h"
+#include "dlip.h"
 
 enum my_layers {
     _TAIPO,
