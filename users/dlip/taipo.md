@@ -143,22 +143,29 @@ Input Output Outer Inner Both
 
 ## Usage in keymap
 
+Add to `rules.mk`
+
+```c
+USER_NAME := dlip
+```
+
 Add to `config.h`
 
 - TAIPO_TAP_TIMEOUT: The length of time in ms you need to press and release a key to be considered a tap, this mostly affects oneshot mods since they only activate on a tap
 - ONESHOT_TIMEOUT: The length of time in ms you have to press a key after a oneshot mod before it deactivates
 
 ```c
+#define TAIPO_ENABLE
 #define TAIPO_TAP_TIMEOUT 150
 #define ONESHOT_TIMEOUT 500
 ```
 
 Add to `keymap.c`:
 
-- Include `taipo.h`
+- Include `dlip.h`
 
 ```c
-#include "users/dlip/taipo.h"
+#include "dlip.h"
 ```
 
 - Add `_TAIPO` to your layers eg.
