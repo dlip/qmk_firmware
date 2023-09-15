@@ -147,6 +147,7 @@ Add to `rules.mk`
 
 ```c
 USER_NAME := dlip
+TAIPO_ENABLE = yes
 ```
 
 Add to `config.h`
@@ -155,7 +156,6 @@ Add to `config.h`
 - ONESHOT_TIMEOUT: The length of time in ms you have to press a key after a oneshot mod before it deactivates
 
 ```c
-#define TAIPO_ENABLE
 #define TAIPO_TAP_TIMEOUT 150
 #define ONESHOT_TIMEOUT 500
 ```
