@@ -1,4 +1,4 @@
-// Copyright 2023 QMK
+// Copyright 2023 Dane Lipscombe (@dlip)
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
@@ -40,7 +40,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_W,     KC_L,     KC_Y,     KC_P,       KC_B,             KC_Z,      KC_F,     KC_O,     KC_U,     KC_QUOT,
          KC_C,     KC_ALT_R, KC_GUI_S, KC_CTL_T,   KC_G,             KC_M,      KC_CTL_N, KC_GUI_E, KC_ALT_I, KC_A,
          KC_Q,     KC_J,     KC_V,     KC_D,       KC_K,             KC_X,      KC_H,     KC_SCLN,  KC_COMMA, KC_DOT,
-                             KC_MED,   KC_SFT_SPC, KC_NNM,           KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
+                             KC_MED,   KC_NNM,     KC_SFT_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,  KC_ESC,     KC_UP,      KC_ENT,     KC_LBRC,        KC_RBRC,  KC_7,     KC_8,     KC_9,     KC_BSLS,
@@ -55,7 +55,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS
     ),
     [_TPO] = LAYOUT_split_3x5_3(
-         TP_TLP, TP_TLR, TP_TLM, TP_TLI, TO(_BSE),       KC_NO, TP_TRI,  TP_TRM, TP_TRR, TP_TRP,
+         TP_TLP, TP_TLR, TP_TLM, TP_TLI, KC_NO,          KC_NO, TP_TRI,  TP_TRM, TP_TRR, TP_TRP,
          TP_BLP, TP_BLR, TP_BLM, TP_BLI, KC_NO,          KC_NO, TP_BRI,  TP_BRM, TP_BRR, TP_BRP,
          KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,          KC_NO, KC_NO,   KC_NO,  KC_NO, KC_NO,
                          KC_NO,  TP_LIT, TP_LOT,         TP_ROT, TP_RIT, KC_NO
