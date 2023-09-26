@@ -35,6 +35,8 @@ enum mylayers {
 #define KC_GUI_5 MT(MOD_LGUI, KC_5)
 #define KC_CTL_4 MT(MOD_LCTL, KC_4)
 
+#include "g/keymap_combo.h"
+
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
          KC_W,     KC_L,     KC_Y,     KC_P,       KC_B,             KC_Z,      KC_F,     KC_O,     KC_U,     KC_QUOT,

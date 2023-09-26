@@ -1,0 +1,3 @@
+#include "briefs.def"
+SUBS(dot, SS_TAP(X_BSPC)". ", KC_BSPC, KC_DOT)
+SUBS(comma, SS_TAP(X_BSPC)". ", KC_BSPC, KC_COMMA)
