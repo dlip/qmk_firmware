@@ -1,3 +1,6 @@
 #include "briefs.def"
-SUBS(dot, SS_TAP(X_BSPC)". ", KC_BSPC, KC_DOT)
-SUBS(comma, SS_TAP(X_BSPC)". ", KC_BSPC, KC_COMMA)
+SUBS(dot, SS_TAP(X_BSPC)". ", KC_COMBO, KC_DOT)
+SUBS(comma, SS_TAP(X_BSPC)". ", KC_COMBO, KC_COMMA)
+SUBS(b_Dane, "Dane", KC_COMBO, KC_D, KC_A, KC_CTL_N)
+SUBS(b_Lipscombe, "Lipscombe", KC_COMBO, KC_L, KC_ALT_I, KC_P)
+SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_COMBO, KC_GUI_E, KC_M, KC_G)
