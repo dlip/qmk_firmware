@@ -8,7 +8,8 @@ enum mylayers {
     _BSE,
     _NNM,
     _MED,
-    _TPO
+    _TPO,
+    _PEN
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -65,11 +66,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_MED] = LAYOUT_split_3x5_3(
          G(KC_Z), G(KC_X),     G(KC_C),     G(KC_V),     KC_VOLU,        TO(_TPO), KC_F7,   KC_F8, KC_F9, KC_F11,
-         KC_LSFT, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        KC_NO,    KC_F4,   KC_F5, KC_F6, KC_F10,
+         KC_LSFT, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        TO(_PEN),    KC_F4,   KC_F5, KC_F6, KC_F10,
          C(KC_Z), C(KC_X),     C(KC_C),     C(KC_V),     KC_PSCR,        KC_NO,    KC_F1,   KC_F2, KC_F3, KC_F12,
                                KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS, KC_TRNS
     ),
     [_TPO] = LAYOUT_split_3x5_3(
+         TP_TLP, TP_TLR, TP_TLM, TP_TLI, KC_NO,          TO(_BSE), TP_TRI,  TP_TRM, TP_TRR, TP_TRP,
+         TP_BLP, TP_BLR, TP_BLM, TP_BLI, KC_NO,          KC_NO,    TP_BRI,  TP_BRM, TP_BRR, TP_BRP,
+         KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,          KC_NO,    KC_NO,   KC_NO,  KC_NO, KC_NO,
+                         KC_NO,  TP_LIT, TP_LOT,         TP_ROT,   TP_RIT,  KC_NO
+    ),
+    [_PEN] = LAYOUT_split_3x5_3(
          TP_TLP, TP_TLR, TP_TLM, TP_TLI, KC_NO,          TO(_BSE), TP_TRI,  TP_TRM, TP_TRR, TP_TRP,
          TP_BLP, TP_BLR, TP_BLM, TP_BLI, KC_NO,          KC_NO,    TP_BRI,  TP_BRM, TP_BRR, TP_BRP,
          KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,          KC_NO,    KC_NO,   KC_NO,  KC_NO, KC_NO,

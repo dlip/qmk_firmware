@@ -6,3 +6,8 @@ ifeq ($(strip $(TAIPO_ENABLE)), yes)
 	SRC += $(USER_PATH)/taipo.c
 	OPT_DEFS += -DTAIPO_ENABLE
 endif
+
+ifeq ($(strip $(PENTI_ENABLE)), yes)
+	SRC += $(USER_PATH)/taipo.c
+	OPT_DEFS += -DTAIPO_ENABLE
+endif
