@@ -1,4 +1,6 @@
 #include "briefs.def"
+COMB(bspcl, KC_BSPC, KC_CTL_T, KC_G)
+COMB(bspcr, KC_BSPC, KC_CTL_N, KC_M)
 SUBS(dot, SS_TAP(X_BSPC)". ", KC_COMBO, KC_DOT)
 SUBS(comma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMMA)
 SUBS(scln, SS_TAP(X_BSPC)"; ", KC_COMBO, KC_SCLN)

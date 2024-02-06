@@ -11,7 +11,9 @@ enum mylayers {
     _TPO
 };
 
-#define KC_SFT_C MT(MOD_LSFT, KC_C)
+#define KC_MED_Q LT(_MED, KC_Q)
+#define KC_MED_W LT(_MED, KC_W)
+#define KC_MED_C LT(_MED, KC_C)
 #define KC_ALT_R MT(MOD_LALT, KC_R)
 #define KC_GUI_S MT(MOD_LGUI, KC_S)
 #define KC_CTL_T MT(MOD_LCTL, KC_T)
@@ -20,14 +22,13 @@ enum mylayers {
 #define KC_CTL_N MT(MOD_LCTL, KC_N)
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
 #define KC_ALT_I MT(MOD_LALT, KC_I)
-#define KC_SFT_A MT(MOD_LSFT, KC_A)
+#define KC_MED_A MT(_MED, KC_A)
 
 #define KC_NNM MO(_NNM)
 #define KC_MED MO(_MED)
 #define KC_OS_SFT OSM(MOD_LSFT)
-#define KC_MED_SPC LT(_MED, KC_SPC)
+#define KC_SFT_SPC MT(MOD_LSFT, KC_SPC)
 
-#define KC_SFT_DEL MT(MOD_LSFT, KC_DEL)
 #define KC_ALT_LFT MT(MOD_LALT, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
 #define KC_CTL_RGT MT(MOD_LCTL, KC_RIGHT)
@@ -37,7 +38,6 @@ enum mylayers {
 #define KC_ALT_6 MT(MOD_LALT, KC_6)
 #define KC_GUI_5 MT(MOD_LGUI, KC_5)
 #define KC_CTL_4 MT(MOD_LCTL, KC_4)
-#define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
 #define KC_ALT_MPRV MT(MOD_LALT, KC_MPRV)
 #define KC_GUI_MPLY MT(MOD_LGUI, KC_MPLY)
@@ -45,22 +45,22 @@ enum mylayers {
 
 #define KC_COMBO KC_BSPC
 #define KC_COMBO_SFT KC_OS_SFT
-#define KC_COMBO_ALT1 KC_MED_SPC
+#define KC_COMBO_ALT1 KC_SFT_SPC
 #define KC_COMBO_ALT2 KC_NNM
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
-         KC_W,     KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
-         KC_SFT_C, KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_SFT_A,
-         KC_Q,     KC_J,     KC_CAG_V, KC_D,     KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
-                             KC_MED,   KC_NNM,   KC_MED_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
+         KC_MED_W, KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
+         KC_MED_C, KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_MED_A,
+         KC_MED_Q, KC_J,     KC_CAG_V, KC_D,     KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
+                             KC_MED,   KC_NNM,   KC_SFT_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_LBRC,        KC_RBRC,  KC_7,     KC_8,     KC_9,     KC_BSLS,
-         KC_SFT_DEL, KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_TAB,         KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_SFT_0,
-         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_BSPC,        KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_SLSH,
+         KC_TAB,     KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_BSPC,        KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_0,
+         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_DEL,         KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_SLSH,
                                  KC_TRNS,     KC_TRNS,    KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x5_3(
