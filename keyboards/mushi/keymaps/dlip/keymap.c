@@ -11,9 +11,6 @@ enum mylayers {
     _TPO
 };
 
-#define KC_MED_Q LT(_MED, KC_Q)
-#define KC_MED_W LT(_MED, KC_W)
-#define KC_MED_C LT(_MED, KC_C)
 #define KC_ALT_R MT(MOD_LALT, KC_R)
 #define KC_GUI_S MT(MOD_LGUI, KC_S)
 #define KC_CTL_T MT(MOD_LCTL, KC_T)
@@ -22,7 +19,6 @@ enum mylayers {
 #define KC_CTL_N MT(MOD_LCTL, KC_N)
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
 #define KC_ALT_I MT(MOD_LALT, KC_I)
-#define KC_MED_A MT(_MED, KC_A)
 
 #define KC_NNM MO(_NNM)
 #define KC_MED MO(_MED)
@@ -52,20 +48,20 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
-         KC_MED_W, KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
-         KC_MED_C, KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_MED_A,
-         KC_MED_Q, KC_J,     KC_CAG_V, KC_D,     KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
+         KC_W,     KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
+         KC_C,     KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_A,
+         KC_Q,     KC_J,     KC_CAG_V, KC_D,     KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
                              KC_MED,   KC_NNM,   KC_SFT_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
-         KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_LBRC,        KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
-         KC_TAB,     KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_RBRC,        KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_0,
-         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_DEL,         KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_DOT,
+         KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_DEL,         KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
+         KC_TAB,     KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_LBRC,        KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_0,
+         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_RBRC,        KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_DOT,
                                  KC_TRNS,     KC_TRNS,    KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x5_3(
          G(KC_Z), G(KC_X),     G(KC_C),     G(KC_V),     KC_VOLU,        TO(_TPO), KC_F7,   KC_F8, KC_F9, KC_F11,
-         KC_LSFT, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        KC_NO,    KC_F4,   KC_F5, KC_F6, KC_F10,
+         KC_PSCR, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        KC_NO,    KC_F4,   KC_F5, KC_F6, KC_F10,
          C(KC_Z), C(KC_X),     C(KC_C),     C(KC_V),     KC_PSCR,        KC_NO,    KC_F1,   KC_F2, KC_F3, KC_F12,
                                KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS, KC_TRNS
     ),
