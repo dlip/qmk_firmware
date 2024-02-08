@@ -58,9 +58,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_MED,   KC_NNM,   KC_SFT_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
-         KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_LBRC,        KC_RBRC,  KC_7,     KC_8,     KC_9,     KC_BSLS,
-         KC_TAB,     KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_BSPC,        KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_0,
-         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_DEL,         KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_SLSH,
+         KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_LBRC,        KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
+         KC_TAB,     KC_ALT_LFT, KC_GUI_DWN,  KC_CTL_RGT, KC_RBRC,        KC_EQL,   KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_0,
+         KC_HOME,    KC_PGUP,    KC_CAG_PGDN, KC_END,     KC_DEL,         KC_MINUS, KC_1,     KC_CAG_2, KC_3,     KC_DOT,
                                  KC_TRNS,     KC_TRNS,    KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x5_3(
