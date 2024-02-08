@@ -23,7 +23,7 @@ enum mylayers {
 #define KC_NNM MO(_NNM)
 #define KC_MED MO(_MED)
 #define KC_OS_SFT OSM(MOD_LSFT)
-#define KC_SFT_SPC MT(MOD_LSFT, KC_SPC)
+#define KC_MED_SPC LT(_MED, KC_SPC)
 
 #define KC_ALT_LFT MT(MOD_LALT, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
@@ -41,7 +41,7 @@ enum mylayers {
 
 #define KC_COMBO KC_BSPC
 #define KC_COMBO_SFT KC_OS_SFT
-#define KC_COMBO_ALT1 KC_SFT_SPC
+#define KC_COMBO_ALT1 KC_MED_SPC
 #define KC_COMBO_ALT2 KC_NNM
 
 #include "g/keymap_combo.h"
@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_W,     KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
          KC_C,     KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_A,
          KC_Q,     KC_J,     KC_CAG_V, KC_D,     KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
-                             KC_MED,   KC_NNM,   KC_SFT_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
+                             KC_MED,   KC_NNM,   KC_MED_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_DEL,         KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
