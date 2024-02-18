@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "dlip.h"
 
 enum mylayers {
     _BSE,
@@ -10,7 +9,10 @@ enum mylayers {
     _MED,
     _TPO
 };
-
+enum custom_keycodes {
+    EXPAND = SAFE_RANGE,
+};
+#define KC_SFT_C MT(MOD_LSFT, KC_C)
 #define KC_ALT_R MT(MOD_LALT, KC_R)
 #define KC_GUI_S MT(MOD_LGUI, KC_S)
 #define KC_CTL_T MT(MOD_LCTL, KC_T)
@@ -21,6 +23,9 @@ enum mylayers {
 #define KC_CTL_N MT(MOD_LCTL, KC_N)
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
 #define KC_ALT_I MT(MOD_LALT, KC_I)
+#define KC_SFT_A MT(MOD_LSFT, KC_A)
+#define KC_NNM_TAB LT(_NNM, KC_TAB)
+#define KC_SFT_BSPC MT(MOD_LSFT, KC_BSPC)
 
 #define KC_NNM MO(_NNM)
 #define KC_MED MO(_MED)
@@ -47,14 +52,12 @@ enum mylayers {
 #define KC_COMBO_ALT1 KC_MED_SPC
 #define KC_COMBO_ALT2 KC_NNM
 
-#include "g/keymap_combo.h"
-
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
-         KC_W,     KC_L,     KC_Y,     KC_P,     KC_B,             KC_Z,      KC_F,     KC_O,        KC_U,     KC_QUOT,
-         KC_C,     KC_ALT_R, KC_GUI_S, KC_CTL_T, KC_G,             KC_M,      KC_CTL_N, KC_GUI_E,    KC_ALT_I, KC_A,
-         KC_Q,     KC_J,     KC_CAG_V, KC_SFT_D, KC_K,             KC_X,      KC_H,     KC_CAG_SCLN, KC_COMMA, KC_DOT,
-                             KC_MED,   KC_NNM,   KC_MED_SPC,       KC_OS_SFT, KC_BSPC,  QK_REPEAT_KEY
+         KC_W,     KC_L,     KC_Y,     KC_P,       KC_B,             KC_Z,        KC_F,       KC_O,        KC_U,     KC_QUOT,
+         KC_SFT_C, KC_ALT_R, KC_GUI_S, KC_CTL_T,   KC_G,             KC_M,        KC_CTL_N,   KC_GUI_E,    KC_ALT_I, KC_SFT_A,
+         KC_Q,     KC_J,     KC_CAG_V, KC_SFT_D,   KC_K,             KC_X,        KC_H,       KC_CAG_SCLN, KC_COMMA, KC_DOT,
+                             KC_MED,   KC_NNM_TAB, KC_MED_SPC,       KC_SFT_BSPC, EXPAND,     QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_DEL,         KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
@@ -68,12 +71,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          C(KC_Z), C(KC_X),     C(KC_C),     C(KC_V),     KC_PSCR,        KC_NO,    KC_F1,   KC_F2, KC_F3, KC_F12,
                                KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS, KC_TRNS
     ),
-    [_TPO] = LAYOUT_split_3x5_3(
-         TP_TLP, TP_TLR, TP_TLM, TP_TLI, KC_NO,          TO(_BSE), TP_TRI,  TP_TRM, TP_TRR, TP_TRP,
-         TP_BLP, TP_BLR, TP_BLM, TP_BLI, KC_NO,          KC_NO,    TP_BRI,  TP_BRM, TP_BRR, TP_BRP,
-         KC_NO,  KC_NO,  KC_NO,  KC_NO,  KC_NO,          KC_NO,    KC_NO,   KC_NO,  KC_NO, KC_NO,
-                         KC_NO,  TP_LIT, TP_LOT,         TP_ROT,   TP_RIT,  KC_NO
-    ),
     // [_BLANK] = LAYOUT_split_3x5_3(
     //      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
@@ -82,14 +79,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 };
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (IS_LAYER_ON(_TPO)) {
-        return taipo_process_record_user(keycode, record);
-    }  else {
-        return true;
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_SFT_BSPC:
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
     }
-};
-
-void matrix_scan_user(void) {
-    taipo_matrix_scan_user();
 }
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_SFT_BSPC:
+        case KC_NNM_TAB:
+            return true;
+        default:
+            return false;
+    }
+}
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case EXPAND:
+        if (record->event.pressed) {
+            SEND_STRING(",;");
+        }
+        break;
+    }
+    return true;
+};
