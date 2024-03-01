@@ -1,4 +1,4 @@
-
+#include "abbr.def"
 SUBS(trigger1, "q,;", EXPAND, KC_COMBO_ALT1)
 SUBS(trigger2, "j,;", EXPAND, KC_COMBO_ALT2)
 SUBS(trigger3, "z,;", EXPAND, KC_COMBO_ALT3)
