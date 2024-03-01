@@ -1,6 +1,5 @@
 #include "abbr.def"
-SUBS(trigger1, "q,;", EXPAND, KC_COMBO_ALT1)
-SUBS(trigger2, "j,;", EXPAND, KC_COMBO_ALT2)
-SUBS(trigger3, "z,;", EXPAND, KC_COMBO_ALT3)
-SUBS(trigger4, "x,;", EXPAND, KC_COMBO_ALT1, KC_COMBO_ALT3)
-SUBS(trigger5, "x,;", EXPAND, KC_COMBO_ALT2, KC_COMBO_ALT3)
+SUBS(dot, SS_TAP(X_BSPC)". ", KC_COMBO, KC_DOT)
+SUBS(comma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMMA)
+SUBS(scln, SS_TAP(X_BSPC)"; ", KC_COMBO, KC_SCLN)
+SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)

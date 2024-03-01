@@ -6,15 +6,7 @@
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
 };
-#define KC_SFT_BSPC MT(MOD_LSFT, KC_BSPC)
-#define KC_NNM_TAB LT(_NNM, KC_TAB)
-#define KC_MED_SPC LT(_MED, KC_SPC)
 
-#define KC_COMBO_SFT KC_SFT_BSPC
-#define KC_COMBO_ALT1 KC_NNM_TAB
-#define KC_COMBO_ALT2 KC_MED_SPC
-
-#include "g/keymap_combo.h"
 
 enum mylayers {
     _BSE,
@@ -53,14 +45,22 @@ enum mylayers {
 #define KC_GUI_MPLY MT(MOD_LGUI, KC_MPLY)
 #define KC_CTL_MNXT MT(MOD_LCTL, KC_MNXT)
 
+#define KC_SFT_BSPC MT(MOD_LSFT, KC_BSPC)
+#define KC_NNM_TAB LT(_NNM, KC_TAB)
+#define KC_MED_SPC LT(_MED, KC_SPC)
 
+#define KC_COMBO_SFT KC_SFT_BSPC
+#define KC_COMBO_ALT1 KC_NNM_TAB
+#define KC_COMBO_ALT2 KC_MED_SPC
+
+#include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
          KC_W,     KC_L,     KC_Y,     KC_P,       KC_B,             KC_Z,        KC_F,       KC_O,        KC_U,     KC_QUOT,
          KC_SFT_C, KC_ALT_R, KC_GUI_S, KC_CTL_T,   KC_G,             KC_M,        KC_CTL_N,   KC_GUI_E,    KC_ALT_I, KC_SFT_A,
          KC_Q,     KC_J,     KC_CAG_V, KC_SFT_D,   KC_K,             KC_X,        KC_H,       KC_CAG_SCLN, KC_COMMA, KC_DOT,
-                             KC_MED,   KC_NNM_TAB, KC_MED_SPC,       KC_SFT_BSPC, KC_COMBO,     QK_REPEAT_KEY
+                             KC_MED,   KC_NNM_TAB, KC_MED_SPC,       KC_SFT_BSPC, KC_COMBO,   QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_DEL,         KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
@@ -70,7 +70,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_MED] = LAYOUT_split_3x5_3(
          G(KC_Z), G(KC_X),     G(KC_C),     G(KC_V),     KC_VOLU,        TO(_TPO), KC_F7,   KC_F8, KC_F9, KC_F11,
-         KC_PSCR, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        KC_NO,    KC_F4,   KC_F5, KC_F6, KC_F10,
+         KC_PSCR, KC_ALT_MPRV, KC_GUI_MPLY, KC_CTL_MNXT, KC_VOLD,        QK_BOOT,  KC_F4,   KC_F5, KC_F6, KC_F10,
          C(KC_Z), C(KC_X),     C(KC_C),     C(KC_V),     KC_PSCR,        KC_NO,    KC_F1,   KC_F2, KC_F3, KC_F12,
                                KC_TRNS,     KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS, KC_TRNS
     ),
