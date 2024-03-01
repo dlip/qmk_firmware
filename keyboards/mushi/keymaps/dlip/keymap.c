@@ -3,15 +3,26 @@
 
 #include QMK_KEYBOARD_H
 
+enum custom_keycodes {
+    KC_COMBO = SAFE_RANGE,
+};
+#define KC_SFT_BSPC MT(MOD_LSFT, KC_BSPC)
+#define KC_NNM_TAB LT(_NNM, KC_TAB)
+#define KC_MED_SPC LT(_MED, KC_SPC)
+
+#define KC_COMBO_SFT KC_SFT_BSPC
+#define KC_COMBO_ALT1 KC_NNM_TAB
+#define KC_COMBO_ALT2 KC_MED_SPC
+
+#include "g/keymap_combo.h"
+
 enum mylayers {
     _BSE,
     _NNM,
     _MED,
     _TPO
 };
-enum custom_keycodes {
-    EXPAND = SAFE_RANGE,
-};
+
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
 #define KC_ALT_R MT(MOD_LALT, KC_R)
 #define KC_GUI_S MT(MOD_LGUI, KC_S)
@@ -24,13 +35,8 @@ enum custom_keycodes {
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
 #define KC_ALT_I MT(MOD_LALT, KC_I)
 #define KC_SFT_A MT(MOD_LSFT, KC_A)
-#define KC_NNM_TAB LT(_NNM, KC_TAB)
-#define KC_SFT_BSPC MT(MOD_LSFT, KC_BSPC)
 
-#define KC_NNM MO(_NNM)
 #define KC_MED MO(_MED)
-#define KC_OS_SFT OSM(MOD_LSFT)
-#define KC_MED_SPC LT(_MED, KC_SPC)
 
 #define KC_ALT_LFT MT(MOD_LALT, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
@@ -47,17 +53,14 @@ enum custom_keycodes {
 #define KC_GUI_MPLY MT(MOD_LGUI, KC_MPLY)
 #define KC_CTL_MNXT MT(MOD_LCTL, KC_MNXT)
 
-#define KC_COMBO KC_BSPC
-#define KC_COMBO_SFT KC_OS_SFT
-#define KC_COMBO_ALT1 KC_MED_SPC
-#define KC_COMBO_ALT2 KC_NNM
+
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x5_3(
          KC_W,     KC_L,     KC_Y,     KC_P,       KC_B,             KC_Z,        KC_F,       KC_O,        KC_U,     KC_QUOT,
          KC_SFT_C, KC_ALT_R, KC_GUI_S, KC_CTL_T,   KC_G,             KC_M,        KC_CTL_N,   KC_GUI_E,    KC_ALT_I, KC_SFT_A,
          KC_Q,     KC_J,     KC_CAG_V, KC_SFT_D,   KC_K,             KC_X,        KC_H,       KC_CAG_SCLN, KC_COMMA, KC_DOT,
-                             KC_MED,   KC_NNM_TAB, KC_MED_SPC,       KC_SFT_BSPC, EXPAND,     QK_REPEAT_KEY
+                             KC_MED,   KC_NNM_TAB, KC_MED_SPC,       KC_SFT_BSPC, KC_COMBO,     QK_REPEAT_KEY
     ),
     [_NNM] = LAYOUT_split_3x5_3(
          KC_GRV,     KC_ESC,     KC_UP,       KC_ENT,     KC_DEL,         KC_BSLS,  KC_7,     KC_8,     KC_9,     KC_SLSH,
@@ -83,6 +86,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_SFT_BSPC:
             return 0;
+        case KC_MED_SPC:
+            return 0;
         default:
             return QUICK_TAP_TERM;
     }
@@ -98,13 +103,3 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-    case EXPAND:
-        if (record->event.pressed) {
-            SEND_STRING(",;");
-        }
-        break;
-    }
-    return true;
-};
