@@ -1,9 +1,6 @@
 #include "abbr.def"
 
 // Punctuation
-SUBS(dot, SS_TAP(X_BSPC)". ", KC_COMBO, KC_DOT)
-SUBS(comma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMMA)
-SUBS(scln, SS_TAP(X_BSPC)"; ", KC_COMBO, KC_CAG_SCLN)
 SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)
 SUBS(quotS, SS_TAP(X_BSPC)"\" ", KC_COMBO, KC_COMBO_SFT, KC_QUOT)
 SUBS(appve, SS_TAP(X_BSPC)"'ve ", KC_COMBO, KC_QUOT, KC_V)
