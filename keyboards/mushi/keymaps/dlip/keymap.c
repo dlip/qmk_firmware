@@ -45,6 +45,11 @@ enum mylayers {
 #define KC_GUI_CPY MT(MOD_LGUI, C(KC_C))
 #define KC_CTL_PST MT(MOD_LCTL, C(KC_V))
 
+#define KC_SFT_PSC MT(MOD_LALT, KC_PSCR)
+#define KC_ALT_PRV MT(MOD_LALT, KC_MPRV)
+#define KC_GUI_PLY MT(MOD_LGUI, KC_MPLY)
+#define KC_CTL_NXT MT(MOD_LCTL, KC_MNXT)
+
 #define KC_CTL_F4 MT(MOD_LCTL, KC_F4)
 #define KC_GUI_F5 MT(MOD_LGUI, KC_F5)
 #define KC_ALT_F6 MT(MOD_LALT, KC_F6)
@@ -75,8 +80,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_MED] = LAYOUT_split_3x5_3(
          G(KC_Z),    G(KC_X),    G(KC_C),    G(KC_V),     KC_PSCR,        KC_NO,    KC_F7,     KC_F8,     KC_F9,     KC_F11,
-         KC_SFT_UDO, KC_ALT_CUT, KC_GUI_CPY, KC_CTL_PST,  KC_VOLU,        KC_NO,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
-         KC_MUTE,    KC_MPRV,    KC_MPLY,    KC_MNXT,     KC_VOLD,        KC_NO,    KC_F1,     KC_F2,     KC_F3,     KC_F12,
+         KC_SFT_PSC, KC_ALT_PRV, KC_GUI_PLY, KC_CTL_NXT,  KC_VOLU,        KC_NO,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
+         C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),     KC_VOLD,        KC_NO,    KC_F1,     KC_F2,     KC_F3,     KC_F12,
                                  QK_BOOT,    KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS,   KC_TRNS
     ),
     // [_BLANK] = LAYOUT_split_3x5_3(
