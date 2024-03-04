@@ -2,9 +2,14 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "os_detection.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
+    KC_CUDO,
+    KC_CCUT,
+    KC_CCPY,
+    KC_CPST,
 };
 
 
@@ -79,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                   KC_TRNS,     KC_TRNS,    KC_TRNS,        KC_TRNS,  KC_TRNS,  KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x5_3(
-         G(KC_Z),    G(KC_X),    G(KC_C),    G(KC_V),     KC_PSCR,        KC_NO,    KC_F7,     KC_F8,     KC_F9,     KC_F11,
+         KC_CUDO,    KC_CCUT,    KC_CCPY,    KC_CPST,     KC_PSCR,        KC_NO,    KC_F7,     KC_F8,     KC_F9,     KC_F11,
          KC_SFT_PSC, KC_ALT_PRV, KC_GUI_PLY, KC_CTL_NXT,  KC_VOLU,        KC_NO,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
          C(KC_Z),    C(KC_X),    C(KC_C),    C(KC_V),     KC_VOLD,        KC_NO,    KC_F1,     KC_F2,     KC_F3,     KC_F12,
                                  QK_BOOT,    KC_TRNS,     KC_TRNS,        KC_TRNS,  KC_TRNS,   KC_TRNS
@@ -113,3 +118,69 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_COMBO:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(A(KC_BSPC));
+                        break;
+                    default:
+                        tap_code16(C(KC_BSPC));
+                        break;
+                }
+            }
+            break;
+        case KC_CUDO:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_Z));
+                        break;
+                    default:
+                        tap_code16(C(KC_Z));
+                        break;
+                }
+            }
+            break;
+        case KC_CCUT:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_X));
+                        break;
+                    default:
+                        tap_code16(C(KC_X));
+                        break;
+                }
+            }
+            break;
+        case KC_CCPY:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+            }
+            break;
+        case KC_CPST:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_V));
+                        break;
+                    default:
+                        tap_code16(C(KC_V));
+                        break;
+                }
+            }
+            break;
+    }
+
+    return true;
+};
