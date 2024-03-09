@@ -1,4 +1,4 @@
-// #include "abbr.def"
+#include "abbr.def"
 
 // Punctuation
 //SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)
