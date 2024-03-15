@@ -24,7 +24,7 @@ enum mylayers {
 #define KC_ALT_I MT(MOD_LALT, KC_I)
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
 #define KC_CTL_A MT(MOD_LCTL, KC_A)
-#define KC_CAG_J LCAG_T(KC_V)
+#define KC_CAG_J LCAG_T(KC_J)
 #define KC_CAG_M LCAG_T(KC_M)
 #define KC_CTL_H MT(MOD_LCTL, KC_H)
 #define KC_GUI_T MT(MOD_LGUI, KC_T)

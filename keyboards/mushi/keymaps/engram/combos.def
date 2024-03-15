@@ -1,20 +1,22 @@
 #include "abbr.def"
 
 // Punctuation
-SUBS(c_dot, SS_TAP(X_DOT), KC_CAG_V, KC_D)
-SUBS(c_comma, SS_TAP(X_COMMA), KC_J, KC_CAG_V)
-SUBS(c_quot, SS_TAP(X_QUOT), KC_J, KC_D,)
-SUBS(c_scln, SS_TAP(X_SCLN), KC_Q, KC_D,
-SUBS(c_slsh, SS_TAP(X_SLSH), KC_Q, KC_CAG_V,)
-SUBS(c_ques, SS_TAP(X_QUES), KC_Q, KC_J)
+SUBS(c_z, "z", KC_V, KC_W)
+SUBS(c_q, "q", KC_F, KC_P)
+SUBS(c_dot, SS_TAP(X_DOT), KC_CAG_J, KC_K)
+SUBS(c_comma, SS_TAP(X_COMMA), KC_X, KC_CAG_J)
+SUBS(c_quot, SS_TAP(X_QUOT), KC_X, KC_K)
+SUBS(c_scln, SS_TAP(X_SCLN), KC_G, KC_K)
+SUBS(c_slsh, SS_TAP(X_SLSH), KC_G, KC_CAG_J)
+SUBS(c_ques, "?", KC_G, KC_X)
 
-//SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)
-//SUBS(quotS, SS_TAP(X_BSPC)"\" ", KC_COMBO, KC_COMBO_SFT, KC_QUOT)
-//SUBS(appve, SS_TAP(X_BSPC)"'ve ", KC_COMBO, KC_QUOT, KC_V)
-//SUBS(apps, SS_TAP(X_BSPC)"'s ", KC_COMBO, KC_QUOT, KC_GUI_S)
-//SUBS(appnt, SS_TAP(X_BSPC)"n't ", KC_COMBO, KC_QUOT, KC_CTL_T)
+// SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)
+// SUBS(quotS, SS_TAP(X_BSPC)"\" ", KC_COMBO, KC_COMBO_SFT, KC_QUOT)
+// SUBS(appve, SS_TAP(X_BSPC)"'ve ", KC_COMBO, KC_QUOT, KC_V)
+// SUBS(apps, SS_TAP(X_BSPC)"'s ", KC_COMBO, KC_QUOT, KC_GUI_S)
+// SUBS(appnt, SS_TAP(X_BSPC)"n't ", KC_COMBO, KC_QUOT, KC_CTL_T)
 
 // Personal
-SUBS(b_Dane, "Dane", KC_COMBO, KC_D, KC_X)
-//SUBS(b_Lipscombe, "Lipscombe", KC_COMBO, KC_L, KC_X)
-//SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_COMBO, KC_G, KC_X)
+// SUBS(b_Dane, "Dane", KC_COMBO, KC_D, KC_X)
+// SUBS(b_Lipscombe, "Lipscombe", KC_COMBO, KC_L, KC_X)
+// SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_COMBO, KC_G, KC_X)
