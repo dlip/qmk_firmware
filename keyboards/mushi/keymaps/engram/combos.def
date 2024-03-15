@@ -1,6 +1,13 @@
 #include "abbr.def"
 
 // Punctuation
+SUBS(c_dot, SS_TAP(X_DOT), KC_CAG_V, KC_D)
+SUBS(c_comma, SS_TAP(X_COMMA), KC_J, KC_CAG_V)
+SUBS(c_quot, SS_TAP(X_QUOT), KC_J, KC_D,)
+SUBS(c_scln, SS_TAP(X_SCLN), KC_Q, KC_D,
+SUBS(c_slsh, SS_TAP(X_SLSH), KC_Q, KC_CAG_V,)
+SUBS(c_ques, SS_TAP(X_QUES), KC_Q, KC_J)
+
 //SUBS(quot, SS_TAP(X_BSPC)"' ", KC_COMBO, KC_QUOT)
 //SUBS(quotS, SS_TAP(X_BSPC)"\" ", KC_COMBO, KC_COMBO_SFT, KC_QUOT)
 //SUBS(appve, SS_TAP(X_BSPC)"'ve ", KC_COMBO, KC_QUOT, KC_V)
