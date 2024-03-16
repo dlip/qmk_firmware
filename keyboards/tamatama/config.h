@@ -17,3 +17,8 @@
 #define PMW33XX_CS_PIN GP9
 // # define PMW33XX_CS_PIN_RIGHT
 #define PMW33XX_CPI 2000
+
+#define SPI_DRIVER SPID1
+#define SPI_SCK_PIN GP10
+#define SPI_MISO_PIN GP11
+#define SPI_MOSI_PIN GP12
