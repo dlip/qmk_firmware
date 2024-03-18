@@ -12,64 +12,18 @@
         "nkro": true
     },
     "matrix_pins": {
-        "direct": [
-            [
-                "GP15",
-                "GP26",
-                "GP27",
-                "GP29"
-            ],
-            [
-                "GP10",
-                "GP11",
-                "GP12",
-                "GP14"
-            ],
-            [
-                "GP5",
-                "GP6",
-                "GP7",
-                "GP9"
-            ],
-            [
-                null,
-                null,
-                "GP4",
-                "GP2"
-            ]
+        "rows": [
+            "GP2",
+            "GP3",
+            "GP4",
+            "GP5"
+        ],
+        "cols": [
+            "GP6",
+            "GP7",
+            "GP8",
+            null
         ]
-    },
-    "split": {
-        "matrix_pins": {
-            "right": {
-                "direct": [
-                    [
-                        "GP2",
-                        "GP3",
-                        "GP4",
-                        "GP6"
-                    ],
-                    [
-                        "GP7",
-                        "GP8",
-                        "GP9",
-                        "GP11"
-                    ],
-                    [
-                        "GP12",
-                        "GP13",
-                        "GP14",
-                        "GP15"
-                    ],
-                    [
-                        "GP28",
-                        "GP27",
-                        null,
-                        null
-                    ]
-                ]
-            }
-        }
     },
     "processor": "RP2040",
     "url": "https://github.com/dlip/tamatama",
