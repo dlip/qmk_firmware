@@ -68,25 +68,25 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
-                        KC_NO, KC_NO,     KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO, KC_NO, KC_NO
+                             KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NNM] = LAYOUT_split_3x4_2(
          KC_GRV,       KC_ESC,     KC_UP,      KC_ENT,        KC_7,     KC_8,     KC_9,     KC_BSLS,
          KC_COMBO_SFT, KC_ALT_LFT, KC_GUI_DWN, KC_CTL_RGT,    KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_SFT_0,
          KC_LBRC,      KC_RBRC,    KC_CAG_MIN, KC_EQL,        KC_1,     KC_CAG_2, KC_3,     KC_SLSH,
-                             KC_NO, KC_NO,      KC_TRNS,    KC_TRNS,       KC_TRNS,  KC_NAV, KC_NO, KC_NO
+                                   KC_TRNS,    KC_TRNS,       KC_TRNS,  KC_NAV
     ),
     [_NAV] = LAYOUT_split_3x4_2(
          KC_NO,         KC_NO,        KC_PGUP,    KC_NO,        KC_F7,     KC_F8,     KC_F9,     KC_F11,
          KC_COMBO_SFT , KC_ALT_HME,   KC_GUI_PGD, KC_CTL_END,   KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
          KC_NO,         KC_NO,        KC_NO,      KC_NO,        KC_F1,     KC_F2,     KC_F3,     KC_F12,
-                                KC_NO, KC_NO,      KC_TRNS,    KC_TRNS,      KC_TRNS,   KC_TRNS, KC_NO, KC_NO
+                                      KC_TRNS,    KC_TRNS,      KC_TRNS,   KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x4_2(
          QK_BOOT,    KC_NO,      KC_VOLD,    KC_VOLU,       KC_NO,   KC_NO, KC_NO, KC_NO,
          KC_CUDO,    KC_CCUT,    KC_CCPY,    KC_CPST,       KC_NO,   KC_NO, KC_NO, KC_NO,
          KC_SFT_PSC, KC_ALT_PRV, KC_GUI_PLY, KC_CTL_NXT,    KC_NO,   KC_NO, KC_NO, KC_NO,
-                             KC_NO, KC_NO,    KC_TRNS,    KC_TRNS,       KC_TRNS, KC_TRNS, KC_NO, KC_NO
+                                 KC_TRNS,    KC_TRNS,       KC_TRNS, KC_TRNS
     ),
     // [_BLANK] = LAYOUT_split_3x4_2(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
