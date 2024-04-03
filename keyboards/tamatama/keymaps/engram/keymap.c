@@ -31,21 +31,16 @@ enum mylayers {
 #define KC_ALT_S MT(MOD_LALT, KC_S)
 #define KC_SFT_N MT(MOD_LSFT, KC_N)
 
-#define KC_ALT_HME MT(MOD_LALT, KC_HOME)
-#define KC_GUI_PGD MT(MOD_LGUI, KC_PGDN)
-#define KC_CTL_END MT(MOD_LCTL, KC_END)
-#define KC_CAG_MIN LCAG_T(KC_MINUS)
-#define KC_CAG_2 LCAG_T(KC_2)
-
-#define KC_CTL_4 MT(MOD_LCTL, KC_4)
-#define KC_GUI_5 MT(MOD_LGUI, KC_5)
-#define KC_ALT_6 MT(MOD_LALT, KC_6)
-#define KC_SFT_0 MT(MOD_LSFT, KC_0)
-
 #define KC_SFT_DEL MT(MOD_LSFT, KC_DEL)
 #define KC_ALT_LFT MT(MOD_LALT, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
 #define KC_CTL_RGT MT(MOD_LCTL, KC_RIGHT)
+#define KC_CTL_4 MT(MOD_LCTL, KC_4)
+#define KC_GUI_5 MT(MOD_LGUI, KC_5)
+#define KC_ALT_6 MT(MOD_LALT, KC_6)
+#define KC_SFT_0 MT(MOD_LSFT, KC_0)
+#define KC_CAG_MIN LCAG_T(KC_MINUS)
+#define KC_CAG_2 LCAG_T(KC_2)
 
 #define KC_CTL_F4 MT(MOD_LCTL, KC_F4)
 #define KC_GUI_F5 MT(MOD_LGUI, KC_F5)
@@ -73,15 +68,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_TRNS,    KC_TRNS,       KC_TRNS,  KC_NAV
     ),
     [_NAV] = LAYOUT_split_3x4_2(
-         KC_NO,         KC_NO,        KC_PGUP,    KC_NO,        KC_F7,     KC_F8,     KC_F9,     KC_F11,
-         KC_COMBO_SFT , KC_ALT_HME,   KC_GUI_PGD, KC_CTL_END,   KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
-         KC_NO,         KC_NO,        KC_NO,      KC_NO,        KC_F1,     KC_F2,     KC_F3,     KC_F12,
-                                      KC_TRNS,    KC_TRNS,      KC_TRNS,   KC_TRNS
+         KC_NO, KC_NO,   KC_PGUP, KC_NO,        KC_NO,     KC_NO, KC_NO, KC_NO,
+         KC_NO, KC_HOME, KC_PGDN, KC_END,       KC_NO,     KC_NO, KC_NO, KC_NO,
+         KC_NO, KC_NO,   KC_NO,   KC_NO,        KC_NO,     KC_NO, KC_NO, KC_NO,
+                         KC_TRNS, KC_TRNS,      KC_TRNS,   KC_TRNS
     ),
     [_MED] = LAYOUT_split_3x4_2(
-         QK_BOOT,    KC_PSCR,    KC_VOLD,    KC_VOLU,       KC_NO,   KC_NO, KC_NO, KC_NO,
-         KC_CUDO,    KC_CCUT,    KC_CCPY,    KC_CPST,       KC_NO,   KC_NO, KC_NO, KC_NO,
-         KC_NO,      KC_MPRV,    KC_MPLY,    KC_MNXT,       KC_NO,   KC_NO, KC_NO, KC_NO,
+         QK_BOOT,    KC_PSCR,    KC_VOLD,    KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
+         KC_CUDO,    KC_CCUT,    KC_CCPY,    KC_CPST,       KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
+         KC_NO,      KC_MPRV,    KC_MPLY,    KC_MNXT,       KC_F1,     KC_F2,     KC_F3,     KC_F12,
                                  KC_TRNS,    KC_TRNS,       KC_TRNS, KC_TRNS
     ),
     // [_BLANK] = LAYOUT_split_3x4_2(
