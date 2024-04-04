@@ -62,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NNM] = LAYOUT_split_3x4_2(
-         KC_GRV,       KC_ESC,     KC_UP,      KC_ENT,        KC_7,     KC_8,     KC_9,     KC_BSLS,
+         KC_GRV,       KC_ESC,     KC_UP,      KC_ENT,        KC_7,     KC_8,     KC_9,     KC_SLSH,
          KC_SFT_DEL,   KC_ALT_LFT, KC_GUI_DWN, KC_CTL_RGT,    KC_CTL_4, KC_GUI_5, KC_ALT_6, KC_SFT_0,
          KC_LBRC,      KC_RBRC,    KC_CAG_MIN, KC_EQL,        KC_1,     KC_CAG_2, KC_3,     KC_DOT,
                                    KC_TRNS,    KC_TRNS,       KC_TRNS,  KC_NAV
