@@ -1,1 +1,0 @@
-#define ONESHOT_TIMEOUT 500
