@@ -32,6 +32,17 @@ enum mylayers {
 #define KC_ALT_S MT(MOD_LALT, KC_S)
 #define KC_SFT_N MT(MOD_LSFT, KC_N)
 
+#define KC_SFT_SCN MT(MOD_LSFT, KC_SCLN)
+#define KC_ALT_CMA MT(MOD_LALT, KC_COMMA)
+#define KC_GUI_DOT MT(MOD_LGUI, KC_DOT)
+#define KC_CTL_QUO MT(MOD_LCTL, KC_QUOT)
+#define KC_CAG_RBC LCAG_T(KC_RBRC)
+#define KC_CAG_2 LCAG_T(KC_2)
+#define KC_CTL_4 MT(MOD_LCTL, KC_4)
+#define KC_GUI_5 MT(MOD_LGUI, KC_5)
+#define KC_ALT_6 MT(MOD_LALT, KC_6)
+#define KC_SFT_0 MT(MOD_LSFT, KC_0)
+
 #define KC_SFT_ALL MT(MOD_LSFT, KC_CALL)
 #define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
 #define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
@@ -41,17 +52,6 @@ enum mylayers {
 #define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
 #define KC_ALT_RGT MT(MOD_LALT, KC_RIGHT)
-
-#define KC_SFT_SCN MT(MOD_LSFT, KC_SCLN)
-#define KC_ALT_QUO MT(MOD_LALT, KC_QUOT)
-#define KC_GUI_CMA MT(MOD_LGUI, KC_COMMA)
-#define KC_CTL_DOT MT(MOD_LCTL, KC_DOT)
-#define KC_CAG_RBC LCAG_T(KC_RBRC)
-#define KC_CAG_2 LCAG_T(KC_2)
-#define KC_CTL_4 MT(MOD_LCTL, KC_4)
-#define KC_GUI_5 MT(MOD_LGUI, KC_5)
-#define KC_ALT_6 MT(MOD_LALT, KC_6)
-#define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
 #define KC_SFT_MUT MT(MOD_LSFT, KC_MUTE)
 #define KC_ALT_PRV MT(MOD_LALT, KC_MPRV)
@@ -66,8 +66,8 @@ enum mylayers {
 
 #define KC_FUN MO(_FUN)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
-#define KC_COMBO_ALT1 LT(_NAV, KC_TAB)
-#define KC_COMBO_ALT2 LT(_NUM, KC_SPC)
+#define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
+#define KC_COMBO_ALT2 LT(_NAV, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -78,16 +78,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
                              KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
+    [_NUM] = LAYOUT_split_3x4_2(
+         KC_GRV,       KC_MINUS,   KC_EQUAL,   KC_Q,          KC_7,       KC_8,     KC_9,     KC_BSLS,
+         KC_SFT_SCN,   KC_ALT_CMA, KC_GUI_DOT, KC_CTL_QUO,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
+         KC_NO,        KC_LBRC,    KC_CAG_RBC, KC_Z,          KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
+                                   KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
+    ),
     [_NAV] = LAYOUT_split_3x4_2(
          KC_PSCR,      KC_BTN3,    KC_BTN1,    KC_BTN2,       KC_HOME,    KC_UP,      KC_END,     KC_NO,
          KC_SFT_ALL,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_LSFT,
          KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_PGDN,    KC_CAG_PGU, KC_NO,      KC_NO,
-                                   KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
-    ),
-    [_NUM] = LAYOUT_split_3x4_2(
-         KC_GRV,       KC_ESC,     KC_DEL,     KC_Q,          KC_7,       KC_8,     KC_9,     KC_BSLS,
-         KC_SFT_SCN,   KC_ALT_QUO, KC_GUI_CMA, KC_CTL_DOT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
-         KC_NO,        KC_LBRC,    KC_CAG_RBC, KC_Z,          KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
@@ -125,15 +125,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-bool get_permissive_hold(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {
-        case KC_COMBO_ALT2:
-            return true;
-        default:
-            return false;
-    }
-}
-
 // sets the left side pointing device to scroll only
 void keyboard_post_init_user(void) {
     pointing_device_set_cpi_on_side(true, 1000); //Set cpi on left side to a low value for slower scrolling.
@@ -160,6 +151,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_BSPC));
                         break;
                 }
+                return false;
             }
             break;
         case KC_CALL:
@@ -172,6 +164,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_A));
                         break;
                 }
+                return false;
+            }
+            break;
+        case KC_SFT_ALL:
+            if (record->tap.count && record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_A));
+                        break;
+                    default:
+                        tap_code16(C(KC_A));
+                        break;
+                }
+                return false;
             }
             break;
         case KC_CUDO:
@@ -184,6 +190,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_Z));
                         break;
                 }
+                return false;
             }
             break;
         case KC_CCUT:
@@ -196,6 +203,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_X));
                         break;
                 }
+                return false;
             }
             break;
         case KC_CCPY:
@@ -208,6 +216,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_C));
                         break;
                 }
+                return false;
+            }
+            break;
+        case KC_CAG_CPY:
+            if (record->tap.count && record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+                return false;
             }
             break;
         case KC_CPST:
@@ -220,6 +242,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_V));
                         break;
                 }
+                return false;
             }
             break;
     }
