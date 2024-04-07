@@ -11,6 +11,7 @@ enum custom_keycodes {
     KC_CCUT,
     KC_CCPY,
     KC_CPST,
+    KC_SEN,
 };
 
 
@@ -32,11 +33,11 @@ enum mylayers {
 #define KC_ALT_S MT(MOD_LALT, KC_S)
 #define KC_SFT_N MT(MOD_LSFT, KC_N)
 
-#define KC_SFT_SCN MT(MOD_LSFT, KC_SCLN)
-#define KC_ALT_CMA MT(MOD_LALT, KC_COMMA)
-#define KC_GUI_DOT MT(MOD_LGUI, KC_DOT)
-#define KC_CTL_QUO MT(MOD_LCTL, KC_QUOT)
-#define KC_CAG_RBC LCAG_T(KC_RBRC)
+#define KC_SFT_Q MT(MOD_LSFT, KC_Q)
+#define KC_ALT_QUO MT(MOD_LALT, KC_QUOTE)
+#define KC_GUI_CMA MT(MOD_LGUI, KC_COMMA)
+#define KC_CTL_DOT MT(MOD_LCTL, KC_DOT)
+#define KC_CAG_LBC LCAG_T(KC_LBRC)
 #define KC_CAG_2 LCAG_T(KC_2)
 #define KC_CTL_4 MT(MOD_LCTL, KC_4)
 #define KC_GUI_5 MT(MOD_LGUI, KC_5)
@@ -79,9 +80,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_2(
-         KC_GRV,       KC_MINUS,   KC_EQUAL,   KC_Q,          KC_7,       KC_8,     KC_9,     KC_BSLS,
-         KC_SFT_SCN,   KC_ALT_CMA, KC_GUI_DOT, KC_CTL_QUO,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
-         KC_NO,        KC_LBRC,    KC_CAG_RBC, KC_Z,          KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
+         KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
+         KC_SFT_Q,     KC_ALT_QUO, KC_GUI_CMA, KC_CTL_DOT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
+         KC_Z,         KC_SEN,     KC_CAG_LBC, KC_RBRC,       KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
                                    KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_2(
@@ -242,6 +243,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(C(KC_V));
                         break;
                 }
+                return false;
+            }
+            break;
+        case KC_SEN:
+            if (record->event.pressed) {
+                tap_code16(KC_DOT);
+                tap_code16(KC_SPC);
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
                 return false;
             }
             break;
