@@ -126,20 +126,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-// sets the left side pointing device to scroll only
-void keyboard_post_init_user(void) {
-    pointing_device_set_cpi_on_side(true, 1000); //Set cpi on left side to a low value for slower scrolling.
-    pointing_device_set_cpi_on_side(false, 8000); //Set cpi on right side to a reasonable value for mousing.
-}
-
-report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    left_report.h = left_report.x;
-    left_report.v = left_report.y;
-    left_report.x = 0;
-    left_report.y = 0;
-    return pointing_device_combine_reports(left_report, right_report);
-}
-
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_COMBO:

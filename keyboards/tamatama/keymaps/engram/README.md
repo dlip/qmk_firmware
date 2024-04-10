@@ -2,11 +2,11 @@
 
 ![](./dlip's-28-key-engram-layout.png)
 
-The base layer is based on [Arno's Engram v2.0](https://engram.dev/) layout. I'm not sure if he considered this when he was designing the layout, but it works perfectly for this form factor.
-
-I have avoided using combos as I've seen many other designs use since the homerow combos often caused me misfires and if you move them to less commonly used keys such as the bottom row they are less comfortable than a layer on the thumb.
+Based on [Arno's Engram v2.0](https://engram.dev/) layout, which translates wonderfully to this form factor.
 
 ## Dual Function keys
+
+I have avoided using combos since homerow combos often caused me misfires and if you move them to less commonly used keys such as the bottom row they are less comfortable for me than a layer on the thumb.
 
 There are some differences in the dual function keys:
 
