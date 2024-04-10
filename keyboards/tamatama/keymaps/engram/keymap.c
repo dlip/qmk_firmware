@@ -143,8 +143,8 @@ void keyboard_post_init_user(void) {
   debug_mouse=true;
 #ifdef POINTING_DEVICE_COMBINED
 // sets the left side pointing device to scroll only
-    pointing_device_set_cpi_on_side(true, 1000); //Set cpi on left side to a low value for slower scrolling.
-    pointing_device_set_cpi_on_side(false, 8000); //Set cpi on right side to a reasonable value for mousing.
+    pointing_device_set_cpi_on_side(true, PMW33XX_CPI_SCROLL);
+    pointing_device_set_cpi_on_side(false, PMW33XX_CPI);
 #endif
 }
 void pointing_device_init_user(void) {
@@ -289,7 +289,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case KC_MSCL:
             if (record->event.pressed) {
                 set_scrolling = true;
-                pointing_device_set_cpi(100);
+                pointing_device_set_cpi(PMW33XX_CPI_SCROLL);
             } else {
                 set_scrolling = false;
                 pointing_device_set_cpi(PMW33XX_CPI);
