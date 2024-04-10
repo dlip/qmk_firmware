@@ -12,7 +12,6 @@ enum custom_keycodes {
     KC_CCPY,
     KC_CPST,
     KC_SEN,
-    KC_MSCL,
 };
 
 
@@ -89,9 +88,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_2(
-         KC_PSCR,      KC_BTN3,    KC_BTN2,    KC_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
+         KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
          KC_SFT_ALL,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
-         KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
+         KC_NO,        KC_NO,      KC_CAG_NO,  KC_PSCR,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
@@ -101,8 +100,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
     ),
     [_MSE] = LAYOUT_split_3x4_2(
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_MSCL, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                            KC_TRNS, KC_TRNS,    KC_BTN1, KC_BTN2
     ),
@@ -286,15 +285,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case KC_MSCL:
-            if (record->event.pressed) {
-                set_scrolling = true;
-                pointing_device_set_cpi(PMW33XX_CPI_SCROLL);
-            } else {
-                set_scrolling = false;
-                pointing_device_set_cpi(PMW33XX_CPI);
-            }
-            return false;
     }
 
     return true;
