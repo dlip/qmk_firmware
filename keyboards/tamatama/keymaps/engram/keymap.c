@@ -125,6 +125,28 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  debug_keyboard=true;
+  debug_mouse=true;
+#ifdef POINTING_DEVICE_COMBINED
+// sets the left side pointing device to scroll only
+    pointing_device_set_cpi_on_side(true, 1000); //Set cpi on left side to a low value for slower scrolling.
+    pointing_device_set_cpi_on_side(false, 8000); //Set cpi on right side to a reasonable value for mousing.
+#endif
+}
+
+#ifdef POINTING_DEVICE_COMBINED
+report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+    left_report.h = left_report.x;
+    left_report.v = left_report.y;
+    left_report.x = 0;
+    left_report.y = 0;
+    return pointing_device_combine_reports(left_report, right_report);
+}
+#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
