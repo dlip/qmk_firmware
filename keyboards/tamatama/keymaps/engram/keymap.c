@@ -12,6 +12,7 @@ enum custom_keycodes {
     KC_CCPY,
     KC_CPST,
     KC_SEN,
+    KC_MSCL,
 };
 
 
@@ -20,6 +21,7 @@ enum mylayers {
     _NAV,
     _NUM,
     _FUN,
+    _MSE,
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -49,10 +51,11 @@ enum mylayers {
 #define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
 #define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
 #define KC_CAG_CPY LCAG_T(KC_CCPY)
-#define KC_CAG_PGU LCAG_T(KC_PGUP)
+#define KC_CAG_NO LCAG_T(KC_NO)
 #define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
 #define KC_ALT_RGT MT(MOD_LALT, KC_RIGHT)
+#define KC_SFT_PGD MT(MOD_LSFT, KC_PGDN)
 
 #define KC_SFT_MUT MT(MOD_LSFT, KC_MUTE)
 #define KC_ALT_PRV MT(MOD_LALT, KC_MPRV)
@@ -86,9 +89,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_2(
-         KC_PSCR,      KC_BTN3,    KC_BTN1,    KC_BTN2,       KC_HOME,    KC_UP,      KC_END,     KC_NO,
-         KC_SFT_ALL,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_LSFT,
-         KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_PGDN,    KC_CAG_PGU, KC_NO,      KC_NO,
+         KC_PSCR,      KC_BTN3,    KC_BTN2,    KC_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
+         KC_SFT_ALL,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
+         KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
@@ -96,7 +99,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_SFT_MUT, KC_ALT_PRV, KC_GUI_PLY,  KC_CTL_NXT,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
          KC_NO,      KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
-    )
+    ),
+    [_MSE] = LAYOUT_split_3x4_2(
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_MSCL, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                           KC_TRNS, KC_TRNS,    KC_BTN1, KC_BTN2
+    ),
     // [_BLANK] = LAYOUT_split_3x4_2(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
@@ -125,6 +134,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
+
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
   debug_enable=true;
@@ -137,7 +147,21 @@ void keyboard_post_init_user(void) {
     pointing_device_set_cpi_on_side(false, 8000); //Set cpi on right side to a reasonable value for mousing.
 #endif
 }
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+}
+bool set_scrolling = false;
 
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (set_scrolling) {
+        mouse_report.h = mouse_report.x;
+        mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
 #ifdef POINTING_DEVICE_COMBINED
 report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
     left_report.h = left_report.x;
@@ -262,6 +286,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case KC_MSCL:
+            if (record->event.pressed) {
+                set_scrolling = true;
+                pointing_device_set_cpi(100);
+            } else {
+                set_scrolling = false;
+                pointing_device_set_cpi(PMW33XX_CPI);
+            }
+            return false;
     }
 
     return true;
