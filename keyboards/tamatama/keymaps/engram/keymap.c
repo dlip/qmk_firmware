@@ -12,6 +12,7 @@ enum custom_keycodes {
     KC_CCPY,
     KC_CPST,
     KC_SEN,
+    KC_MSCL,
 };
 
 
@@ -101,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_MSE] = LAYOUT_split_3x4_2(
          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_MSCL, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                            KC_TRNS, KC_TRNS,    KC_BTN1, KC_BTN2
     ),
@@ -136,21 +137,32 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
-  debug_enable=true;
-  debug_matrix=true;
-  debug_keyboard=true;
-  debug_mouse=true;
+  // debug_enable=true;
+  // debug_matrix=true;
+  // debug_keyboard=true;
+  // debug_mouse=true;
 #ifdef POINTING_DEVICE_COMBINED
 // sets the left side pointing device to scroll only
-    pointing_device_set_cpi_on_side(true, PMW33XX_CPI_SCROLL);
-    pointing_device_set_cpi_on_side(false, PMW33XX_CPI);
+    // pointing_device_set_cpi_on_side(false, PMW33XX_CPI);
+    // pointing_device_set_cpi_on_side(true, PMW33XX_CPI);
 #endif
 }
+
+#ifdef POINTING_DEVICE_ENABLE
 void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
+    set_auto_mouse_timeout(600);
+
 }
 bool set_scrolling = false;
+// Modify these values to adjust the scrolling speed
+#define SCROLL_DIVISOR_H 200.0
+#define SCROLL_DIVISOR_V 200.0
+
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
 
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     if (set_scrolling) {
@@ -161,10 +173,41 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     }
     return mouse_report;
 }
+#endif
+
 #ifdef POINTING_DEVICE_COMBINED
 report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    left_report.h = left_report.x;
-    left_report.v = left_report.y;
+    if (set_scrolling) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)right_report.x / SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)right_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        right_report.h = (int8_t)scroll_accumulated_h;
+        right_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        right_report.x = 0;
+        right_report.y = 0;
+    }
+
+    // Calculate and accumulate scroll values based on mouse movement and divisors
+    scroll_accumulated_h += (float)left_report.x / SCROLL_DIVISOR_H;
+    scroll_accumulated_v += (float)left_report.y / SCROLL_DIVISOR_V;
+
+    // Assign integer parts of accumulated scroll values to the mouse report
+    left_report.h = (int8_t)scroll_accumulated_h;
+    left_report.v = -(int8_t)scroll_accumulated_v;
+
+    // Update accumulated scroll values by subtracting the integer parts
+    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+    // Clear the X and Y values of the mouse report
     left_report.x = 0;
     left_report.y = 0;
     return pointing_device_combine_reports(left_report, right_report);
@@ -285,6 +328,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case KC_MSCL:
+            if (record->event.pressed) {
+                set_scrolling = true;
+            } else {
+                set_scrolling = false;
+            }
+            return false;
     }
 
     return true;
