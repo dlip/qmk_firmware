@@ -6,16 +6,16 @@
     {
       "t": "#000000\n\n#ff0000\n#0000ff\n\n\n\n#008000"
     },
-    "B\n\n` ~\nPrint\n\n\n\nReset",
+    "B\n\n` ~\nUndo\n\n\n\nReset",
     {
       "t": "#000000\n\n#ff0000\n#0000ff"
     },
-    "Y\n\n; :\nMse 3",
+    "Y\n\n; :\nCut",
     {
       "t": "#000000\n\n#ff0000\n#0000ff\n\n\n\n#008000"
     },
-    "O\n\n- _\nMse 1\n\n\n\nVol -",
-    "U\n\n= +\nMse 2\n\n\n\nVol +",
+    "O\n\n- _\nCopy\n\n\n\nVol -",
+    "U\n\n= +\nPaste\n\n\n\nVol +",
     {
       "x": 1
     },
@@ -29,7 +29,7 @@
       "t": "#000000\n\n#ff0000\n#0000ff\n \n\n\n#008000",
       "a": 0
     },
-    "C\n\nQ\nAll\nShift\n\n\nMute",
+    "C\n\nQ\nPrint\nShift\n\n\nMute",
     "I\n\n' \"\nDel\nAlt\n\n\nPrev",
     "E\n\n, <\nEsc\nGui\n\n\nPlay",
     "A\n\n. >\nEnter\nCtrl\n\n\nNext",
@@ -46,20 +46,20 @@
       "t": "#000000\n\n#ff0000\n#0000ff",
       "a": 4
     },
-    "G\n\nZ\nUndo",
+    "G\n\nZ",
     {
       "t": "#000000\n\n\n#0000ff"
     },
-    "X\n\n\nCut",
+    "X",
     {
       "t": "#000000\n\n#ff0000\n#0000ff\n\n\n\n#008000",
       "a": 0
     },
-    "J\n\n[ {\nCopy\nCAG\n\n\nBri -",
+    "J\n\n[ {\n\nCAG\n\n\nBri -",
     {
       "a": 4
     },
-    "K\n\n] }\nPaste\n\n\n\nBri +",
+    "K\n\n] }\n\n\n\n\nBri +",
     {
       "x": 1,
       "t": "#000000\n\n#ff0000\n\n\n\n\n#008000"

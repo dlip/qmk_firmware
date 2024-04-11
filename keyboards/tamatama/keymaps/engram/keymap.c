@@ -46,11 +46,11 @@ enum mylayers {
 #define KC_ALT_6 MT(MOD_LALT, KC_6)
 #define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
-#define KC_SFT_ALL MT(MOD_LSFT, KC_CALL)
+#define KC_SFT_PRN MT(MOD_LSFT, KC_PSCR)
 #define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
 #define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
 #define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
-#define KC_CAG_CPY LCAG_T(KC_CCPY)
+#define KC_CAG_BT2 LCAG_T(KC_BTN2)
 #define KC_CAG_NO LCAG_T(KC_NO)
 #define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
@@ -90,8 +90,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_NAV] = LAYOUT_split_3x4_2(
          KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
-         KC_SFT_ALL,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
-         KC_NO,        KC_NO,      KC_CAG_NO,  KC_PSCR,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
+         KC_SFT_PRN,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
+         KC_MSCL,      KC_BTN3,    KC_CAG_BT2, KC_BTN1,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
@@ -101,10 +101,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
     ),
     [_MSE] = LAYOUT_split_3x4_2(
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN2, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_MSCL, KC_TRNS, KC_TRNS, KC_TRNS,
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                           KC_TRNS, KC_TRNS,    KC_BTN1, KC_BTN2
+         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
+                           KC_TRNS, KC_TRNS,    KC_TRNS, KC_BTN1
     ),
     // [_BLANK] = LAYOUT_split_3x4_2(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
@@ -143,7 +143,7 @@ void keyboard_post_init_user(void) {
   // debug_mouse=true;
 #ifdef POINTING_DEVICE_COMBINED
 // sets the left side pointing device to scroll only
-    // pointing_device_set_cpi_on_side(false, PMW33XX_CPI * 1.5);
+    // pointing_device_set_cpi_on_side(false, PMW33XX_CPI * 5);
     // pointing_device_set_cpi_on_side(true, PMW33XX_CPI);
 #endif
 }
@@ -152,13 +152,13 @@ void keyboard_post_init_user(void) {
 void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
     set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-    set_auto_mouse_timeout(600);
+    set_auto_mouse_timeout(1000);
 
 }
 bool set_scrolling = false;
 // Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 200.0
-#define SCROLL_DIVISOR_V 200.0
+#define SCROLL_DIVISOR_H 50.0
+#define SCROLL_DIVISOR_V 50.0
 
 // Variables to store accumulated scroll values
 float scroll_accumulated_h = 0;
@@ -242,19 +242,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case KC_SFT_ALL:
-            if (record->tap.count && record->event.pressed) {
-                switch(detected_host_os()) {
-                    case OS_MACOS:
-                        tap_code16(G(KC_A));
-                        break;
-                    default:
-                        tap_code16(C(KC_A));
-                        break;
-                }
-                return false;
-            }
-            break;
         case KC_CUDO:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
@@ -294,19 +281,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case KC_CAG_CPY:
-            if (record->tap.count && record->event.pressed) {
-                switch(detected_host_os()) {
-                    case OS_MACOS:
-                        tap_code16(G(KC_C));
-                        break;
-                    default:
-                        tap_code16(C(KC_C));
-                        break;
-                }
-                return false;
-            }
-            break;
+        // case KC_CAG_CPY:
+        //     if (record->tap.count && record->event.pressed) {
+        //         switch(detected_host_os()) {
+        //             case OS_MACOS:
+        //                 tap_code16(G(KC_C));
+        //                 break;
+        //             default:
+        //                 tap_code16(C(KC_C));
+        //                 break;
+        //         }
+        //         return false;
+        //     }
+        //     break;
         case KC_CPST:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
