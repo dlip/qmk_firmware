@@ -1,6 +1,8 @@
 # tamatama
 
-![tamatama](imgur.com image replace me!)
+![tamatama](https://raw.githubusercontent.com/dlip/tamatama/main/tamatama.jpg)
+
+<https://github.com/dlip/tamatama>
 
 *A short description of the keyboard/project*
 
