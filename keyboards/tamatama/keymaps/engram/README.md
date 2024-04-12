@@ -4,9 +4,14 @@
 
 Based on [Arno's Engram v2.0](https://engram.dev/) layout.
 
-## Dual Function keys
+## Layers
 
-I have avoided using combos since homerow combos often caused me misfires and if you move them to less commonly used keys such as the bottom row they are less comfortable for me than a layer on the thumb.
+- Num + Symbols + Q/Z - Combined with shift to access 2nd symbol
+- Nav + Editing
+- Function + Media + Utility
+- Mouse
+
+## Dual Function keys
 
 There are some differences in the dual function keys:
 
