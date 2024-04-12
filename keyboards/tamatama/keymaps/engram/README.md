@@ -18,4 +18,4 @@ There are some differences in the dual function keys:
 
 ![](dlip's-28-key-engram-layout---mouse.png)
 
-The mouse layer is triggered automatically on movement. The right trackball moves the mouse and the left one scrolls.
+The mouse layer is triggered automatically on movement. The right trackball moves the mouse and the left one scrolls. The scroll button makes the right one scroll when held.
