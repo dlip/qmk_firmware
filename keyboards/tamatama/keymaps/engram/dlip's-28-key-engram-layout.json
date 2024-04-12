@@ -29,7 +29,7 @@
       "t": "#000000\n\n#ff0000\n#0000ff\n \n\n\n#008000",
       "a": 0
     },
-    "C\n\nQ\nPrint\nShift\n\n\nMute",
+    "C\n\nQ\nBspc\nShift\n\n\nMute",
     "I\n\n' \"\nDel\nAlt\n\n\nPrev",
     "E\n\n, <\nEsc\nGui\n\n\nPlay",
     "A\n\n. >\nEnter\nCtrl\n\n\nNext",
@@ -46,7 +46,7 @@
       "t": "#000000\n\n#ff0000\n#0000ff",
       "a": 4
     },
-    "G\n\nZ",
+    "G\n\nZ\nPrint",
     {
       "t": "#000000\n\n\n#0000ff"
     },

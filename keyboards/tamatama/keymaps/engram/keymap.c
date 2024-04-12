@@ -159,8 +159,8 @@ void pointing_device_init_user(void) {
 }
 bool set_scrolling = false;
 // Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 50.0
-#define SCROLL_DIVISOR_V 50.0
+#define SCROLL_DIVISOR_H 100.0
+#define SCROLL_DIVISOR_V 100.0
 
 // Variables to store accumulated scroll values
 float scroll_accumulated_h = 0;
