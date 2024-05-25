@@ -5,6 +5,6 @@
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [0] = LAYOUT_split_5x6(
-        KC_A
+        KC_A, KC_B, KC_C
     )
 };

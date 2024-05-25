@@ -5,18 +5,11 @@
 
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET
 #define RP2040_BOOTLOADER_DOUBLE_TAP_RESET_TIMEOUT 1000U
-/*
- * Feature disable options
- *  These options are also useful to firmware size reduction.
- */
+#define FORCE_NKRO
 
-/* disable debug print */
-//#define NO_DEBUG
+#define SPI_DRIVER SPID0
+#define SPI_SCK_PIN GP2
+#define SPI_MOSI_PIN GP3
+#define SPI_MISO_PIN GP4
+#define CIRQUE_PINNACLE_SPI_CS_PIN GP5
 
-/* disable print */
-//#define NO_PRINT
-
-/* disable action features */
-//#define NO_ACTION_LAYER
-//#define NO_ACTION_TAPPING
-//#define NO_ACTION_ONESHOT

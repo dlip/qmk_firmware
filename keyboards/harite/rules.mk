@@ -1,1 +1,6 @@
-# This file intentionally left blank
+SPLIT_KEYBOARD = yes
+SERIAL_DRIVER = vendor
+
+POINTING_DEVICE_ENABLE = yes
+POINTING_DEVICE_DRIVER = cirque_pinnacle_spi
+SPI_DRIVER_REQUIRED = yes
