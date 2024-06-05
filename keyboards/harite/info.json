@@ -13,13 +13,19 @@
         "nkro": true
     },
     "matrix_pins": {
-        "cols": [
-            "GP29",
-            "GP28"
-        ],
         "rows": [
-            "GP7",
-            "GP8"
+            "GP9",
+            "GP10",
+            "GP11",
+            "GP12",
+            "GP13"
+        ],
+        "cols": [
+            "GP14",
+            "GP15",
+            "GP26",
+            "GP27",
+            "GP28"
         ]
     },
     "processor": "RP2040",
@@ -30,14 +36,15 @@
         "vid": "0xFEED"
     },
     "layouts": {
-        "LAYOUT_split_5x6": {
+        "LAYOUT_split_5x5": {
             "layout": [
                 {
                     "matrix": [
                         0,
                         0
                     ],
-                    "x": 0,
+                    "label": "lpu",
+                    "x": 1,
                     "y": 0
                 },
                 {
@@ -45,15 +52,26 @@
                         0,
                         1
                     ],
-                    "x": 0,
+                    "label": "lru",
+                    "x": 5,
                     "y": 0
                 },
                 {
                     "matrix": [
-                        1,
-                        0
+                        0,
+                        2
                     ],
-                    "x": 0,
+                    "label": "lmu",
+                    "x": 9,
+                    "y": 0
+                },
+                {
+                    "matrix": [
+                        0,
+                        3
+                    ],
+                    "label": "liu",
+                    "x": 13,
                     "y": 0
                 }
             ]
