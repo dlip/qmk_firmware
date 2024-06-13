@@ -10,8 +10,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_C,              KC_C,              KC_C,              KC_C,                    KC_C,              KC_C,              KC_C,              KC_C,
 
                                                                        KC_A,                    KC_A,
-    )                                                            KC_D, KC_E, KC_B,        KC_D, KC_E, KC_B,
-};                                                                     KC_C,                    KC_C
+                                                                 KC_D, KC_E, KC_B,        KC_D, KC_E, KC_B,
+                                                                       KC_C,                    KC_C
+    )
+};
 
 static bool scrolling_mode = true;
 
