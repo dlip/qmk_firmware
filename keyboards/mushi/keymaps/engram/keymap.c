@@ -141,13 +141,15 @@ void keyboard_post_init_user(void) {
   // debug_keyboard=true;
   // debug_mouse=true;
 #ifdef POINTING_DEVICE_COMBINED
-// sets the left side pointing device to scroll only
-    // pointing_device_set_cpi_on_side(false, PMW33XX_CPI * 5);
-    // pointing_device_set_cpi_on_side(true, PMW33XX_CPI);
+    // Hack to fix slave side being a lower sensitivity
+    // if (!is_keyboard_master()) {
+    //     pointing_device_set_cpi_on_side(is_keyboard_left(), PMW33XX_CPI + 1000);
+    // }
+    pointing_device_set_cpi_on_side(false, PMW33XX_CPI);
+    pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
 #endif
 }
 
-bool set_scrolling = false;
 #ifdef POINTING_DEVICE_ENABLE
 void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
@@ -155,9 +157,10 @@ void pointing_device_init_user(void) {
     set_auto_mouse_timeout(1000);
 
 }
+bool set_scrolling = false;
 // Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 50.0
-#define SCROLL_DIVISOR_V 50.0
+#define SCROLL_DIVISOR_H 100.0
+#define SCROLL_DIVISOR_V 100.0
 
 // Variables to store accumulated scroll values
 float scroll_accumulated_h = 0;
