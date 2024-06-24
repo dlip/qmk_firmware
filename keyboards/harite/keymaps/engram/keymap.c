@@ -76,14 +76,41 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x5(
-              KC_B,                 KC_Y,                 KC_O,                                KC_U,                                  KC_L,                   KC_D,               KC_W,               KC_V,
-        KC_Z, KC_NO, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,           KC_ENTER, KC_NO, KC_K,                     KC_R, KC_NO, KC_R,  KC_CAG_M, KC_NO, KC_R,  KC_F, KC_NO, KC_R,  KC_P, KC_NO, KC_R,
-              KC_SFT_C,             KC_ALT_I,             KC_GUI_E,                            KC_CTL_A,                              KC_CTL_H,               KC_GUI_T,           KC_ALT_S,           KC_SFT_N,
+              KC_B,                   KC_Y,                 KC_O,                                KC_U,                                  KC_L,                     KC_D,                   KC_W,                   KC_V,
+        KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,           KC_ENTER, KC_NO, KC_K,                     KC_R, KC_NO, KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, KC_NO, KC_Q,
+              KC_SFT_C,               KC_ALT_I,             KC_GUI_E,                            KC_CTL_A,                              KC_CTL_H,                 KC_GUI_T,               KC_ALT_S,               KC_SFT_N,
 
-                                                                                               KC_BTN1,                               KC_BTN2,
-                                                                                KC_COMBO_ALT2, KC_NO, KC_COMBO_ALT1,        KC_COMBO, KC_NO, KC_COMBO_SFT,
-                                                                                               KC_BTN3,                               KC_BTN4
+                                                                                                 KC_BTN1,                                 KC_ESC,
+                                                                                  KC_COMBO_ALT2, KC_BTN3, KC_COMBO_ALT1,        KC_COMBO, KC_NO, KC_COMBO_SFT,
+                                                                                                 KC_BTN2,                                 KC_ENTER
+    ),
+    [_NUM] = LAYOUT_split_5x5(
+               KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_7,                      KC_8,                  KC_9,                     KC_BSLS,
+        KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,               KC_1, KC_NO, KC_TRNS,  KC_CAG_2, KC_NO, KC_TRNS,  KC_3, KC_NO, KC_TRNS,  KC_SLSH, KC_NO, KC_NO,
+               KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_CTL_4,                  KC_GUI_5,              KC_ALT_6,                 KC_SFT_0,
+
+                                                                                       KC_TRNS,                          KC_TRNS,
+                                                                              KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                       KC_TRNS,                          KC_TRNS
+    ),
+    [_NEW] = LAYOUT_split_5x5(
+               KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_NO,                  KC_UP,                   KC_NO,                KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,              KC_NO, KC_NO, KC_NO,  KC_LEFT, KC_NO, KC_RIGHT,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+               KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_NO,                  KC_DOWN,                 KC_NO,                KC_NO,
+
+                                                                                       KC_TRNS,                          KC_TRNS,
+                                                                              KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                       KC_TRNS,                          KC_TRNS
     )
+    // [_NEW] = LAYOUT_split_5x5(
+    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                            KC_NO,                KC_NO,                KC_NO,                KC_NO,
+    //     KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,              KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                            KC_NO,                KC_NO,                KC_NO,                KC_NO,
+    //
+    //                                                                              KC_TRNS,                          KC_TRNS,
+    //                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
+    //                                                                              KC_TRNS,                          KC_TRNS
+    // )
 };
 
 
