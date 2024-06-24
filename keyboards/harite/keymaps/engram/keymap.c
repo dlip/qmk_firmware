@@ -77,7 +77,7 @@ enum mylayers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x5(
               KC_B,                   KC_Y,                 KC_O,                                KC_U,                                  KC_L,                     KC_D,                   KC_W,                   KC_V,
-        KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,           KC_ENTER, KC_NO, KC_K,                     KC_R, KC_NO, KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, KC_NO, KC_Q,
+        KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,           KC_ENTER, KC_NO, KC_K,                     KC_R, KC_NO, KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, QK_BOOT, KC_Q,
               KC_SFT_C,               KC_ALT_I,             KC_GUI_E,                            KC_CTL_A,                              KC_CTL_H,                 KC_GUI_T,               KC_ALT_S,               KC_SFT_N,
 
                                                                                                  KC_BTN1,                                 KC_ESC,
@@ -93,7 +93,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                               KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                        KC_TRNS,                          KC_TRNS
     ),
-    [_NEW] = LAYOUT_split_5x5(
+    [_NAV] = LAYOUT_split_5x5(
                KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_NO,                  KC_UP,                   KC_NO,                KC_NO,
         KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,              KC_NO, KC_NO, KC_NO,  KC_LEFT, KC_NO, KC_RIGHT,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
                KC_NO,                  KC_NO,                  KC_NO,                  KC_NO,                            KC_NO,                  KC_DOWN,                 KC_NO,                KC_NO,
@@ -113,6 +113,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // )
 };
 
+
+void keyboard_post_init_user(void) {
+#ifdef POINTING_DEVICE_COMBINED
+    // pointing_device_set_cpi_on_side(false, 300);
+    // pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
+#endif
+}
+
+// Modify these values to adjust the scrolling speed
+#define SCROLL_DIVISOR_H 100.0
+#define SCROLL_DIVISOR_V 100.0
+
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+
+#ifdef POINTING_DEVICE_COMBINED
+report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+    // Calculate and accumulate scroll values based on mouse movement and divisors
+    scroll_accumulated_h += (float)left_report.x / SCROLL_DIVISOR_H;
+    scroll_accumulated_v += (float)left_report.y / SCROLL_DIVISOR_V;
+
+    // Assign integer parts of accumulated scroll values to the mouse report
+    left_report.h = (int8_t)scroll_accumulated_h;
+    left_report.v = -(int8_t)scroll_accumulated_v;
+
+    // Update accumulated scroll values by subtracting the integer parts
+    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+    // Clear the X and Y values of the mouse report
+    left_report.x = 0;
+    left_report.y = 0;
+    return pointing_device_combine_reports(left_report, right_report);
+}
+#endif
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
