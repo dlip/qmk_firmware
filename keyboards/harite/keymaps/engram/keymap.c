@@ -22,6 +22,7 @@ enum mylayers {
     _NUM,
     _FUN,
     _GAM,
+    _GA2,
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -78,7 +79,7 @@ enum mylayers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x5(
               KC_B,                   KC_Y,                 KC_O,                       KC_U,                              KC_L,                     KC_D,                   KC_W,                   KC_V,
-        KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,  KC_ENTER, TG(_GAM), KC_K,              KC_R, KC_NO, KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, QK_BOOT, KC_Q,
+        KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,  KC_ENTER, TG(_GAM), KC_K,              KC_R, TG(_GA2), KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, QK_BOOT, KC_Q,
               KC_SFT_C,               KC_ALT_I,             KC_GUI_E,                   KC_CTL_A,                          KC_CTL_H,                 KC_GUI_T,               KC_ALT_S,               KC_SFT_N,
 
                                                                                         KC_COMBO_ALT1,                     KC_COMBO,
@@ -120,7 +121,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                KC_LSFT,                      KC_NO,
                                                                        KC_SPC, KC_NO, KC_BTN1,        KC_NO, KC_NO, KC_NO,
                                                                                KC_BTN2,                      KC_NO
+    ),
+    [_GA2] = LAYOUT_split_5x5(
+               KC_NO,                KC_Q,                KC_SPC,              KC_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_NO, KC_R,        KC_1, TG(_GA2), KC_NO,  KC_2, KC_NO, KC_NO,  KC_3, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+               KC_NO,                KC_Z,                KC_C,                KC_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
+
+                                                                               KC_W,                      KC_NO,
+                                                                         KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
+                                                                               KC_S,                      KC_NO
     )
+
     // [_NEW] = LAYOUT_split_5x5(
     //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                            KC_NO,                KC_NO,                KC_NO,                KC_NO,
     //     KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,              KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
