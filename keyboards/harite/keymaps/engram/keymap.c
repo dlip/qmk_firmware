@@ -82,9 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z, QK_BOOT, KC_G,  KC_DEL, KC_NO, KC_X,  KC_ESC, KC_NO, KC_CAG_J,  KC_ENTER, TG(_GAM), KC_K,              KC_R, TG(_GA2), KC_DOT,  KC_CAG_M, KC_NO, KC_COMMA,  KC_F, KC_NO, KC_QUOTE,  KC_P, QK_BOOT, KC_Q,
               KC_SFT_C,               KC_ALT_I,             KC_GUI_E,                   KC_CTL_A,                          KC_CTL_H,                 KC_GUI_T,               KC_ALT_S,               KC_SFT_N,
 
-                                                                                        KC_COMBO_ALT1,                     KC_COMBO,
+                                                                                        KC_BTN1,                     KC_FUN,
                                                                          KC_COMBO_ALT2, KC_BTN3, KC_BTN2,          QK_REP, KC_NO, KC_COMBO_SFT,
-                                                                                        KC_BTN1,                           KC_FUN
+                                                                                        KC_COMBO_ALT1,                           KC_COMBO
     ),
     [_NUM] = LAYOUT_split_5x5(
                KC_GRV,                 KC_SCLN,                KC_MINUS,               KC_EQUAL,                         KC_7,                      KC_8,                  KC_9,                     KC_BSLS,
@@ -129,7 +129,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
                                                                                KC_W,                      KC_NO,
                                                                          KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
-                                                                               KC_S,                      KC_NO
+                                                                               KC_S,                      KC_LSFT
     )
 
     // [_NEW] = LAYOUT_split_5x5(
