@@ -150,6 +150,7 @@ void keyboard_post_init_user(void) {
 #endif
 }
 
+bool set_scrolling = false;
 #ifdef POINTING_DEVICE_ENABLE
 void pointing_device_init_user(void) {
     set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
@@ -157,7 +158,6 @@ void pointing_device_init_user(void) {
     set_auto_mouse_timeout(1000);
 
 }
-bool set_scrolling = false;
 // Modify these values to adjust the scrolling speed
 #define SCROLL_DIVISOR_H 100.0
 #define SCROLL_DIVISOR_V 100.0

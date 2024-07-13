@@ -111,6 +111,42 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // ),
 };
 
+void keyboard_post_init_user(void) {
+#ifdef POINTING_DEVICE_COMBINED
+    // pointing_device_set_cpi_on_side(false, 300);
+    // pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
+#endif
+}
+
+// Modify these values to adjust the scrolling speed
+#define SCROLL_DIVISOR_H 100.0
+#define SCROLL_DIVISOR_V 100.0
+
+bool set_scrolling=false;
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+
+#ifdef POINTING_DEVICE_COMBINED
+report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+    // Calculate and accumulate scroll values based on mouse movement and divisors
+    scroll_accumulated_h += (float)left_report.x / SCROLL_DIVISOR_H;
+    scroll_accumulated_v += (float)left_report.y / SCROLL_DIVISOR_V;
+
+    // Assign integer parts of accumulated scroll values to the mouse report
+    left_report.h = (int8_t)scroll_accumulated_h;
+    left_report.v = -(int8_t)scroll_accumulated_v;
+
+    // Update accumulated scroll values by subtracting the integer parts
+    scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+    scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+    // Clear the X and Y values of the mouse report
+    left_report.x = 0;
+    left_report.y = 0;
+    return pointing_device_combine_reports(left_report, right_report);
+}
+#endif
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_COMBO_SFT:
@@ -131,82 +167,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
-
-void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
-  // debug_enable=true;
-  // debug_matrix=true;
-  // debug_keyboard=true;
-  // debug_mouse=true;
-#ifdef POINTING_DEVICE_COMBINED
-    // Hack to fix slave side being a lower sensitivity
-    // if (!is_keyboard_master()) {
-    //     pointing_device_set_cpi_on_side(is_keyboard_left(), PMW33XX_CPI + 1000);
-    // }
-    pointing_device_set_cpi_on_side(false, PMW33XX_CPI);
-    pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
-#endif
-}
-
-bool set_scrolling = false;
-#ifdef POINTING_DEVICE_ENABLE
-// Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 100.0
-#define SCROLL_DIVISOR_V 100.0
-
-// Variables to store accumulated scroll values
-float scroll_accumulated_h = 0;
-float scroll_accumulated_v = 0;
-
-// report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-//     if (set_scrolling) {
-//         mouse_report.h = mouse_report.x;
-//         mouse_report.v = mouse_report.y;
-//         mouse_report.x = 0;
-//         mouse_report.y = 0;
-//     }
-//     return mouse_report;
-// }
-#endif
-
-#ifdef POINTING_DEVICE_COMBINED
-report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    if (set_scrolling) {
-        // Calculate and accumulate scroll values based on mouse movement and divisors
-        scroll_accumulated_h += (float)right_report.x / SCROLL_DIVISOR_H;
-        scroll_accumulated_v += (float)right_report.y / SCROLL_DIVISOR_V;
-
-        // Assign integer parts of accumulated scroll values to the mouse report
-        right_report.h = (int8_t)scroll_accumulated_h;
-        right_report.v = -(int8_t)scroll_accumulated_v;
-
-        // Update accumulated scroll values by subtracting the integer parts
-        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-
-        // Clear the X and Y values of the mouse report
-        right_report.x = 0;
-        right_report.y = 0;
-    } else {
-        // Calculate and accumulate scroll values based on mouse movement and divisors
-        scroll_accumulated_h += (float)left_report.x / SCROLL_DIVISOR_H;
-        scroll_accumulated_v += (float)left_report.y / SCROLL_DIVISOR_V;
-
-        // Assign integer parts of accumulated scroll values to the mouse report
-        left_report.h = (int8_t)scroll_accumulated_h;
-        left_report.v = -(int8_t)scroll_accumulated_v;
-
-        // Update accumulated scroll values by subtracting the integer parts
-        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
-        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
-    }
-
-    // Clear the X and Y values of the mouse report
-    left_report.x = 0;
-    left_report.y = 0;
-    return pointing_device_combine_reports(left_report, right_report);
-}
-#endif
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
