@@ -30,7 +30,7 @@ enum mylayers {
 #define KC_GUI_O MT(MOD_LGUI, KC_O)
 #define KC_CTL_E MT(MOD_LCTL, KC_E)
 #define KC_CAG_B LCAG_T(KC_B)
-#define KC_CAG_N LCAG_T(KC_N)
+#define KC_CAG_V LCAG_T(KC_V)
 #define KC_CTL_T MT(MOD_LCTL, KC_T)
 #define KC_GUI_D MT(MOD_LGUI, KC_D)
 #define KC_ALT_M MT(MOD_LALT, KC_M)
@@ -78,13 +78,13 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x5(
-              KC_SFT_ESC,               KC_ALT_J,           KC_GUI_O,               KC_CTL_E,                        KC_CTL_T,              KC_GUI_D,           KC_ALT_M,               KC_SFT_DOT,
-        KC_Z, QK_BOOT, KC_ENTER,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_U,  KC_ENTER, TG(_GAM), KC_K,            KC_H, TG(_GA2), KC_S,  KC_H, KC_NO, KC_W,  KC_R, KC_NO, KC_F,  KC_COMMA, QK_BOOT, KC_Q,
-              KC_DEL,                   KC_G,               KC_CAG_B,               KC_U,                            KC_N,                  KC_CAG_N,           KC_P,                   KC_QUOTE,
+              KC_SFT_ESC,               KC_ALT_J,           KC_GUI_O,           KC_CTL_E,                        KC_CTL_T,              KC_GUI_D,           KC_ALT_M,               KC_SFT_DOT,
+        KC_Z, QK_BOOT, KC_ENTER,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_U,  KC_I, TG(_GAM), KC_A,            KC_H, TG(_GA2), KC_S,  KC_L, KC_NO, KC_W,  KC_R, KC_NO, KC_F,  KC_COMMA, QK_BOOT, KC_Q,
+              KC_DEL,                   KC_G,               KC_CAG_B,           KC_C,                            KC_N,                  KC_CAG_V,           KC_P,                   KC_QUOTE,
 
-                                                                                    KC_BTN1,                         KC_FUN,
-                                                                     KC_COMBO_ALT2, KC_BTN3, KC_BTN2,        QK_REP, KC_NO, KC_COMBO_SFT,
-                                                                                    KC_COMBO_ALT1,                   KC_COMBO
+                                                                                KC_BTN1,                         KC_FUN,
+                                                                 KC_COMBO_ALT2, KC_BTN3, KC_BTN2,        QK_REP, KC_NO, KC_COMBO_SFT,
+                                                                                KC_COMBO_ALT1,                   KC_COMBO
     ),
     [_NUM] = LAYOUT_split_5x5(
                KC_NO,                  KC_ALT_QUO,             KC_GUI_CMA,             KC_CTL_DOT,                       KC_CTL_4,                  KC_GUI_5,              KC_ALT_6,                 KC_SFT_0,
