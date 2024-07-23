@@ -74,7 +74,7 @@ enum mylayers {
 #define KC_GA2 MO(_GA2)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
 #define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT2 LT(_NAV, KC_SPC)
+#define KC_COMBO_ALT2 LT(_FUN, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -86,10 +86,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_2(
-         KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
-         KC_SFT_Q,     KC_ALT_QUO, KC_GUI_CMA, KC_CTL_DOT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
-         KC_Z,         KC_SPC,     KC_CAG_LBC, KC_RBRC,       KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
-                                   KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
+         KC_PGUP,    KC_HOME,    KC_UP,      KC_END,         KC_7,       KC_8,     KC_9,     KC_BSLS,
+         KC_PGDN,    KC_LEFT,    KC_DOWN,    KC_RIGHT,       KC_4,       KC_5,     KC_6,     KC_0,
+         KC_CUDO,    KC_CCUT,    KC_CCPY,    KC_CPST,        KC_1,       KC_2,     KC_3,     KC_SLSH,
+                                 KC_TRNS,    KC_FUN,         KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_2(
          KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
