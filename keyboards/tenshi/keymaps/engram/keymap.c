@@ -13,6 +13,7 @@ enum custom_keycodes {
     KC_CPST,
     KC_SEN,
     KC_MSCL,
+    KC_GA1
 };
 
 
@@ -21,6 +22,8 @@ enum mylayers {
     _NAV,
     _NUM,
     _FUN,
+    _GA1,
+    _GA2,
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -67,6 +70,7 @@ enum mylayers {
 #define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
 
 #define KC_FUN MO(_FUN)
+#define KC_GA2 MO(_GA2)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
 #define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
 #define KC_COMBO_ALT2 LT(_NAV, KC_SPC)
@@ -98,10 +102,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_FUN] = LAYOUT_split_3x4_4(
          QK_BOOT,    KC_NO,      KC_VOLD,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
          KC_SFT_MUT, KC_ALT_PRV, KC_GUI_PLY,  KC_CTL_NXT,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
-         KC_NO,      KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
+         KC_GA1,     KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS,
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
     ),
+    [_GA1] = LAYOUT_split_3x4_4(
+         KC_TAB,  KC_Q,  KC_W,    KC_E,      KC_NO, KC_NO, KC_NO, KC_NO,
+         KC_LSFT, KC_A,  KC_S,    KC_D,      KC_NO, KC_NO, KC_NO, KC_NO,
+         KC_LCTL, KC_Z,  KC_X,    KC_C,      KC_NO, KC_NO, KC_NO, KC_NO,
+                         KC_BTN2, KC_BTN1,   KC_NO, KC_NO,
+                         KC_GA2,  KC_SPC,    KC_NO, KC_NO
+    ),
+    [_GA2] = LAYOUT_split_3x4_4(
+         KC_NO,  KC_7, KC_8,  KC_9,     KC_NO, KC_NO, KC_NO, KC_NO,
+         KC_NO,  KC_4, KC_5,  KC_6,     KC_NO, KC_NO, KC_NO, KC_NO,
+         KC_GA1, KC_1, KC_2,  KC_3,     KC_NO, KC_NO, KC_NO, KC_NO,
+                       KC_NO, KC_NO,    KC_NO, KC_NO,
+                       KC_NO, KC_NO,    KC_NO, KC_NO
+    )
     // [_BLANK] = LAYOUT_split_3x4_4(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
@@ -113,6 +131,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void keyboard_post_init_user(void) {
 #ifdef POINTING_DEVICE_COMBINED
+#ifdef POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
+    cirque_pinnacle_configure_cursor_glide(40);
+#endif
     // pointing_device_set_cpi_on_side(false, 300);
     // pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
 #endif
@@ -276,6 +297,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_scrolling = false;
             }
             return false;
+        case KC_GA1:
+            if (record->event.pressed) {
+                if (layer_state_is(_GA1)) {
+                    layer_off(_GA1);
+                } else {
+                    layer_on(_GA1);
+                }
+                // Combos mess with game input
+                combo_toggle();
+                return false;
+            }
+            break;
     }
 
     return true;

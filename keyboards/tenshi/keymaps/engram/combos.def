@@ -1,5 +1,8 @@
 #include "abbr.def"
 
+
+COMB(c_mms, KC_BTN3, KC_BTN2, KC_BTN1)
+
 // Punctuation
 SUBS(p_dot, SS_TAP(X_BSPC)". ", KC_COMBO, KC_COMBO_ALT2)
 SUBS(p_comma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMBO_ALT1)
