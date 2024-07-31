@@ -1,7 +1,7 @@
 #include "abbr.def"
 
-
 COMB(c_mms, KC_BTN3, KC_BTN2, KC_BTN1)
+COMB(c_rpt, QK_REP, KC_COMBO, KC_COMBO_SFT)
 
 // Punctuation
 COMB(c_bdot, KC_BSEN, KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT2)
