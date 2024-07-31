@@ -11,6 +11,7 @@ enum custom_keycodes {
     KC_CCUT,
     KC_CCPY,
     KC_CPST,
+    KC_BSEN,
     KC_SEN,
     KC_MSCL,
     KC_GA1
@@ -284,8 +285,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case KC_SEN:
             if (record->event.pressed) {
-                tap_code16(KC_DOT);
-                tap_code16(KC_SPC);
+                SEND_STRING(". ");
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                return false;
+            }
+            break;
+        case KC_BSEN:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_BSPC)". ");
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
                 return false;
             }
