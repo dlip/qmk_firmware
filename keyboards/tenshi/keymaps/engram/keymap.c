@@ -73,8 +73,8 @@ enum mylayers {
 #define KC_FUN MO(_FUN)
 #define KC_GA2 MO(_GA2)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
-#define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT2 LT(_NAV, KC_SPC)
+#define KC_COMBO_ALT2 LT(_NUM, KC_TAB)
+#define KC_COMBO_ALT1 LT(_NAV, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -84,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
                              KC_BTN2,       KC_BTN1,          KC_NO,        KC_NO,
-                             KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
+                             KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_4(
          KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
