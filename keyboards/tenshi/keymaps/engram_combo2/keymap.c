@@ -20,7 +20,6 @@ enum custom_keycodes {
 
 enum mylayers {
     _BSE,
-    _NAV,
     _NUM,
     _FUN,
     _GA1,
@@ -54,9 +53,9 @@ enum mylayers {
 #define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
 #define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
 #define KC_CAG_NO LCAG_T(KC_NO)
-#define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
+#define KC_ALT_LFT MT(MOD_LALT, KC_LEFT)
 #define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
-#define KC_ALT_RGT MT(MOD_LALT, KC_RIGHT)
+#define KC_CTL_RGT MT(MOD_LCTL, KC_RIGHT)
 #define KC_SFT_PGD MT(MOD_LSFT, KC_PGDN)
 
 #define KC_SFT_MUT MT(MOD_LSFT, KC_MUTE)
@@ -74,7 +73,7 @@ enum mylayers {
 #define KC_GA2 MO(_GA2)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
 #define KC_COMBO_ALT2 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT1 LT(_NAV, KC_SPC)
+#define KC_COMBO_ALT1 LT(_FUN, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -87,18 +86,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                              KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_4(
-         KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
-         KC_SFT_Q,     KC_ALT_QUO, KC_GUI_CMA, KC_CTL_DOT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
-         KC_Z,         KC_SPC,     KC_CAG_LBC, KC_RBRC,       KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
+         KC_PGUP,      KC_HOME,    KC_UP,      KC_END,        KC_7,       KC_8,     KC_9,     KC_BSLS,
+         KC_SFT_PGD,   KC_ALT_LFT, KC_GUI_DWN, KC_CTL_RGT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
+         KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
                                    KC_TRNS,    KC_TRNS,       KC_TRNS,    KC_TRNS,
-                                   KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
-    ),
-    [_NAV] = LAYOUT_split_3x4_4(
-         KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
-         KC_SFT_BSP,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
-         KC_PSCR,      KC_NO,      KC_CAG_NO,  KC_NO,         KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
-                                   KC_TRNS,    KC_TRNS,       KC_TRNS,    KC_TRNS,
-                                   KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
+                                   KC_TRNS,    KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_4(
          QK_BOOT,    KC_NO,      KC_VOLD,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
