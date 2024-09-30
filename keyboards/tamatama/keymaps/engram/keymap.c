@@ -11,8 +11,10 @@ enum custom_keycodes {
     KC_CCUT,
     KC_CCPY,
     KC_CPST,
+    KC_BSEN,
     KC_SEN,
     KC_MSCL,
+    KC_GA1
 };
 
 
@@ -21,7 +23,8 @@ enum mylayers {
     _NAV,
     _NUM,
     _FUN,
-    _MSE,
+    _GA1,
+    _GA2,
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -40,6 +43,7 @@ enum mylayers {
 #define KC_GUI_CMA MT(MOD_LGUI, KC_COMMA)
 #define KC_CTL_DOT MT(MOD_LCTL, KC_DOT)
 #define KC_CAG_LBC LCAG_T(KC_LBRC)
+#define KC_CAG_CPY LCAG_T(KC_CCPY)
 #define KC_CAG_2 LCAG_T(KC_2)
 #define KC_CTL_4 MT(MOD_LCTL, KC_4)
 #define KC_GUI_5 MT(MOD_LGUI, KC_5)
@@ -68,9 +72,10 @@ enum mylayers {
 #define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
 
 #define KC_FUN MO(_FUN)
+#define KC_GA2 MO(_GA2)
 #define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
-#define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT2 LT(_NAV, KC_SPC)
+#define KC_COMBO_ALT2 LT(_NUM, KC_TAB)
+#define KC_COMBO_ALT1 LT(_NAV, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -79,7 +84,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
-                             KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
+                             KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_2(
          KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
@@ -88,27 +93,34 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_2(
-         KC_CUDO,      KC_CCUT,    KC_CCPY,    KC_CPST,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
+         KC_PSCR,      KC_BTN3,    KC_BTN2,    KC_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
          KC_SFT_BSP,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
-         KC_PSCR,      KC_NO,      KC_CAG_NO,  KC_NO,         KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
+         KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
          QK_BOOT,    KC_NO,      KC_VOLD,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
          KC_SFT_MUT, KC_ALT_PRV, KC_GUI_PLY,  KC_CTL_NXT,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
-         KC_NO,      KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
+         KC_GA1,     KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
     ),
-    [_MSE] = LAYOUT_split_3x4_2(
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_BTN3, KC_TRNS, KC_TRNS, KC_TRNS,
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_MSCL, KC_TRNS, KC_TRNS, KC_TRNS,
-         KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
-                           KC_TRNS, KC_TRNS,    KC_BTN1, KC_BTN2
+    [_GA1] = LAYOUT_split_3x4_2(
+         KC_TAB,  KC_Q,  KC_W,    KC_E,      KC_ESC,  KC_UP,   KC_ENTER, KC_NO,
+         KC_LSFT, KC_A,  KC_S,    KC_D,      KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,
+         KC_LCTL, KC_Z,  KC_X,    KC_C,      KC_NO,   KC_NO,   KC_NO, KC_NO,
+                         KC_GA2,  KC_SPC,    KC_BTN2, KC_BSPC
     ),
+    [_GA2] = LAYOUT_split_3x4_2(
+         KC_4,   KC_5, KC_6,  KC_R,     KC_F7, KC_F8, KC_F9, KC_F11,
+         KC_1,   KC_2, KC_3,  KC_F,     KC_F4, KC_F5, KC_F6, KC_F10,
+         KC_GA1, KC_7, KC_8,  KC_G,     KC_F1, KC_F2, KC_F3, KC_F12,
+                       KC_NO, KC_NO,    KC_NO, KC_NO
+    )
     // [_BLANK] = LAYOUT_split_3x4_2(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
+    //                    KC_NO, KC_NO,    KC_NO, KC_NO,
     //                    KC_NO, KC_NO,    KC_NO, KC_NO
     // ),
 };
@@ -151,12 +163,6 @@ void keyboard_post_init_user(void) {
 }
 
 #ifdef POINTING_DEVICE_ENABLE
-void pointing_device_init_user(void) {
-    set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
-    set_auto_mouse_enable(true);         // always required before the auto mouse feature will work
-    set_auto_mouse_timeout(1000);
-
-}
 bool set_scrolling = false;
 // Modify these values to adjust the scrolling speed
 #define SCROLL_DIVISOR_H 100.0
@@ -283,19 +289,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        // case KC_CAG_CPY:
-        //     if (record->tap.count && record->event.pressed) {
-        //         switch(detected_host_os()) {
-        //             case OS_MACOS:
-        //                 tap_code16(G(KC_C));
-        //                 break;
-        //             default:
-        //                 tap_code16(C(KC_C));
-        //                 break;
-        //         }
-        //         return false;
-        //     }
-        //     break;
+        case KC_CAG_CPY:
+            if (record->tap.count && record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+                return false;
+            }
+            break;
         case KC_CPST:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
@@ -311,8 +317,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case KC_SEN:
             if (record->event.pressed) {
-                tap_code16(KC_DOT);
-                tap_code16(KC_SPC);
+                SEND_STRING(". ");
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                return false;
+            }
+            break;
+        case KC_BSEN:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_BSPC)". ");
                 set_oneshot_mods(MOD_BIT(KC_LSFT));
                 return false;
             }
@@ -324,6 +336,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 set_scrolling = false;
             }
             return false;
+        case KC_GA1:
+            if (record->event.pressed) {
+                if (layer_state_is(_GA1)) {
+                    layer_off(_GA1);
+                } else {
+                    layer_on(_GA1);
+                }
+                // Combos mess with game input
+                combo_toggle();
+                return false;
+            }
+            break;
     }
 
     return true;
