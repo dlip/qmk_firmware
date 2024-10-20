@@ -1,0 +1,57 @@
+#include "abbr.def"
+
+
+COMB(c_g, KC_G, KC_B, KC_SFT_C)
+COMB(c_x, KC_X, KC_Y, KC_ALT_I)
+COMB(c_j, KC_J, KC_O, KC_GUI_E)
+COMB(c_k, KC_K, KC_U, KC_CTL_A)
+
+COMB(c_r, KC_R, KC_L, KC_CTL_H)
+COMB(c_m, KC_M, KC_D, KC_GUI_T)
+COMB(c_f, KC_F, KC_W, KC_ALT_S)
+COMB(c_p, KC_P, KC_V, KC_SFT_N)
+
+COMB(c_lz, KC_Z, KC_GRV, KC_SFT_Q)
+COMB(c_lspc, KC_SPC, KC_SCLN, KC_ALT_QUO)
+COMB(c_llbc, KC_CAG_LBC, KC_MINUS, KC_GUI_CMA)
+COMB(c_lrbc, KC_RBRC, KC_EQUAL, KC_CTL_DOT)
+
+COMB(c_z, KC_Z, KC_B, KC_SFT_C, KC_COMBO_ALT2)
+COMB(c_spc, KC_SPC, KC_Y, KC_ALT_I, KC_COMBO_ALT2)
+COMB(c_lbc, KC_CAG_LBC, KC_O, KC_GUI_E, KC_COMBO_ALT2)
+COMB(c_rbc, KC_RBRC, KC_U, KC_CTL_A, KC_COMBO_ALT2)
+
+COMB(c_ll1, KC_1, KC_7, KC_CTL_4)
+COMB(c_ll2, KC_2, KC_8, KC_GUI_5)
+COMB(c_ll3, KC_3, KC_9, KC_ALT_6)
+COMB(c_llslsh, KC_SLSH, KC_BSLS, KC_SFT_0)
+
+COMB(c_1, KC_1, KC_L, KC_CTL_H, KC_COMBO_ALT2)
+COMB(c_2, KC_2, KC_D, KC_GUI_T, KC_COMBO_ALT2)
+COMB(c_3, KC_3, KC_W, KC_ALT_S, KC_COMBO_ALT2)
+COMB(c_slsh, KC_SLSH, KC_V, KC_SFT_N, KC_COMBO_ALT2)
+
+COMB(c_udo, KC_CUDO, KC_PSCR, KC_SFT_BSP)
+COMB(c_cut, KC_CCUT, KC_BTN3, KC_ALT_DEL)
+COMB(c_cpy, KC_CAG_CPY, KC_BTN2, KC_GUI_ESC)
+COMB(c_pst, KC_CPST, KC_BTN1, KC_CTL_ENT)
+
+COMB(c_cag, KC_CAG_NO, KC_UP, KC_GUI_DWN)
+
+COMB(c_fun, KC_FUN, KC_COMBO_ALT2, KC_COMBO_ALT1, KC_COMBO_SFT, KC_COMBO)
+
+COMB(c_clm, LCTL(KC_BTN1), KC_CTL_A, KC_K)
+COMB(c_dlm, LSFT(KC_BTN1), KC_GUI_E, KC_CAG_J)
+
+COMB(c_rpt, QK_REP, KC_COMBO, KC_COMBO_SFT)
+
+// Punctuation
+COMB(c_bdot, KC_BSEN, KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT2)
+SUBS(p_bcomma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT1)
+COMB(c_dot, KC_SEN, KC_COMBO, KC_COMBO_ALT2)
+SUBS(p_comma, ", ", KC_COMBO, KC_COMBO_ALT1)
+
+// Personal
+SUBS(b_Dane, "Dane", KC_COMBO, KC_D, KC_X)
+SUBS(b_Lipscombe, "Lipscombe", KC_COMBO, KC_L, KC_X)
+SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_COMBO, KC_G, KC_X)
