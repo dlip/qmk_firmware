@@ -41,10 +41,10 @@ enum mylayers {
 #define KC_GUI_CMA MT(MOD_LGUI, KC_COMMA)
 #define KC_CTL_DOT MT(MOD_LCTL, KC_DOT)
 #define KC_CAG_LBC LCAG_T(KC_LBRC)
-#define KC_CAG_2 LCAG_T(KC_2)
-#define KC_CTL_4 MT(MOD_LCTL, KC_4)
-#define KC_GUI_5 MT(MOD_LGUI, KC_5)
-#define KC_ALT_6 MT(MOD_LALT, KC_6)
+#define KC_CAG_8 LCAG_T(KC_8)
+#define KC_CTL_1 MT(MOD_LCTL, KC_1)
+#define KC_GUI_2 MT(MOD_LGUI, KC_2)
+#define KC_ALT_3 MT(MOD_LALT, KC_3)
 #define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
 #define KC_SFT_BSP MT(MOD_RSFT, KC_BSPC)
@@ -63,10 +63,10 @@ enum mylayers {
 #define KC_GUI_PLY MT(MOD_LGUI, KC_MPLY)
 #define KC_CTL_NXT MT(MOD_LCTL, KC_MNXT)
 #define KC_CAG_BRD LCAG_T(KC_BRID)
-#define KC_CAG_F2 LCAG_T(KC_F2)
-#define KC_CTL_F4 MT(MOD_LCTL, KC_F4)
-#define KC_GUI_F5 MT(MOD_LGUI, KC_F5)
-#define KC_ALT_F6 MT(MOD_LALT, KC_F6)
+#define KC_CAG_F8 LCAG_T(KC_F8)
+#define KC_CTL_F1 MT(MOD_LCTL, KC_F1)
+#define KC_GUI_F2 MT(MOD_LGUI, KC_F2)
+#define KC_ALT_F3 MT(MOD_LALT, KC_F3)
 #define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
 
 #define KC_FUN LT(_FUN, KC_ENTER)
@@ -85,9 +85,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                 KC_BTN1,                         KC_FUN
     ),
     [_NUM] = LAYOUT_split_5x5(
-               KC_GRV,                 KC_SCLN,                KC_MINUS,               KC_EQUAL,                         KC_7,                      KC_8,                  KC_9,                     KC_BSLS,
-        KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,               KC_1, KC_NO, KC_TRNS,  KC_CAG_2, KC_NO, KC_TRNS,  KC_3, KC_NO, KC_TRNS,  KC_SLSH, KC_NO, KC_NO,
-               KC_NO,                  KC_ALT_QUO,             KC_GUI_CMA,             KC_CTL_DOT,                       KC_CTL_4,                  KC_GUI_5,              KC_ALT_6,                 KC_SFT_0,
+                 KC_NO,                  KC_SCLN,               KC_MINUS,             KC_EQUAL,                          KC_7,                  KC_CAG_8,              KC_9,                     KC_NO,
+        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_GRV,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,                KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_NO,    KC_6, KC_NO, KC_NO,    KC_TRNS, KC_NO, KC_TRNS,
+                 KC_TRNS,                KC_ALT_QUO,            KC_GUI_CMA,           KC_CTL_DOT,                        KC_CTL_1,              KC_GUI_2,              KC_ALT_3,                 KC_TRNS,
 
                                                                                        KC_TRNS,                          KC_TRNS,
                                                                               KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
@@ -103,9 +103,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                          KC_TRNS,                          KC_TRNS
     ),
     [_FUN] = LAYOUT_split_5x5(
-               QK_BOOT,                KC_SCLN,                KC_VOLD,                     KC_VOLU,                             KC_F7,                      KC_F8,                  KC_F9,                     KC_F11,
-        KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_CAG_BRD,  KC_TRNS, KC_NO, KC_BRIU,               KC_F1, KC_NO, KC_TRNS,  KC_CAG_F2, KC_NO, KC_TRNS,  KC_F3, KC_NO, KC_TRNS,  KC_SLSH, KC_NO, KC_NO,
-               KC_SFT_MUT,             KC_ALT_PRV,             KC_GUI_PLY,                  KC_CTL_NXT,                          KC_CTL_F4,                  KC_GUI_F5,              KC_ALT_F6,                 KC_SFT_F10,
+               KC_NO,                  KC_NO,                  KC_VOLD,                     KC_VOLU,                          KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_NO,  KC_TRNS, KC_NO, KC_CAG_BRD,  KC_TRNS, KC_NO, KC_BRIU,            KC_F4, KC_NO, KC_F10,  KC_F5, KC_NO, KC_F11,  KC_F6, KC_NO, KC_F12,  KC_NO, KC_NO, KC_NO,
+               KC_LSFT,                KC_ALT_PRV,             KC_GUI_PLY,                  KC_CTL_NXT,                       KC_CTL_F1,             KC_GUI_F2,             KC_ALT_F3,             KC_RSFT,
 
                                                                                             KC_TRNS,                          KC_TRNS,
                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
