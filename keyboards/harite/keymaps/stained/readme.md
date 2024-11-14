@@ -9,11 +9,11 @@
   \   '   x   k   y   h   m   c     i   g   r   v   p   j   ;   /
     ,       s       t       a         n       e       d       .
 
-                          Thumb     Thumb
+                      Thumb          Thumb
 
-                            1         5
-                          2   3     6   7
-                            4         8
+                      Num           DelWord
+                  Spc MseM  MseR   Esc   Bspc
+                      MseL           Enter
 
 Layout string (layer 1):
 fxkswyhtomcalignurvebpjd
