@@ -259,19 +259,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        // case KC_CAG_CPY:
-        //     if (record->tap.count && record->event.pressed) {
-        //         switch(detected_host_os()) {
-        //             case OS_MACOS:
-        //                 tap_code16(G(KC_C));
-        //                 break;
-        //             default:
-        //                 tap_code16(C(KC_C));
-        //                 break;
-        //         }
-        //         return false;
-        //     }
-        //     break;
+        case KC_CTL_CPY:
+            if (record->tap.count && record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+                return false;
+            }
+            break;
         case KC_CPST:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
