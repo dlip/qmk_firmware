@@ -88,13 +88,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                 KC_BTN1,                                     KC_FUN
     ),
     [_NUM] = LAYOUT_split_5x5(
-                 KC_GRV,                 KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
-        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_RBRC,  KC_HOME, KC_NO, KC_END,  KC_LEFT, KC_NO, KC_RIGHT,            KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
-                 KC_TRNS,                KC_ALT_DEL,               KC_GUI_PGD,              KC_CTL_DWN,                       KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
+                 KC_GRV,                   KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
+        KC_TRNS, KC_NO, KC_TRNS,  KC_BSPC, KC_NO, KC_RBRC,  KC_HOME, KC_NO, KC_END,  KC_LEFT, KC_NO, KC_RIGHT,            KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
+                 KC_TRNS,                  KC_ALT_DEL,               KC_GUI_PGD,              KC_CTL_DWN,                       KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
 
-                                                                                           KC_TRNS,                          KC_TRNS,
-                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                           KC_TRNS,                          KC_TRNS
+                                                                                              KC_TRNS,                          KC_TRNS,
+                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                              KC_TRNS,                          KC_TRNS
     ),
     [_FUN] = LAYOUT_split_5x5(
                KC_PSCR,                KC_BRIU,                  KC_VOLU,                  KC_CPST,                          KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
@@ -174,7 +174,7 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_COMBO_SFT:
+        case KC_BSP_SFT:
             return 0;
         case KC_COMBO_ALT2:
             return 0;
