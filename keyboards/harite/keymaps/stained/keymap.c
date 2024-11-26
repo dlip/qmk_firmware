@@ -36,10 +36,10 @@ enum mylayers {
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
 #define KC_SFT_Q MT(MOD_LSFT, KC_Q)
-#define KC_ALT_MIN MT(MOD_LALT, KC_MINUS)
+#define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
 #define KC_GUI_PGD MT(MOD_LGUI, KC_PGDN)
 #define KC_CTL_DWN MT(MOD_LCTL, KC_DOWN)
-#define KC_CAG_LBC LCAG_T(KC_LBRC)
+#define KC_CAG_PGU LCAG_T(KC_PGUP)
 #define KC_CAG_8 LCAG_T(KC_8)
 #define KC_CTL_1 MT(MOD_LCTL, KC_1)
 #define KC_GUI_2 MT(MOD_LGUI, KC_2)
@@ -79,18 +79,18 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x5(
-              KC_Q,                     KC_F,               KC_CAG_W,           KC_O,                                        KC_L,                  KC_CAG_U,           KC_B,                  KC_Z,
+              KC_Q,                     KC_F,               KC_CAG_W,           KC_O,                                       KC_L,                  KC_CAG_U,           KC_B,                  KC_Z,
      KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, TG(_GAM), KC_C,                        KC_I, TG(_GA2), KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                                    KC_CTL_N,              KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
+              KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                                   KC_CTL_N,              KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
                                                                                 KC_COMBO_ALT1,                               KC_COMBO,
                                                                  KC_COMBO_ALT2, KC_BTN3, KC_COMBO_ALT3,        KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
                                                                                 KC_BTN1,                                     KC_FUN
     ),
     [_NUM] = LAYOUT_split_5x5(
-                 KC_GRV,                 KC_EQUAL,                KC_PGUP,                 KC_UP,                            KC_7,                  KC_CAG_8,                KC_9,                       KC_NO,
-        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_DEL,  KC_HOME, KC_NO, KC_END,  KC_LEFT, KC_NO, KC_RIGHT,            KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_LBRC,    KC_6, KC_NO, KC_RBRC,    KC_TRNS, KC_NO, KC_TRNS,
-                 KC_TRNS,                KC_ALT_MIN,              KC_GUI_PGD,              KC_CTL_DWN,                       KC_CTL_1,              KC_GUI_2,                KC_ALT_3,                   KC_TRNS,
+                 KC_GRV,                 KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
+        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_RBRC,  KC_HOME, KC_NO, KC_END,  KC_LEFT, KC_NO, KC_RIGHT,            KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
+                 KC_TRNS,                KC_ALT_DEL,               KC_GUI_PGD,              KC_CTL_DWN,                       KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
 
                                                                                            KC_TRNS,                          KC_TRNS,
                                                                                   KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
@@ -185,7 +185,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_COMBO_SFT:
+        case KC_BSP_SFT:
         case KC_COMBO_ALT1:
             return true;
         default:
