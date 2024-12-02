@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 void keyboard_post_init_user(void) {
 #ifdef POINTING_DEVICE_COMBINED
 #ifdef POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
-    cirque_pinnacle_configure_cursor_glide(40);
+    // cirque_pinnacle_configure_cursor_glide(40);
 #endif
     // pointing_device_set_cpi_on_side(false, 300);
     // pointing_device_set_cpi_on_side(true, PMW33XX_CPI * 2);
