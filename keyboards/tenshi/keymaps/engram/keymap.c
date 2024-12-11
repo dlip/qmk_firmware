@@ -14,7 +14,9 @@ enum custom_keycodes {
     KC_BSEN,
     KC_SEN,
     KC_MSCL,
-    KC_GA1
+    KC_GA1,
+    STORE_SETUPS,
+    PRINT_SETUPS,
 };
 
 
@@ -50,7 +52,7 @@ enum mylayers {
 #define KC_ALT_6 MT(MOD_LALT, KC_6)
 #define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
-#define KC_SFT_BSP MT(MOD_RSFT, KC_BSPC)
+#define KC_SFT_BSP MT(MOD_LSFT, KC_BSPC)
 #define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
 #define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
 #define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
@@ -193,6 +195,16 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case STORE_SETUPS:
+            if (record->event.pressed) {
+                store_setups_in_eeprom();
+            }
+            return false;
+        case PRINT_SETUPS:
+            if (record->event.pressed) {
+                print_stored_setups();
+            }
+            return false;
         case KC_COMBO:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
@@ -321,3 +333,83 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     return true;
 };
+#if defined(OS_DETECTION_ENABLE)
+typedef struct {
+    bool    swap_ctl_gui;
+#    ifdef UNICODE_COMMON_ENABLE
+    uint8_t unicode_input_mode;
+#    endif // UNICODE_COMMON_ENABLE
+} os_detection_config_t;
+bool process_detected_host_os_user(os_variant_t detected_os) {
+    if (is_keyboard_master()) {
+        os_detection_config_t os_detection_config = {
+            .swap_ctl_gui = false,
+#    ifdef UNICODE_COMMON_ENABLE
+            .unicode_input_mode = UNICODE_MODE_WINCOMPOSE,
+#    endif // UNICODE_COMMON_ENABLE
+        };
+        switch (detected_os) {
+            case OS_UNSURE:
+                xprintf("unknown OS Detected\n");
+                break;
+            case OS_LINUX:
+                xprintf("Linux Detected\n");
+#    ifdef UNICODE_COMMON_ENABLE
+                os_detection_config.unicode_input_mode = UNICODE_MODE_LINUX;
+#    endif // UNICODE_COMMON_ENABLE
+                break;
+            case OS_WINDOWS:
+                xprintf("Windows Detected\n");
+                break;
+#    if 0
+            case OS_WINDOWS_UNSURE:
+                xprintf("Windows? Detected\n");
+                break;
+#    endif
+            case OS_MACOS:
+                xprintf("MacOS Detected\n");
+                os_detection_config = (os_detection_config_t){
+                    .swap_ctl_gui = true,
+#    ifdef UNICODE_COMMON_ENABLE
+                    .unicode_input_mode = UNICODE_MODE_MACOS,
+#    endif // UNICODE_COMMON_ENABLE
+                };
+                // userspace_config.pointing.accel.enabled = false;
+                break;
+            case OS_IOS:
+                xprintf("iOS Detected\n");
+                os_detection_config = (os_detection_config_t){
+                    .swap_ctl_gui = true,
+#    ifdef UNICODE_COMMON_ENABLE
+                    .unicode_input_mode = UNICODE_MODE_MACOS,
+#    endif // UNICODE_COMMON_ENABLE
+                };
+                // userspace_config.pointing.accel.enabled = false;
+                break;
+#    if 0
+            case OS_PS5:
+                xprintf("PlayStation 5 Detected\n");
+#        ifdef UNICODE_COMMON_ENABLE
+                os_detection_config.unicode_input_mode = UNICODE_MODE_LINUX;
+#        endif // UNICODE_COMMON_ENABLE
+                break;
+            case OS_HANDHELD:
+                xprintf("Nintend Switch/Quest 2 Detected\n");
+#        ifdef UNICODE_COMMON_ENABLE
+                os_detection_config.unicode_input_mode = UNICODE_MODE_LINUX;
+#        endif
+                break;
+#    endif
+            default:
+                xprintf("Unknown OS Detected\n");
+                break;
+        }
+        keymap_config.swap_lctl_lgui = keymap_config.swap_rctl_rgui = os_detection_config.swap_ctl_gui;
+#    ifdef UNICODE_COMMON_ENABLE
+        set_unicode_input_mode_soft(os_detection_config.unicode_input_mode);
+#    endif // UNICODE_COMMON_ENABLE
+    }
+
+    return true;
+}
+#endif // OS_DETECTION_ENABLE
