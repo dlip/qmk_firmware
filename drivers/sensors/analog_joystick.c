@@ -20,7 +20,15 @@
 #include "wait.h"
 #include "timer.h"
 #include <stdlib.h>
+#include "pointing_device_internal.h"
 #include "print.h"
+
+const pointing_device_driver_t analog_joystick_pointing_device_driver = {
+    .init       = analog_joystick_init,
+    .get_report = analog_joystick_get_report,
+    .set_cpi    = NULL,
+    .get_cpi    = NULL,
+};
 
 int16_t minAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MIN, ANALOG_JOYSTICK_Y_AXIS_MIN};
 int16_t maxAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MAX, ANALOG_JOYSTICK_Y_AXIS_MAX};
@@ -166,4 +174,17 @@ void analog_joystick_init(void) {
     maxAxisValues[0] = xOrigin + 100;
     maxAxisValues[1] = yOrigin + 100;
 #endif
+}
+
+report_mouse_t analog_joystick_get_report(report_mouse_t mouse_report) {
+    report_analog_joystick_t data = analog_joystick_read();
+
+    pd_dprintf("Raw ] X: %d, Y: %d\n", data.x, data.y);
+
+    mouse_report.x = data.x;
+    mouse_report.y = data.y;
+
+    mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, data.button, POINTING_DEVICE_BUTTON1);
+
+    return mouse_report;
 }
