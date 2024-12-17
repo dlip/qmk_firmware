@@ -81,10 +81,14 @@ int16_t axisCoordinate(pin_t pin, uint16_t origin, uint8_t axis) {
 
 #ifdef JOYSTICK_DEBUG
     if (pin == ANALOG_JOYSTICK_X_AXIS_PIN) {
+        uprintf("minx: %i\n", minAxisValues[0]);
+        uprintf("maxx: %i\n", maxAxisValues[0]);
         uprintf("xPosition: %i\n", position);
         uprintf("xDistance: %i\n", distanceFromOrigin);
         uprintf("xPercent: %i\n", coordinate*direction);
     } else {
+        uprintf("miny: %i\n", minAxisValues[1]);
+        uprintf("maxy: %i\n", maxAxisValues[1]);
         uprintf("yPosition: %i\n", position);
         uprintf("yDistance: %i\n", distanceFromOrigin);
         uprintf("yPercent: %i\n", coordinate*direction);
