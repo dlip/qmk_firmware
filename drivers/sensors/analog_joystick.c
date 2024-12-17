@@ -33,30 +33,6 @@ const pointing_device_driver_t analog_joystick_pointing_device_driver = {
 int16_t minAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MIN, ANALOG_JOYSTICK_Y_AXIS_MIN};
 int16_t maxAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MAX, ANALOG_JOYSTICK_Y_AXIS_MAX};
 
-// #ifdef ANALOG_JOYSTICK_X_AXIS_MIN
-// minAxisValues[0] = ANALOG_JOYSTICK_X_AXIS_MIN;
-// #endif
-// #ifdef ANALOG_JOYSTICK_Y_AXIS_MIN
-// minAxisValues[1] = ANALOG_JOYSTICK_Y_AXIS_MIN;
-// #endif
-// #ifdef ANALOG_JOYSTICK_X_AXIS_MAX
-// maxAxisValues[0] = ANALOG_JOYSTICK_X_AXIS_MAX;
-// #endif
-// #ifdef ANALOG_JOYSTICK_Y_AXIS_MAX
-// maxAxisValues[1] = ANALOG_JOYSTICK_Y_AXIS_MAX;
-// #endif
-
-// #ifdef ANALOG_JOYSTICK_WEIGHTS
-
-// Set Parameters
-// #ifndef ANALOG_JOYSTICK_AUTO_AXIS
-// uint16_t minAxisValue = ANALOG_JOYSTICK_AXIS_MIN;
-// uint16_t maxAxisValue = ANALOG_JOYSTICK_AXIS_MAX;
-// #else
-// int16_t minAxisValues[2];
-// int16_t maxAxisValues[2];
-// #endif
-
 uint8_t maxCursorSpeed = ANALOG_JOYSTICK_SPEED_MAX;
 uint8_t speedRegulator = ANALOG_JOYSTICK_SPEED_REGULATOR; // Lower Values Create Faster Movement
 
