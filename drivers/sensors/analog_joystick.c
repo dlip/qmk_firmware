@@ -20,15 +20,34 @@
 #include "wait.h"
 #include "timer.h"
 #include <stdlib.h>
+#include "print.h"
+
+int16_t minAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MIN, ANALOG_JOYSTICK_Y_AXIS_MIN};
+int16_t maxAxisValues[2] = {ANALOG_JOYSTICK_X_AXIS_MAX, ANALOG_JOYSTICK_Y_AXIS_MAX};
+
+// #ifdef ANALOG_JOYSTICK_X_AXIS_MIN
+// minAxisValues[0] = ANALOG_JOYSTICK_X_AXIS_MIN;
+// #endif
+// #ifdef ANALOG_JOYSTICK_Y_AXIS_MIN
+// minAxisValues[1] = ANALOG_JOYSTICK_Y_AXIS_MIN;
+// #endif
+// #ifdef ANALOG_JOYSTICK_X_AXIS_MAX
+// maxAxisValues[0] = ANALOG_JOYSTICK_X_AXIS_MAX;
+// #endif
+// #ifdef ANALOG_JOYSTICK_Y_AXIS_MAX
+// maxAxisValues[1] = ANALOG_JOYSTICK_Y_AXIS_MAX;
+// #endif
+
+// #ifdef ANALOG_JOYSTICK_WEIGHTS
 
 // Set Parameters
-#ifndef ANALOG_JOYSTICK_AUTO_AXIS
-uint16_t minAxisValue = ANALOG_JOYSTICK_AXIS_MIN;
-uint16_t maxAxisValue = ANALOG_JOYSTICK_AXIS_MAX;
-#else
-int16_t minAxisValues[2];
-int16_t maxAxisValues[2];
-#endif
+// #ifndef ANALOG_JOYSTICK_AUTO_AXIS
+// uint16_t minAxisValue = ANALOG_JOYSTICK_AXIS_MIN;
+// uint16_t maxAxisValue = ANALOG_JOYSTICK_AXIS_MAX;
+// #else
+// int16_t minAxisValues[2];
+// int16_t maxAxisValues[2];
+// #endif
 
 uint8_t maxCursorSpeed = ANALOG_JOYSTICK_SPEED_MAX;
 uint8_t speedRegulator = ANALOG_JOYSTICK_SPEED_REGULATOR; // Lower Values Create Faster Movement
@@ -58,10 +77,8 @@ int16_t axisCoordinate(pin_t pin, uint16_t origin, uint8_t axis) {
         if (position < minAxisValues[axis]) {
             minAxisValues[axis] = position;
         }
-        range = origin - minAxisValues[axis];
-#else
-        range = origin - minAxisValue;
 #endif
+        range = origin - minAxisValues[axis];
         direction = -1;
     } else {
         distanceFromOrigin = position - origin;
@@ -70,10 +87,8 @@ int16_t axisCoordinate(pin_t pin, uint16_t origin, uint8_t axis) {
         if (position > maxAxisValues[axis]) {
             maxAxisValues[axis] = position;
         }
-        range = maxAxisValues[axis] - origin;
-#else
-        range = maxAxisValue - origin;
 #endif
+        range = maxAxisValues[axis] - origin;
         direction = 1;
     }
 
@@ -137,6 +152,13 @@ void analog_joystick_init(void) {
     // Account for drift
     xOrigin = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
     yOrigin = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
+    xOrigin = 322;
+    yOrigin = 536;
+
+#ifdef JOYSTICK_DEBUG
+    uprintf("xOrigin: %i\n", xOrigin);
+    uprintf("yOrigin: %i\n", yOrigin);
+#endif
 
 #ifdef ANALOG_JOYSTICK_AUTO_AXIS
     minAxisValues[0] = xOrigin - 100;

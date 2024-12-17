@@ -1,6 +1,6 @@
 // Copyright 2023 QMK
 // SPDX-License-Identifier: GPL-2.0-or-later
-
+#include "print.h"
 
 #include QMK_KEYBOARD_H
 #ifdef JOYSTICK_ENABLE
@@ -26,13 +26,18 @@ void keyboard_post_init_user(void) {
   debug_mouse=true;
 }
 
+#ifdef POINTING_DEVICE_ENABLE
+// Modify these values to adjust the scrolling speed
+#define SCROLL_DIVISOR_H 4.0
+#define SCROLL_DIVISOR_V 4.0
 report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    left_report.h = left_report.x;
-    left_report.v = left_report.y;
+    left_report.h = (int8_t)((float)left_report.x / SCROLL_DIVISOR_H);
+    left_report.v = (int8_t)((float)-left_report.y / SCROLL_DIVISOR_V);
     left_report.x = 0;
     left_report.y = 0;
     return pointing_device_combine_reports(left_report, right_report);
 }
+#endif
 
 #if defined(DIP_SWITCH_MAP_ENABLE)
 const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
@@ -53,23 +58,18 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 #ifdef JOYSTICK_ENABLE
     /* Joystick axes settings */
     joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_IN(GP26, 25, 807, 1023),
-    [1] = JOYSTICK_AXIS_IN(GP27, 127, 908, 1023),
+    [0] = JOYSTICK_AXIS_IN(GP26, 25, 322, 807),
+    [1] = JOYSTICK_AXIS_IN(GP27, 127, 536, 908),
     };
 
+#ifdef JOYSTICK_DEBUG
 void matrix_scan_user(void) {
     uint16_t val = analogReadPin(GP26);
-    char val_str[3];
-    itoa(val, val_str, 10);
-    print("x:");
-    print(val_str);
-    print("\n");
+    uprintf("x: %i\n", val);
     val = analogReadPin(GP27);
-    itoa(val, val_str, 10);
-    print("y:");
-    print(val_str);
-    print("\n");
+    uprintf("y: %i\n", val);
 }
+#endif
 #endif
 
 
