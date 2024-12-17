@@ -78,6 +78,18 @@ int16_t axisCoordinate(pin_t pin, uint16_t origin, uint8_t axis) {
 
     float   percent    = (float)distanceFromOrigin / range;
     int16_t coordinate = (int16_t)(percent * 100);
+
+#ifdef JOYSTICK_DEBUG
+    if (pin == ANALOG_JOYSTICK_X_AXIS_PIN) {
+        uprintf("xPosition: %i\n", position);
+        uprintf("xDistance: %i\n", distanceFromOrigin);
+        uprintf("xPercent: %i\n", coordinate*direction);
+    } else {
+        uprintf("yPosition: %i\n", position);
+        uprintf("yDistance: %i\n", distanceFromOrigin);
+        uprintf("yPercent: %i\n", coordinate*direction);
+    }
+#endif
     if (coordinate < 0) {
         return 0;
     } else if (coordinate > 100) {
@@ -134,10 +146,17 @@ void analog_joystick_init(void) {
     gpio_set_pin_input_high(ANALOG_JOYSTICK_CLICK_PIN);
 #endif
     // Account for drift
+#ifdef ANALOG_JOYSTICK_X_AXIS_ORIGIN
+    xOrigin = ANALOG_JOYSTICK_X_AXIS_ORIGIN;
+#else
     xOrigin = analogReadPin(ANALOG_JOYSTICK_X_AXIS_PIN);
+#endif
+
+#ifdef ANALOG_JOYSTICK_Y_AXIS_ORIGIN
+    yOrigin = ANALOG_JOYSTICK_Y_AXIS_ORIGIN;
+#else
     yOrigin = analogReadPin(ANALOG_JOYSTICK_Y_AXIS_PIN);
-    xOrigin = 322;
-    yOrigin = 536;
+#endif
 
 #ifdef JOYSTICK_DEBUG
     uprintf("xOrigin: %i\n", xOrigin);

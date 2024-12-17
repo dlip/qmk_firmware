@@ -21,22 +21,32 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void keyboard_post_init_user(void) {
   debug_enable=true;
-  debug_matrix=true;
+  debug_matrix=false;
   debug_keyboard=true;
   debug_mouse=true;
 }
 
 #ifdef POINTING_DEVICE_ENABLE
 // Modify these values to adjust the scrolling speed
-#define SCROLL_DIVISOR_H 4.0
-#define SCROLL_DIVISOR_V 4.0
-report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
-    left_report.h = (int8_t)((float)left_report.x / SCROLL_DIVISOR_H);
-    left_report.v = (int8_t)((float)-left_report.y / SCROLL_DIVISOR_V);
-    left_report.x = 0;
-    left_report.y = 0;
-    return pointing_device_combine_reports(left_report, right_report);
-}
+#define SCROLL_DIVISOR_H 5.0
+#define SCROLL_DIVISOR_V 5.0
+// report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, report_mouse_t right_report) {
+//     // left_report.h = (int8_t)((float)left_report.x / SCROLL_DIVISOR_H);
+//     // left_report.v = (int8_t)((float)-left_report.y / SCROLL_DIVISOR_V);
+//     //
+//     uprintf("x: %i\n", left_report.x);
+//     uprintf("y: %i\n", left_report.y);
+//     left_report.h = left_report.x;
+//     left_report.v = left_report.y;
+//     left_report.x = 0;
+//     left_report.y = 0;
+//
+//     right_report.h = 0;
+//     right_report.v = 0;
+//     right_report.x = 0;
+//     right_report.y = 0;
+//     return pointing_device_combine_reports(left_report, right_report);
+// }
 #endif
 
 #if defined(DIP_SWITCH_MAP_ENABLE)
@@ -56,20 +66,10 @@ bool dip_switch_update_user(uint8_t index, bool active) {
 }
 
 #ifdef JOYSTICK_ENABLE
-    /* Joystick axes settings */
     joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_IN(GP26, 25, 322, 807),
-    [1] = JOYSTICK_AXIS_IN(GP27, 127, 536, 908),
+    [0] = JOYSTICK_AXIS_IN(GP26, 25, 312, 807),
+    [1] = JOYSTICK_AXIS_IN(GP27, 37, 402, 822),
     };
-
-#ifdef JOYSTICK_DEBUG
-void matrix_scan_user(void) {
-    uint16_t val = analogReadPin(GP26);
-    uprintf("x: %i\n", val);
-    val = analogReadPin(GP27);
-    uprintf("y: %i\n", val);
-}
-#endif
 #endif
 
 
