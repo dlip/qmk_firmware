@@ -43,6 +43,7 @@ uint16_t scroll_timer_x = 0;
 uint16_t scroll_timer_y = 0;
 // auto range with time
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    return mouse_report;
 
     if (mouse_report.x < scrollMinAxisValues[0]) {
         scrollMinAxisValues[0] = mouse_report.x;
