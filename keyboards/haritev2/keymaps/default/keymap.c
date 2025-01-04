@@ -26,7 +26,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 void keyboard_post_init_user(void) {
   debug_enable=true;
-  debug_matrix=false;
+  debug_matrix=true;
   debug_keyboard=true;
   debug_mouse=true;
 
@@ -116,20 +116,20 @@ const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
 };
 #endif
 
-bool dip_switch_update_user(uint8_t index, bool active) {
-    print("dip");
-    switch (index) {
-        case 0:
-            if(active) { tap_code(KC_A); } else {  }
-            break;
-    }
-    return true;
-}
+// bool dip_switch_update_user(uint8_t index, bool active) {
+//     print("dip");
+//     switch (index) {
+//         case 0:
+//             if(active) { tap_code(KC_A); } else {  }
+//             break;
+//     }
+//     return true;
+// }
 
 #ifdef JOYSTICK_ENABLE
     joystick_config_t joystick_axes[JOYSTICK_AXIS_COUNT] = {
-    [0] = JOYSTICK_AXIS_IN(GP26, ANALOG_JOYSTICK_X_AXIS_MIN, ANALOG_JOYSTICK_X_AXIS_ORIGIN, ANALOG_JOYSTICK_X_AXIS_MAX),
-    [1] = JOYSTICK_AXIS_IN(GP27, ANALOG_JOYSTICK_Y_AXIS_MIN, ANALOG_JOYSTICK_Y_AXIS_ORIGIN, ANALOG_JOYSTICK_Y_AXIS_MAX),
+    [0] = JOYSTICK_AXIS_IN(GP27, ANALOG_JOYSTICK_X_AXIS_MIN, ANALOG_JOYSTICK_X_AXIS_ORIGIN, ANALOG_JOYSTICK_X_AXIS_MAX),
+    [1] = JOYSTICK_AXIS_IN(GP28, ANALOG_JOYSTICK_Y_AXIS_MIN, ANALOG_JOYSTICK_Y_AXIS_ORIGIN, ANALOG_JOYSTICK_Y_AXIS_MAX),
     };
 #endif
 
