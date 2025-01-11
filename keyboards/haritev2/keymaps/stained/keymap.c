@@ -6,7 +6,7 @@
 #include QMK_KEYBOARD_H
 #include "os_detection.h"
 #ifdef JOYSTICK_ENABLE
-#   include "analog.h"
+#include "analog.h"
 #endif
 
 enum custom_keycodes {
@@ -18,6 +18,23 @@ enum custom_keycodes {
     KC_CPST,
     KC_SEN,
     KC_MSCL,
+    GP_DPU,
+    GP_DPD,
+    GP_DPL,
+    GP_DPR,
+    GP_X,
+    GP_A,
+    GP_B,
+    GP_Y,
+    GP_LB,
+    GP_LT,
+    GP_LSB,
+    GP_RB,
+    GP_RT,
+    GP_RSB,
+    GP_STA,
+    GP_BCK,
+    GP_HOM
 };
 
 
@@ -27,6 +44,7 @@ enum mylayers {
     _FUN,
     _GAM,
     _GA2,
+    _GA3,
 };
 
 #define KC_SFT_CMA MT(MOD_LSFT, KC_COMMA)
@@ -85,7 +103,7 @@ enum mylayers {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
               KC_Q,                     KC_F,               KC_CAG_W,           KC_O,                                       KC_L,                  KC_CAG_U,           KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, TG(_GAM), KC_C,                        KC_I, TG(_GA2), KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, TG(_GAM), KC_C,                        KC_I, TG(_GA2), KC_G,  KC_R, TG(_GA3), KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
               KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                                   KC_CTL_N,              KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
                                                                                 KC_COMBO_ALT1,                               KC_COMBO,
@@ -136,9 +154,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                KC_BTN2,                      KC_NO
     ),
     [_GA2] = LAYOUT_split_5x6(
-               KC_NO,                KC_Q,                KC_SPC,              KC_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
-        KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_NO, KC_R,        KC_1, TG(_GA2), KC_NO,  KC_2, KC_NO, KC_NO,  KC_3, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
-               KC_NO,                KC_Z,                KC_C,                KC_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
+               KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                  KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_NO, KC_R,        KC_4, TG(_GA2), KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
+               KC_NO,                KC_C,                KC_SPC,              KC_BTN1,                  KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
+
+                                                                               KC_W,                      KC_NO,
+                                                                         KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
+                                                                               KC_S,                      KC_LSFT,
+
+                                                                               KC_W,                      KC_NO,
+                                                                         KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
+                                                                               KC_S,                      KC_LSFT
+    ),
+    [_GA3] = LAYOUT_split_5x6(
+               GP_HOM,                GP_DPU,                GP_Y,              GP_LT,                  KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
+        GP_BCK, KC_NO, GP_STA,  GP_DPL, KC_NO, GP_DPR,  GP_X, GP_LSB, GP_B,  GP_LB,  GP_RSB, GP_RB,        KC_4, KC_NO, KC_0,     KC_5, TG(_GA3), KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
+               KC_NO,                GP_DPD,                GP_A,                GP_RT,                  KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
 
                                                                                KC_W,                      KC_NO,
                                                                          KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
@@ -192,6 +223,12 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
             return false;
     }
 }
+
+bool DPU_STATE = false;
+bool DPD_STATE = false;
+bool DPL_STATE = false;
+bool DPR_STATE = false;
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_COMBO:
@@ -293,6 +330,162 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+
+        case GP_DPU:
+            if (record->event.pressed) {
+                DPU_STATE = true;
+                if (DPD_STATE) {
+                    unregister_joystick_button(16);
+                } else {
+                    register_joystick_button(18);
+                }
+            } else {
+                DPU_STATE = false;
+                unregister_joystick_button(18);
+                if (DPD_STATE) {
+                    register_joystick_button(16);
+                }
+            }
+            return false;
+        case GP_DPD:
+            if (record->event.pressed) {
+                DPD_STATE = true;
+                if (DPU_STATE) {
+                    unregister_joystick_button(18);
+                } else {
+                    register_joystick_button(16);
+                }
+            } else {
+                DPD_STATE = false;
+                unregister_joystick_button(16);
+                if (DPU_STATE) {
+                    register_joystick_button(18);
+                }
+            }
+            return false;
+        case GP_DPL:
+            if (record->event.pressed) {
+                DPL_STATE = true;
+                if (DPR_STATE) {
+                    unregister_joystick_button(17);
+                } else {
+                    register_joystick_button(15);
+                }
+            } else {
+                DPL_STATE = false;
+                unregister_joystick_button(15);
+                if (DPR_STATE) {
+                    register_joystick_button(17);
+                }
+            }
+            return false;
+        case GP_DPR:
+            if (record->event.pressed) {
+                DPR_STATE = true;
+                if (DPL_STATE) {
+                    unregister_joystick_button(15);
+                } else {
+                    register_joystick_button(17);
+                }
+            } else {
+                DPR_STATE = false;
+                unregister_joystick_button(17);
+                if (DPL_STATE) {
+                    register_joystick_button(15);
+                }
+            }
+            return false;
+        case GP_X:
+            if (record->event.pressed) {
+                register_joystick_button(0);
+            } else {
+                unregister_joystick_button(0);
+            }
+            return false;
+        case GP_A:
+            if (record->event.pressed) {
+                register_joystick_button(1);
+            } else {
+                unregister_joystick_button(1);
+            }
+            return false;
+        case GP_B:
+            if (record->event.pressed) {
+                register_joystick_button(2);
+            } else {
+                unregister_joystick_button(2);
+            }
+            return false;
+        case GP_Y:
+            if (record->event.pressed) {
+                register_joystick_button(3);
+            } else {
+                unregister_joystick_button(3);
+            }
+            return false;
+        case GP_LB:
+            if (record->event.pressed) {
+                register_joystick_button(4);
+            } else {
+                unregister_joystick_button(4);
+            }
+            return false;
+        case GP_RB:
+            if (record->event.pressed) {
+                register_joystick_button(5);
+            } else {
+                unregister_joystick_button(5);
+            }
+            return false;
+        case GP_LT:
+            if (record->event.pressed) {
+                register_joystick_button(6);
+            } else {
+                unregister_joystick_button(6);
+            }
+            return false;
+        case GP_RT:
+            if (record->event.pressed) {
+                register_joystick_button(7);
+            } else {
+                unregister_joystick_button(7);
+            }
+            return false;
+        case GP_BCK:
+            if (record->event.pressed) {
+                register_joystick_button(8);
+            } else {
+                unregister_joystick_button(8);
+            }
+            return false;
+        case GP_STA:
+            if (record->event.pressed) {
+                register_joystick_button(9);
+            } else {
+                unregister_joystick_button(9);
+            }
+            return false;
+        case GP_LSB:
+            if (record->event.pressed) {
+                register_joystick_button(10);
+            } else {
+                unregister_joystick_button(10);
+            }
+            return false;
+        case GP_RSB:
+            if (record->event.pressed) {
+                register_joystick_button(11);
+            } else {
+                unregister_joystick_button(11);
+            }
+            return false;
+        case GP_HOM:
+            if (record->event.pressed) {
+                register_joystick_button(12);
+            } else {
+                unregister_joystick_button(12);
+            }
+            return false;
     }
 
     return true;
