@@ -168,15 +168,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     ),
     [_GA3] = LAYOUT_split_5x6(
                GP_HOM,                GP_DPU,                GP_Y,              GP_LT,                  KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
-        GP_BCK, KC_NO, GP_STA,  GP_DPL, KC_NO, GP_DPR,  GP_X, GP_LSB, GP_B,  GP_LB,  GP_RSB, GP_RB,        KC_4, KC_NO, KC_0,     KC_5, TG(_GA3), KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
+        GP_BCK, KC_NO, GP_STA,  GP_DPL, KC_NO, GP_DPR,  GP_X, GP_LSB, GP_B,  KC_NO, GP_RSB, KC_NO,        KC_4, KC_NO, KC_0,     KC_5, TG(_GA3), KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
                KC_NO,                GP_DPD,                GP_A,                GP_RT,                  KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
 
-                                                                               KC_W,                      KC_NO,
-                                                                         KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
-                                                                               KC_S,                      KC_LSFT,
+                                                                               KC_BTN1,                      KC_NO,
+                                                                         GP_LB, KC_NO, GP_RB,        KC_NO, KC_NO, KC_NO,
+                                                                               KC_BTN2,                      KC_LSFT,
 
                                                                                KC_W,                      KC_NO,
-                                                                         KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
+                                                                         GP_LB, KC_NO, GP_RB,        KC_NO, KC_NO, KC_NO,
                                                                                KC_S,                      KC_LSFT
     )
 
