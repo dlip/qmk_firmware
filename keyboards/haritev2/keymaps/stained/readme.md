@@ -1,6 +1,6 @@
 # Stained Layout
 
-This is a computer generated layout I created in a fork of keyboard layout optimizer https://github.com/dlip/keyboard_layout_optimizer and have designed some new metrics for use with "directional keyboards" like Harite.
+This is a computer generated layout I created in a fork of keyboard layout optimizer <https://github.com/dlip/keyboard_layout_optimizer> and have designed some new metrics for use with "directional keyboards" like Harite.
 
 This layout is geared towards rolls and mainly using the index, middle and ring fingers, but using the following metrics you can generate layouts suited to your tastes with thumb alphas etc.
 
@@ -22,12 +22,6 @@ Unidirectional Onehands: Rolling 3 characters on different fingers, in same dire
     q       f       w       o         l       u       b       z
   \   '   x   k   y   h   m   c     i   g   r   v   p   j   ;   /
     ,       s       t       a         n       e       d       .
-
-                      Thumb          Thumb
-
-                      Num           DelWord
-                  Spc MseM  MseR   Esc   Bspc
-                      MseL           Enter
 
 Layout string (layer 1):
 fxkswyhtomcalignurvebpjd
