@@ -10,8 +10,8 @@
 
 Flashing example for this keyboard:
 
-    qmk flash -kb harite -km default -bl uf2-split-left
-    qmk flash -kb harite -km default -bl uf2-split-right
+    qmk flash -kb haritev2 -km default -bl uf2-split-left
+    qmk flash -kb haritev2 -km default -bl uf2-split-right
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
