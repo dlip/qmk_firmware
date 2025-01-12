@@ -7,6 +7,8 @@
 #include "os_detection.h"
 #ifdef JOYSTICK_ENABLE
 #include "analog.h"
+#include "drivers/sensors/analog_joystick.h"
+#include "drivers/sensors/analog_joystick.c"
 #endif
 
 enum custom_keycodes {
@@ -496,83 +498,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
-#ifdef POINTING_DEVICE_ENABLE
-#define DEADZONE 5
-int16_t scrollMinAxisValues[2] = {0,0};
-int16_t scrollMaxAxisValues[2] = {0,0};
-#define MAX_RATE 50
-#define MIN_RATE 500
-
-uint16_t scroll_timer_x = 0;
-uint16_t scroll_timer_y = 0;
-// auto range with time
-report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
-    return mouse_report;
-
-    if (mouse_report.x < scrollMinAxisValues[0]) {
-        scrollMinAxisValues[0] = mouse_report.x;
-    }
-    if (mouse_report.x > scrollMaxAxisValues[0]) {
-        scrollMaxAxisValues[0] = mouse_report.x;
-    }
-    if (mouse_report.y < scrollMinAxisValues[1]) {
-        scrollMinAxisValues[1] = mouse_report.y;
-    }
-    if (mouse_report.y > scrollMaxAxisValues[1]) {
-        scrollMaxAxisValues[1] = mouse_report.y;
-    }
-    // return mouse_report;
-#ifdef JOYSTICK_DEBUG
-    uprintf("scroll_minx: %i\n", scrollMinAxisValues[0]);
-    uprintf("scroll_maxx: %i\n", scrollMaxAxisValues[0]);
-    uprintf("scroll_miny: %i\n", scrollMinAxisValues[1]);
-    uprintf("scroll_maxy: %i\n", scrollMaxAxisValues[1]);
-#endif
-
-    const uint16_t time_elapsed_x = timer_elapsed(scroll_timer_x);
-    const uint16_t time_elapsed_y = timer_elapsed(scroll_timer_y);
-    if (mouse_report.x < -DEADZONE) {
-        float percent = (float)mouse_report.x / (float)scrollMinAxisValues[0];
-        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
-        if (time_elapsed_x > rate) {
-            mouse_report.h = -1;
-            scroll_timer_x = timer_read();
-        }
-    }
-    else if (mouse_report.x > DEADZONE) {
-        float percent = (float)mouse_report.x / (float)scrollMaxAxisValues[0];
-        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
-        if (time_elapsed_x > rate) {
-            mouse_report.h = 1;
-            scroll_timer_x = timer_read();
-        }
-    }
-    if (mouse_report.y < -DEADZONE) {
-        float percent = (float)mouse_report.y / (float)scrollMinAxisValues[1];
-        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
-        if (time_elapsed_y > rate) {
-            mouse_report.v = 1;
-            scroll_timer_y = timer_read();
-        }
-    }
-    else if (mouse_report.y > DEADZONE) {
-        float percent = (float)mouse_report.y / (float)scrollMaxAxisValues[1];
-        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
-        if (time_elapsed_y > rate) {
-            mouse_report.v = -1;
-            scroll_timer_y = timer_read();
-        }
-    }
-
-#ifdef JOYSTICK_DEBUG
-    uprintf("sx: %i\n", mouse_report.x);
-    uprintf("sy: %i\n", mouse_report.y);
-#endif
-    mouse_report.x = 0;
-    mouse_report.y = 0;
-    return mouse_report;
-}
-#endif
 
 #if defined(DIP_SWITCH_MAP_ENABLE)
 const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
@@ -598,3 +523,79 @@ const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
 #endif
 
 
+
+#define DEADZONE 5
+int16_t scrollMinAxisValues[2] = {0,0};
+int16_t scrollMaxAxisValues[2] = {0,0};
+#define MAX_RATE 50
+#define MIN_RATE 500
+
+uint16_t scroll_timer_x = 0;
+uint16_t scroll_timer_y = 0;
+// auto range with time
+void matrix_scan_user(void) {
+    return;
+    if (!is_keyboard_left()) return;
+    report_mouse_t mouse_report;
+    mouse_report = analog_joystick_get_report(mouse_report);
+
+    if (mouse_report.x < scrollMinAxisValues[0]) {
+        scrollMinAxisValues[0] = mouse_report.x;
+    }
+    if (mouse_report.x > scrollMaxAxisValues[0]) {
+        scrollMaxAxisValues[0] = mouse_report.x;
+    }
+    if (mouse_report.y < scrollMinAxisValues[1]) {
+        scrollMinAxisValues[1] = mouse_report.y;
+    }
+    if (mouse_report.y > scrollMaxAxisValues[1]) {
+        scrollMaxAxisValues[1] = mouse_report.y;
+    }
+    uprintf("mouse_report.x: %i\n", mouse_report.x);
+    uprintf("mouse_report.y: %i\n", mouse_report.y);
+#ifdef JOYSTICK_DEBUG
+    uprintf("scroll_minx: %i\n", scrollMinAxisValues[0]);
+    uprintf("scroll_maxx: %i\n", scrollMaxAxisValues[0]);
+    uprintf("scroll_miny: %i\n", scrollMinAxisValues[1]);
+    uprintf("scroll_maxy: %i\n", scrollMaxAxisValues[1]);
+#endif
+
+    const uint16_t time_elapsed_x = timer_elapsed(scroll_timer_x);
+    const uint16_t time_elapsed_y = timer_elapsed(scroll_timer_y);
+    if (mouse_report.x < -DEADZONE) {
+        float percent = (float)mouse_report.x / (float)scrollMinAxisValues[0];
+        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
+        if (time_elapsed_x > rate) {
+            tap_code(QK_MOUSE_WHEEL_LEFT);
+            uprintf("scroll left");
+            scroll_timer_x = timer_read();
+        }
+    }
+    else if (mouse_report.x > DEADZONE) {
+        float percent = (float)mouse_report.x / (float)scrollMaxAxisValues[0];
+        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
+        if (time_elapsed_x > rate) {
+            tap_code(QK_MOUSE_WHEEL_RIGHT);
+            uprintf("scroll right");
+            scroll_timer_x = timer_read();
+        }
+    }
+    if (mouse_report.y < -DEADZONE) {
+        float percent = (float)mouse_report.y / (float)scrollMinAxisValues[1];
+        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
+        if (time_elapsed_y > rate) {
+            tap_code(QK_MOUSE_WHEEL_UP);
+            uprintf("scroll up");
+            scroll_timer_y = timer_read();
+        }
+    }
+    else if (mouse_report.y > DEADZONE) {
+        float percent = (float)mouse_report.y / (float)scrollMaxAxisValues[1];
+        float rate = MIN_RATE - (percent * (MIN_RATE - MAX_RATE));
+        if (time_elapsed_y > rate) {
+            tap_code(QK_MOUSE_WHEEL_DOWN);
+            uprintf("scroll down");
+            scroll_timer_y = timer_read();
+        }
+    }
+}
