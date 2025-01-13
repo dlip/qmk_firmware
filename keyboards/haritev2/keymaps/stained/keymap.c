@@ -94,11 +94,11 @@ enum mylayers {
 #define KC_ALT_F3 MT(MOD_LALT, KC_F3)
 #define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
 
-#define KC_FUN LT(_FUN, KC_ENTER)
+#define KC_ESC_FUN LT(_FUN, KC_ESC)
 #define KC_BSP_SFT MT(MOD_LSFT, KC_BSPC)
-#define KC_COMBO_SFT KC_ESC
+#define KC_COMBO_SFT KC_DEL
 #define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT2 LT(_FUN, KC_SPC)
+#define KC_COMBO_ALT2 KC_SPC
 #define KC_COMBO_ALT3 KC_BTN2
 
 #include "g/keymap_combo.h"
@@ -109,13 +109,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,                           KC_I, KC_GPD, KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
               KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,          KC_CTL_A,                                     KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
-                                                                                KC_COMBO_ALT1,                               KC_COMBO,
-                                                                 KC_COMBO_ALT2, KC_BTN3, KC_COMBO_ALT3,        KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
-                                                                                KC_BTN1,                                     KC_FUN,
+                                                                               KC_COMBO_ALT1,                                KC_COMBO,
+                                                                KC_COMBO_ALT2, KC_NO, KC_COMBO_ALT3,           KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
+                                                                               KC_ESC_FUN,                                   KC_ENTER,
 
-                                                                                KC_COMBO_ALT1,                               KC_COMBO,
-                                                                 KC_COMBO_ALT2, KC_BTN3, KC_COMBO_ALT3,        KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
-                                                                                KC_BTN1,                                     KC_FUN
+                                                                               QK_REP,                                       KC_UP,
+                                                                      KC_BTN1, KC_NO, KC_BTN2,                      KC_LEFT, KC_NO, KC_RIGHT,
+                                                                               KC_BTN3,                                      KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
                  KC_GRV,                   KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
@@ -135,13 +135,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_NO, KC_NO, KC_NO,  KC_MSTP, KC_NO, KC_MPLY,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,            KC_F4, KC_NO, KC_F10,  KC_F5, KC_NO, KC_F11,  KC_F6, KC_NO, KC_F12,  KC_NO, KC_NO, KC_NO,
                KC_LSFT,                KC_ALT_BRD,               KC_GUI_VLD,               KC_CTL_CPY,                       KC_CTL_F1,             KC_GUI_F2,             KC_ALT_F3,             KC_RSFT,
 
-                                                                                          KC_TRNS,                          KC_TRNS,
-                                                                                 KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                          KC_TRNS,                          KC_TRNS,
+                                                                                           KC_TRNS,                          KC_TRNS,
+                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                           KC_TRNS,                          KC_TRNS,
 
-                                                                                          KC_TRNS,                          KC_TRNS,
-                                                                                 KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                          KC_TRNS,                          KC_TRNS
+                                                                                           KC_TRNS,                          KC_PGUP,
+                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,        KC_HOME, KC_TRNS, KC_END,
+                                                                                           KC_TRNS,                          KC_PGDN
     ),
     [_GAM] = LAYOUT_split_5x6(
                KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                     KC_7,                   KC_8,                     KC_9,                      KC_NO,
@@ -200,6 +200,7 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_BSP_SFT:
         case KC_COMBO_ALT1:
+        case KC_ESC_FUN:
             return true;
         default:
             return false;
@@ -217,6 +218,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(A(KC_BSPC));
                         break;
                     default:
@@ -230,6 +232,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_A));
                         break;
                     default:
@@ -243,6 +246,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_Z));
                         break;
                     default:
@@ -256,6 +260,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_X));
                         break;
                     default:
@@ -269,6 +274,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_C));
                         break;
                     default:
@@ -282,6 +288,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->tap.count && record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_C));
                         break;
                     default:
@@ -295,6 +302,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
+                    case OS_IOS:
                         tap_code16(G(KC_V));
                         break;
                     default:
