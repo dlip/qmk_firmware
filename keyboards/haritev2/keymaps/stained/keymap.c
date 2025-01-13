@@ -19,9 +19,9 @@ enum custom_keycodes {
     KC_CCPY,
     KC_CPST,
     KC_SEN,
-    KC_MSCL,
     KC_GAM,
     KC_GPD,
+    MSE_SCR,
     GP_DPU,
     GP_DPD,
     GP_DPL,
@@ -50,124 +50,117 @@ enum mylayers {
     _GPD,
 };
 
-#define KC_SFT_CMA MT(MOD_LSFT, KC_COMMA)
-#define KC_ALT_D MT(MOD_LALT, KC_D)
-#define KC_GUI_T MT(MOD_LGUI, KC_T)
-#define KC_CTL_A MT(MOD_LCTL, KC_A)
+// _BSE
 #define KC_CAG_W LCAG_T(KC_W)
 #define KC_CAG_U LCAG_T(KC_U)
+#define KC_SFT_CMA MT(MOD_LSFT, KC_COMMA)
+#define KC_ALT_S MT(MOD_LALT, KC_S)
+#define KC_GUI_T MT(MOD_LGUI, KC_T)
+#define KC_CTL_A MT(MOD_LCTL, KC_A)
 #define KC_CTL_N MT(MOD_LCTL, KC_N)
 #define KC_GUI_E MT(MOD_LGUI, KC_E)
-#define KC_ALT_S MT(MOD_LALT, KC_S)
+#define KC_ALT_D MT(MOD_LALT, KC_D)
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
-#define KC_SFT_Q MT(MOD_LSFT, KC_Q)
-#define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
-#define KC_GUI_PGD MT(MOD_LGUI, KC_PGDN)
-#define KC_CTL_DWN MT(MOD_LCTL, KC_DOWN)
-#define KC_CAG_PGU LCAG_T(KC_PGUP)
+#define KC_TAB_NUM LT(_NUM, KC_TAB)
+#define KC_ENT_NUM LT(_NUM, KC_ENT)
+#define KC_ESC_FUN LT(_FUN, KC_ESC)
+#define KC_BSP_SFT MT(MOD_LSFT, KC_BSPC)
+
+// _NUM
+#define KC_CAG_PLU LCAG_T(KC_PLUS)
 #define KC_CAG_8 LCAG_T(KC_8)
+#define KC_ALT_EXL MT(MOD_LALT, KC_EXLM)
+#define KC_GUI_UND MT(MOD_LGUI, KC_UNDS)
+#define KC_CTL_MIN MT(MOD_LCTL, KC_MINUS)
 #define KC_CTL_1 MT(MOD_LCTL, KC_1)
 #define KC_GUI_2 MT(MOD_LGUI, KC_2)
 #define KC_ALT_3 MT(MOD_LALT, KC_3)
-#define KC_SFT_0 MT(MOD_LSFT, KC_0)
 
-#define KC_SFT_BSP MT(MOD_RSFT, KC_BSPC)
-#define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
-#define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
-#define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
-#define KC_CAG_NO LCAG_T(KC_NO)
-#define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
-#define KC_CTL_PGD MT(MOD_LCTL, KC_PGDN)
-#define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
-#define KC_ALT_RGT MT(MOD_LALT, KC_RIGHT)
-#define KC_SFT_PGD MT(MOD_LSFT, KC_PGDN)
-
-#define KC_SFT_MUT MT(MOD_LSFT, KC_MUTE)
+// _FUN
+#define KC_CAG_F8 LCAG_T(KC_F8)
+#define KC_CAG_VLU LCAG_T(KC_VOLU)
 #define KC_ALT_BRD MT(MOD_LALT, KC_BRID)
 #define KC_GUI_VLD MT(MOD_LGUI, KC_VOLD)
 #define KC_CTL_CPY MT(MOD_LCTL, KC_CCPY)
-#define KC_CAG_BRD LCAG_T(KC_BRID)
-#define KC_CAG_F8 LCAG_T(KC_F8)
 #define KC_CTL_F1 MT(MOD_LCTL, KC_F1)
 #define KC_GUI_F2 MT(MOD_LGUI, KC_F2)
 #define KC_ALT_F3 MT(MOD_LALT, KC_F3)
-#define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
 
-#define KC_ESC_FUN LT(_FUN, KC_ESC)
-#define KC_BSP_SFT MT(MOD_LSFT, KC_BSPC)
+
+// COMBO
 #define KC_COMBO_SFT KC_DEL
-#define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
+#define KC_COMBO_ALT1 KC_TAB_NUM
 #define KC_COMBO_ALT2 KC_SPC
-#define KC_COMBO_ALT3 KC_BTN2
+#define KC_COMBO_ALT3 QK_REP
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                     KC_F,               KC_CAG_W,          KC_O,                                         KC_L,                KC_CAG_U,           KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,                           KC_I, KC_GPD, KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,          KC_CTL_A,                                     KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
+              KC_Q,                     KC_F,              KC_CAG_W,           KC_O,                     KC_L,                KC_CAG_U,           KC_B,                  KC_Z,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,       KC_I, KC_GPD, KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+              KC_SFT_CMA,               KC_ALT_S,          KC_GUI_T,           KC_CTL_A,                 KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
-                                                                               KC_COMBO_ALT1,                                KC_COMBO,
-                                                                KC_COMBO_ALT2, KC_NO, KC_COMBO_ALT3,           KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
-                                                                               KC_ESC_FUN,                                   KC_ENTER,
+                                                                               KC_ESC_FUN,                 KC_COMBO,
+                                                                       KC_SPC, KC_NO, QK_REP,      KC_DEL, KC_NO, KC_BSP_SFT,
+                                                                               KC_TAB_NUM,                 KC_ENT_NUM,
 
-                                                                               QK_REP,                                       KC_UP,
-                                                                      KC_BTN1, KC_NO, KC_BTN2,                      KC_LEFT, KC_NO, KC_RIGHT,
-                                                                               KC_BTN3,                                      KC_DOWN
+                                                                               MSE_SCR,                    KC_UP,
+                                                                      KC_BTN1, KC_NO, KC_BTN2,    KC_LEFT, KC_NO, KC_RIGHT,
+                                                                               KC_BTN3,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
-                 KC_GRV,                   KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
-        KC_TRNS, KC_NO, KC_TRNS,  KC_BSPC, KC_NO, KC_RBRC,  KC_HOME, KC_NO, KC_END,  KC_LEFT, KC_NO, KC_RIGHT,            KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_TRNS, KC_NO, KC_TRNS,
-                 KC_TRNS,                  KC_ALT_DEL,               KC_GUI_PGD,              KC_CTL_DWN,                       KC_CTL_1,              KC_GUI_2,                 KC_ALT_3,                    KC_TRNS,
+                 KC_GRV,                   KC_AMPR,                KC_CAG_PLU,               KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                    KC_TILD,
+        KC_HASH, KC_NO, KC_TRNS,  KC_CIRC, KC_NO, KC_AT,  KC_LPRN, KC_NO, KC_RPRN,  KC_LBRC, KC_NO, KC_RBRC,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_ASTR,  KC_6, KC_NO, KC_PERC,  KC_DLR, KC_NO, KC_TRNS,
+                 KC_TRNS,                  KC_ALT_EXL,             KC_GUI_UND,               KC_CTL_MIN,                   KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                KC_TRNS,
 
-                                                                                              KC_TRNS,                          KC_TRNS,
-                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                              KC_TRNS,                          KC_TRNS,
+                                                                                             KC_TRNS,                      KC_TRNS,
+                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                             KC_TRNS,                      KC_TRNS,
 
-                                                                                              KC_TRNS,                          KC_TRNS,
-                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                              KC_TRNS,                          KC_TRNS
+                                                                                             KC_TRNS,                      KC_TRNS,
+                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                             KC_TRNS,                      KC_TRNS
     ),
     [_FUN] = LAYOUT_split_5x6(
-               KC_PSCR,                KC_BRIU,                  KC_VOLU,                  KC_CPST,                          KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
-        KC_NO, KC_NO, KC_NO,  KC_MSTP, KC_NO, KC_MPLY,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,            KC_F4, KC_NO, KC_F10,  KC_F5, KC_NO, KC_F11,  KC_F6, KC_NO, KC_F12,  KC_NO, KC_NO, KC_NO,
-               KC_LSFT,                KC_ALT_BRD,               KC_GUI_VLD,               KC_CTL_CPY,                       KC_CTL_F1,             KC_GUI_F2,             KC_ALT_F3,             KC_RSFT,
+               KC_PSCR,                KC_BRIU,                  KC_CAG_VLU,               KC_CPST,                      KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_MSTP, KC_NO, KC_MPLY,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,        KC_F4, KC_NO, KC_F10,  KC_F5, KC_NO, KC_F11,  KC_F6, KC_NO, KC_F12,  KC_NO, KC_NO, KC_NO,
+               KC_LSFT,                KC_ALT_BRD,               KC_GUI_VLD,               KC_CTL_CPY,                   KC_CTL_F1,             KC_GUI_F2,             KC_ALT_F3,             KC_RSFT,
 
-                                                                                           KC_TRNS,                          KC_TRNS,
-                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                           KC_TRNS,                          KC_TRNS,
+                                                                                           KC_TRNS,                      KC_TRNS,
+                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                           KC_TRNS,                      KC_TRNS,
 
-                                                                                           KC_TRNS,                          KC_PGUP,
-                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,        KC_HOME, KC_TRNS, KC_END,
-                                                                                           KC_TRNS,                          KC_PGDN
+                                                                                           KC_TRNS,                      KC_PGUP,
+                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,    KC_HOME, KC_TRNS, KC_END,
+                                                                                           KC_TRNS,                      KC_PGDN
     ),
     [_GAM] = LAYOUT_split_5x6(
-               KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                     KC_7,                   KC_8,                     KC_9,                      KC_NO,
-        KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_GAM, KC_R,          KC_4, KC_NO, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_NO, KC_NO, KC_NO,
-               KC_NO,                KC_C,                KC_SPC,              KC_BTN1,                     KC_1,                   KC_2,                     KC_3,                      KC_NO,
+               KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                   KC_7,                 KC_8,                KC_9,              KC_NO,
+        KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_GAM, KC_R,        KC_4, KC_GPD, KC_0,   KC_5, KC_NO, KC_NO,  KC_6, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+               KC_NO,                KC_C,                KC_SPC,              KC_BTN1,                   KC_1,                 KC_2,                KC_3,              KC_NO,
 
-                                                                               KC_W,                        KC_UP,
-                                                                         KC_A, KC_NO, KC_D,        KC_LEFT, KC_NO, KC_RIGHT,
-                                                                               KC_S,                        KC_DOWN,
+                                                                               KC_W,                      KC_UP,
+                                                                         KC_A, KC_NO, KC_D,      KC_LEFT, KC_NO, KC_RIGHT,
+                                                                               KC_S,                      KC_DOWN,
 
-                                                                               KC_W,                        KC_NO,
-                                                                         KC_A, KC_NO, KC_D,         KC_ESC, KC_NO, KC_ENTER,
-                                                                               KC_S,                        KC_LSFT
+                                                                               MSE_SCR,                   KC_NO,
+                                                                      KC_BTN1, KC_NO, KC_BTN3,    KC_ESC, KC_NO, KC_ENTER,
+                                                                               KC_BTN2,                   KC_LSFT
     ),
     [_GPD] = LAYOUT_split_5x6(
-                GP_HOM,                   KC_NO,                GP_Y,                GP_LT,                        KC_7,                   KC_8,                     KC_9,                      KC_NO,
-        GP_BCK, QK_BOOT, GP_STA,  GP_LSB, KC_NO, GP_RSB,  GP_X, KC_NO, GP_B,  GP_LB, KC_NO, GP_RB,           KC_4, KC_GPD, KC_0,     KC_5, KC_NO, KC_MINUS,    KC_6, KC_NO, KC_EQUAL,    KC_NO, KC_NO, KC_NO,
-                KC_NO,                    KC_NO,                GP_A,                GP_RT,                        KC_1,                   KC_2,                     KC_3,                      KC_NO,
+                GP_HOM,                   KC_NO,                GP_Y,                GP_LT,                    KC_7,                 KC_8,                KC_9,              KC_NO,
+        GP_BCK, QK_BOOT, GP_STA,  GP_LSB, KC_NO, GP_RSB,  GP_X, KC_NO, GP_B,  GP_LB, KC_NO, GP_RB,       KC_4, KC_GPD, KC_0,   KC_5, KC_NO, KC_NO,  KC_6, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+                KC_NO,                    KC_NO,                GP_A,                GP_RT,                    KC_1,                 KC_2,                KC_3,              KC_NO,
 
-                                                                                     GP_DPU,                       GP_Y,
-                                                                             GP_DPL, KC_NO, GP_DPR,          GP_X, KC_NO, GP_B,
-                                                                                     GP_DPD,                       GP_A,
+                                                                                     GP_DPU,                   GP_Y,
+                                                                             GP_DPL, KC_NO, GP_DPR,      GP_X, KC_NO, GP_B,
+                                                                                     GP_DPD,                   GP_A,
 
-                                                                                     KC_BTN2,                      KC_NO,
-                                                                            KC_BTN1, KC_NO, KC_BTN3,        KC_NO, KC_NO, KC_NO,
-                                                                                     KC_NO,                        KC_NO
+                                                                                     QK_REP,                   KC_NO,
+                                                                            KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
+                                                                                     KC_BTN2,                  KC_NO
     )
 
     // [_NEW] = LAYOUT_split_5x6(
@@ -185,11 +178,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // )
 };
 
+bool set_scrolling = false;
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (set_scrolling) {
+        mouse_report.h = mouse_report.x;
+        mouse_report.v = mouse_report.y;
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+    return mouse_report;
+}
+
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_BSP_SFT:
-            return 0;
-        case KC_COMBO_ALT2:
             return 0;
         default:
             return QUICK_TAP_TERM;
@@ -344,6 +346,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case MSE_SCR:
+            set_scrolling = record->event.pressed;
+            return false;
 
         // DPAD INPUTS
         case GP_DPU:
