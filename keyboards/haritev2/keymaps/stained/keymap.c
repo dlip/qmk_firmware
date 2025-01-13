@@ -182,7 +182,7 @@ bool set_scrolling = false;
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     if (set_scrolling) {
         mouse_report.h = mouse_report.x;
-        mouse_report.v = mouse_report.y;
+        mouse_report.v = -mouse_report.y;
         mouse_report.x = 0;
         mouse_report.y = 0;
     }
@@ -348,6 +348,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case MSE_SCR:
             set_scrolling = record->event.pressed;
+            if (record->event.pressed) {
+                pointing_device_set_cpi(PMW33XX_CPI/8);
+            } else {
+                pointing_device_set_cpi(PMW33XX_CPI);
+            }
             return false;
 
         // DPAD INPUTS
