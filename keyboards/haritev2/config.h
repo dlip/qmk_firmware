@@ -35,6 +35,7 @@
 #define DIP_SWITCH_PINS { GP29 }
 
 #define PMW33XX_CPI 800
+#define PMW33XX_SCROLL_CPI 100
 #define SPI_DRIVER SPID0
 #define SPI_SCK_PIN GP2
 #define SPI_MOSI_PIN GP3

@@ -68,10 +68,10 @@ enum mylayers {
 #define KC_BSP_SFT MT(MOD_LSFT, KC_BSPC)
 
 // _NUM
-#define KC_CAG_PLU LCAG_T(KC_PLUS)
+#define KC_CAG_LBC LCAG_T(KC_LBRC)
 #define KC_CAG_8 LCAG_T(KC_8)
-#define KC_ALT_EXL MT(MOD_LALT, KC_EXLM)
-#define KC_GUI_UND MT(MOD_LGUI, KC_UNDS)
+#define KC_ALT_GRV MT(MOD_LALT, KC_GRV)
+#define KC_GUI_RBC MT(MOD_LGUI, KC_RBRC)
 #define KC_CTL_MIN MT(MOD_LCTL, KC_MINUS)
 #define KC_CTL_1 MT(MOD_LCTL, KC_1)
 #define KC_GUI_2 MT(MOD_LGUI, KC_2)
@@ -111,9 +111,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                KC_BTN3,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
-                 KC_GRV,                   KC_AMPR,                KC_CAG_PLU,               KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                    KC_TILD,
-        KC_HASH, KC_NO, KC_TRNS,  KC_CIRC, KC_NO, KC_AT,  KC_LPRN, KC_NO, KC_RPRN,  KC_LBRC, KC_NO, KC_RBRC,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_ASTR,  KC_6, KC_NO, KC_PERC,  KC_DLR, KC_NO, KC_TRNS,
-                 KC_TRNS,                  KC_ALT_EXL,             KC_GUI_UND,               KC_CTL_MIN,                   KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                KC_TRNS,
+                 KC_EXLM,                  KC_TILD,                KC_LBRC,                  KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                    KC_AMPR,
+        KC_HASH, KC_NO, KC_TRNS,  KC_CIRC, KC_NO, KC_AT,  KC_LPRN, KC_NO, KC_RPRN,  KC_UNDS, KC_NO, KC_PLUS,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_ASTR,  KC_6, KC_NO, KC_PERC,  KC_DLR, KC_NO, KC_TRNS,
+                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                   KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                KC_TRNS,
 
                                                                                              KC_TRNS,                      KC_TRNS,
                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
@@ -349,7 +349,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MSE_SCR:
             set_scrolling = record->event.pressed;
             if (record->event.pressed) {
-                pointing_device_set_cpi(PMW33XX_CPI/8);
+                pointing_device_set_cpi(PMW33XX_SCROLL_CPI);
             } else {
                 pointing_device_set_cpi(PMW33XX_CPI);
             }
