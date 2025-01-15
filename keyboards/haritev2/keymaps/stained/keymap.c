@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                              KC_TRNS,                      KC_TRNS
     ),
     [_FUN] = LAYOUT_split_5x6(
-               KC_NO,                  KC_VOLU,                  KC_CAG_PSC                KC_CPST,                      KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
+               KC_NO,                  KC_VOLU,                  KC_CAG_PSC,               KC_CPST,                      KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
         KC_NO, KC_NO, KC_NO,  KC_BRIU, KC_NO, KC_BRIU,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,        KC_F4, KC_NO, KC_F10,  KC_F5, KC_NO, KC_F11,  KC_F6, KC_NO, KC_F12,  KC_NO, KC_NO, KC_NO,
                KC_LSFT,                KC_ALT_VLD,               KC_MPLY,                  KC_CTL_CPY,                   KC_CTL_F1,             KC_GUI_F2,             KC_ALT_F3,             KC_RSFT,
 
@@ -158,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                              GP_DPL, KC_NO, GP_DPR,      GP_X, KC_NO, GP_B,
                                                                                      GP_DPD,                   GP_A,
 
-                                                                                     QK_REP,                   KC_NO,
+                                                                                     MSE_SCR,                   KC_NO,
                                                                             KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
                                                                                      KC_BTN2,                  KC_NO
     )
