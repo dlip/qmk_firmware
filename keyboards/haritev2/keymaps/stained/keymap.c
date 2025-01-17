@@ -516,6 +516,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     return true;
 };
 
+void keyboard_post_init_user(void) {
+  // Customise these values to desired behaviour
+  debug_enable=true;
+  debug_matrix=true;
+  //debug_keyboard=true;
+  debug_mouse=true;
+}
 
 #if defined(DIP_SWITCH_MAP_ENABLE)
 const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
