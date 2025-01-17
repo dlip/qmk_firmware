@@ -207,13 +207,27 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
     left_report.h = (int8_t)scroll_accumulated_h;
     left_report.v = -(int8_t)scroll_accumulated_v;
 
+    // Clear the X and Y values of the mouse report
+    left_report.x = 0;
+    left_report.y = 0;
+    if (set_scrolling) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)right_report.x / SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)right_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        right_report.h = (int8_t)scroll_accumulated_h;
+        right_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        right_report.x = 0;
+        right_report.y = 0;
+    }
+
     // Update accumulated scroll values by subtracting the integer parts
     scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
     scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
 
-    // Clear the X and Y values of the mouse report
-    left_report.x = 0;
-    left_report.y = 0;
     return pointing_device_combine_reports(left_report, right_report);
 }
 #endif
@@ -377,11 +391,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             break;
         case MSE_SCR:
             set_scrolling = record->event.pressed;
+
+#if defined(POINTING_DEVICE_DRIVER_pmw3360)
             if (record->event.pressed) {
                 pointing_device_set_cpi(PMW33XX_SCROLL_CPI);
             } else {
                 pointing_device_set_cpi(PMW33XX_CPI);
             }
+#endif
             return false;
 
         // DPAD INPUTS
