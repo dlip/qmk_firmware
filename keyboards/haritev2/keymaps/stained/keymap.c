@@ -10,6 +10,7 @@
 #include "drivers/sensors/analog_joystick.h"
 #include "drivers/sensors/analog_joystick.c"
 #endif
+#include "features/achordion.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -252,12 +253,29 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+void housekeeping_task_user(void) {
+    achordion_task();
+}
+
+bool achordion_chord(uint16_t tap_hold_keycode,
+                     keyrecord_t* tap_hold_record,
+                     uint16_t other_keycode,
+                     keyrecord_t* other_record) {
+
+    // Allow thumb cluster to be used with same side
+    if (tap_hold_record->event.key.col >= 4 || other_record->event.key.col >= 4) {
+        return true;
+    }
+    return achordion_opposite_hands(tap_hold_record, other_record);
+}
+
 bool DPU_STATE = false;
 bool DPD_STATE = false;
 bool DPL_STATE = false;
 bool DPR_STATE = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (!process_achordion(keycode, record)) { return false; }
     switch (keycode) {
         case KC_COMBO:
             if (record->event.pressed) {
