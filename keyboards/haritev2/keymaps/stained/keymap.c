@@ -22,6 +22,7 @@ enum custom_keycodes {
     KC_SEN,
     KC_GAM,
     KC_GPD,
+    KC_GP2,
     MSE_SCR,
     GP_DPU,
     GP_DPD,
@@ -39,7 +40,8 @@ enum custom_keycodes {
     GP_RSB,
     GP_STA,
     GP_BCK,
-    GP_HOM
+    GP_HOM,
+    GP_20
 };
 
 
@@ -49,6 +51,7 @@ enum mylayers {
     _FUN,
     _GAM,
     _GPD,
+    _GP2,
 };
 
 // _BSE
@@ -63,10 +66,10 @@ enum mylayers {
 #define KC_ALT_D MT(MOD_LALT, KC_D)
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
-#define KC_TAB_NUM LT(_NUM, KC_TAB)
-#define KC_ENT_NUM LT(_NUM, KC_ENT)
-#define KC_ESC_FUN LT(_FUN, KC_ESC)
-#define KC_BSP_SFT MT(MOD_LSFT, KC_BSPC)
+#define KC_TAB_FUN LT(_FUN, KC_TAB)
+#define KC_BSP_NUM LT(_NUM, KC_BSPC)
+#define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
+#define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
 
 // _NUM
 #define KC_CAG_LBC LCAG_T(KC_LBRC)
@@ -90,31 +93,31 @@ enum mylayers {
 
 
 // COMBO
-#define KC_COMBO_SFT KC_DEL
-#define KC_COMBO_ALT1 KC_TAB_NUM
-#define KC_COMBO_ALT2 KC_SPC
-#define KC_COMBO_ALT3 QK_REP
+#define KC_COMBO_SFT QK_REP
+#define KC_COMBO_ALT1 KC_BSP_NUM
+#define KC_COMBO_ALT2 KC_TAB_FUN
+#define KC_COMBO_ALT3 KC_DEL
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                     KC_F,              KC_CAG_W,           KC_O,                     KC_L,                KC_CAG_U,           KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,       KC_I, KC_GPD, KC_G,  KC_R, KC_NO, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,               KC_ALT_S,          KC_GUI_T,           KC_CTL_A,                 KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
+              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                     KC_L,                KC_CAG_U,           KC_B,                  KC_Z,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,       KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                 KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
-                                                                               KC_ESC_FUN,                 KC_COMBO,
-                                                                       KC_SPC, KC_NO, QK_REP,      KC_DEL, KC_NO, KC_BSP_SFT,
-                                                                               KC_TAB_NUM,                 KC_ENT_NUM,
+                                                                               KC_TAB_FUN,               KC_COMBO,
+                                                                   KC_BSP_NUM, KC_NO, KC_DEL,    QK_REP, KC_NO, KC_SPC,
+                                                                               KC_ESC_SFT,               KC_ENT_SFT,
 
                                                                                MSE_SCR,                    KC_UP,
-                                                                      KC_BTN1, KC_NO, KC_BTN2,    KC_LEFT, KC_NO, KC_RIGHT,
-                                                                               KC_BTN3,                    KC_DOWN
+                                                                      KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
+                                                                               KC_BTN2,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
-                 KC_EXLM,                  KC_TILD,                KC_LBRC,                  KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                    KC_AMPR,
-        KC_HASH, KC_NO, KC_TRNS,  KC_CIRC, KC_NO, KC_AT,  KC_LPRN, KC_NO, KC_RPRN,  KC_UNDS, KC_NO, KC_PLUS,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_ASTR,  KC_6, KC_NO, KC_PERC,  KC_DLR, KC_NO, KC_TRNS,
-                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                   KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                KC_TRNS,
+                 KC_NO,                  KC_NO,                KC_LBRC,              KC_EQUAL,                   KC_7,               KC_CAG_8,            KC_9,                 KC_NO,
+        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_NO,  KC_6, KC_NO, KC_NO,  KC_NO, KC_NO, KC_TRNS,
+                 KC_TRNS,                KC_ALT_GRV,           KC_GUI_RBC,           KC_CTL_MIN,                 KC_CTL_1,           KC_GUI_2,            KC_ALT_3,             KC_TRNS,
 
                                                                                              KC_TRNS,                      KC_TRNS,
                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
@@ -159,7 +162,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                              GP_DPL, KC_NO, GP_DPR,      GP_X, KC_NO, GP_B,
                                                                                      GP_DPD,                   GP_A,
 
-                                                                                     MSE_SCR,                   KC_NO,
+                                                                                     MSE_SCR,                  KC_NO,
+                                                                            KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
+                                                                                     KC_BTN2,                  KC_NO
+    ),
+    [_GP2] = LAYOUT_split_5x6(
+                GP_HOM,                   GP_DPL,               GP_DPU,              GP_DPR,                    GP_RB,                  GP_Y,                   GP_X,              KC_NO,
+        GP_BCK, QK_BOOT, GP_STA,  GP_LSB, KC_NO, GP_RSB,  GP_X, KC_NO, GP_B,  GP_LB, KC_NO, GP_RB,       GP_LT, KC_GPD, GP_20,   GP_LB, KC_GP2, KC_NO,  GP_LSB, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+                KC_NO,                    GP_DPL,               GP_DPD,              GP_DPR,                    GP_RT,                  GP_B,                   GP_A,              KC_NO,
+
+                                                                                     GP_DPU,                   GP_Y,
+                                                                             GP_DPL, KC_NO, GP_DPR,      GP_X, KC_NO, GP_B,
+                                                                                     GP_DPD,                   GP_A,
+
+                                                                                     MSE_SCR,                  KC_NO,
                                                                             KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
                                                                                      KC_BTN2,                  KC_NO
     )
@@ -235,7 +251,8 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_BSP_SFT:
+        case KC_ESC_SFT:
+        case KC_ENT_SFT:
             return 0;
         default:
             return QUICK_TAP_TERM;
@@ -244,9 +261,10 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_BSP_SFT:
-        case KC_COMBO_ALT1:
-        case KC_ESC_FUN:
+        case KC_TAB_FUN:
+        case KC_BSP_NUM:
+        case KC_ESC_SFT:
+        case KC_ENT_SFT:
             return true;
         default:
             return false;
@@ -402,6 +420,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     combo_enable();
                 } else {
                     layer_on(_GPD);
+                    combo_disable();
+                }
+                return false;
+            }
+            break;
+        case KC_GP2:
+            if (record->event.pressed) {
+                if (layer_state_is(_GP2)) {
+                    layer_off(_GP2);
+                    combo_enable();
+                } else {
+                    layer_on(_GP2);
                     combo_disable();
                 }
                 return false;
@@ -573,6 +603,13 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 register_joystick_button(12);
             } else {
                 unregister_joystick_button(12);
+            }
+            return false;
+        case GP_20:
+            if (record->event.pressed) {
+                register_joystick_button(20);
+            } else {
+                unregister_joystick_button(20);
             }
             return false;
     }
