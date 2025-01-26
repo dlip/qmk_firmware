@@ -101,9 +101,9 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                         KC_L,                KC_CAG_U,           KC_B,                  KC_Z,
+              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                         KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
      KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,           KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                     KC_CTL_N,            KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
+              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                     KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
                                                                                KC_TAB_NUM,                   KC_COMBO,
                                                                       KC_BSPC, KC_NO, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
@@ -114,9 +114,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                KC_BTN2,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
-                 KC_NO,                  KC_NO,                KC_LBRC,              KC_EQUAL,                   KC_7,               KC_CAG_8,            KC_9,                 KC_NO,
-        KC_TRNS, KC_NO, KC_TRNS,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_NO,  KC_6, KC_NO, KC_NO,  KC_NO, KC_NO, KC_TRNS,
-                 KC_TRNS,                KC_ALT_GRV,           KC_GUI_RBC,           KC_CTL_MIN,                 KC_CTL_1,           KC_GUI_2,            KC_ALT_3,             KC_TRNS,
+                 KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                       KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
+        KC_CIRC, KC_NO, KC_PERC,  KC_HASH, KC_NO, KC_AT,  KC_LCBR, KC_NO, KC_RCBR,  KC_UNDS, KC_NO, KC_PLUS,           KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_LPRN,  KC_6, KC_NO, KC_RPRN,  KC_AMPR, KC_NO, KC_ASTR,
+                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                     KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                   KC_TRNS,
 
                                                                                              KC_TRNS,                      KC_TRNS,
                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
