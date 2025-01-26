@@ -1,6 +1,6 @@
 # Stained Layout
 
-![keyboard Layout](./keyboard-layout.svg)
+![keyboard Layout](./keyboard-layout.png)
 
 This is a computer generated layout I created in a fork of keyboard layout optimizer <https://github.com/dlip/keyboard_layout_optimizer> and have designed some new metrics for use with "directional keyboards" like Harite.
 
