@@ -1,5 +1,7 @@
 # Stained Layout
 
+![keyboard Layout](./keyboard-layout.svg)
+
 This is a computer generated layout I created in a fork of keyboard layout optimizer <https://github.com/dlip/keyboard_layout_optimizer> and have designed some new metrics for use with "directional keyboards" like Harite.
 
 This layout is geared towards rolls and mainly using the index, middle and ring fingers, but using the following metrics you can generate layouts suited to your tastes with thumb alphas etc.
