@@ -190,10 +190,10 @@
     "Tab\n\n\n\nFun",
     {
       "x": 4,
-      "t": "#000000",
+      "t": "#000000\n#ff0000",
       "a": 4
     },
-    "Del Word"
+    "Del Word\nLock"
   ],
   [
     {
