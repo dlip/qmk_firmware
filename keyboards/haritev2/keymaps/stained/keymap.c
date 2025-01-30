@@ -52,6 +52,7 @@ enum mylayers {
     _NUM,
     _FUN,
     _JP1,
+    _JP2,
     _GAM,
     _GPD,
     _GP2,
@@ -71,6 +72,7 @@ enum mylayers {
 
 #define KC_TAB_FUN LT(_FUN, KC_TAB)
 #define KC_BSP_NUM LT(_NUM, KC_BSPC)
+#define KC_DEL_JP2 LT(_JP2, KC_DEL)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
 
@@ -105,17 +107,17 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                          KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,            KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                      KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
+              KC_Q,                    KC_F,               KC_CAG_W,            KC_O,                     KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,       KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,            KC_CTL_A,                 KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
-                                                                               KC_TAB_FUN,               KC_COMBO,
-                                                                   KC_BSP_NUM, KC_NO, KC_DEL,    QK_REP, KC_NO, KC_SPC,
-                                                                               KC_ESC_SFT,               KC_ENT_SFT,
+                                                                                KC_TAB_FUN,               KC_COMBO,
+                                                                    KC_BSP_NUM, KC_NO, KC_DEL,    QK_REP, KC_NO, KC_SPC,
+                                                                                KC_ESC_SFT,               KC_ENT_SFT,
 
-                                                                               MSE_SCR,                    KC_UP,
-                                                                      KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
-                                                                               KC_BTN2,                    KC_DOWN
+                                                                                MSE_SCR,                    KC_UP,
+                                                                       KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
+                                                                                KC_BTN2,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
                  KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                       KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
@@ -144,17 +146,30 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                            KC_TRNS,                      KC_PGDN
     ),
     [_JP1] = LAYOUT_split_5x6(
-                JP_TEN,                JP_TO,                JP_N,                JP_HA,                        JP_TA,                JP_SHI,               JP_A,                  JP_MAR,
-        JP_SEN, KC_NO, JP_LQU,  JP_RI, KC_NO, JP_MA,  JP_KI, KC_NO, JP_SA, JP_NO, KC_NO, JP_TSU,         JP_KU, KC_NO, JP_WO,  JP_YO, KC_NO, JP_KO,  JP_NA, KC_NO, JP_RE,  JP_RQU, KC_NO, JP_SLS,
-                JP_COM,                JP_SU,                JP_I,                JP_KA,                        JP_TE,                JP_U,                 JP_NI,                 JP_DOT,
+                JP_TEN,                JP_TO,                JP_N,                 JP_HA,                           JP_TA,                JP_SHI,               JP_A,                  JP_MAR,
+        JP_SEN, KC_NO, JP_LQU,  JP_RI, KC_NO, JP_MA,  JP_KI, KC_JPN, JP_SA, JP_NO, KC_NO, JP_TSU,            JP_KU, KC_NO, JP_WO,  JP_YO, KC_NO, JP_KO,  JP_NA, KC_NO, JP_RE,  JP_RQU, KC_NO, JP_SLS,
+                JP_COM,                JP_SU,                JP_I,                 JP_KA,                           JP_TE,                JP_U,                 JP_NI,                 JP_DOT,
 
-                                                                                  KC_TRNS,                      KC_TRNS,
-                                                                         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                  KC_TRNS,                      KC_TRNS,
+                                                                                   KC_TRNS,                         KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_DEL_JP2,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                   KC_TRNS,                         KC_TRNS,
 
-                                                                                  KC_TRNS,                      KC_TRNS,
-                                                                         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                  KC_TRNS,                      KC_TRNS
+                                                                                   KC_TRNS,                      KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                   KC_TRNS,                      KC_TRNS
+    ),
+    [_JP2] = LAYOUT_split_5x6(
+                JP_TEN,                 JP_NE,                JP_WA,                JP_SE,                       JP_CHI,               JP_RA,               JP_HI,                  JP_MAR,
+        JP_SEN, KC_NO, JP_LQU,  JP_LQU, KC_NO, JP_HE,  JP_MU, KC_NO, JP_SO,  JP_ME, KC_NO, JP_MI,         JP_YA, KC_NO, JP_NU,  JP_FU, KC_NO, JP_E,  JP_RO, KC_NO, JP_RQU,  JP_RQU, KC_NO, JP_SLS,
+                JP_COM,                 JP_MO,                JP_O,                 JP_YU,                       JP_KE,                JP_RU,               JP_HO,                  JP_DOT,
+
+                                                                                   KC_TRNS,                      KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                   KC_TRNS,                      KC_TRNS,
+
+                                                                                   KC_TRNS,                      KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                   KC_TRNS,                      KC_TRNS
     ),
     [_GAM] = LAYOUT_split_5x6(
                KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                   KC_7,                 KC_8,                KC_9,              KC_NO,

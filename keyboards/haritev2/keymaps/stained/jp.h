@@ -17,7 +17,7 @@
 #define JP_HI KC_V // ヒ
 #define JP_FU KC_2 // フ
 #define JP_HE KC_EQUAL // ヘ
-#define JP_HO KC_MIN // ホ
+#define JP_HO KC_MINUS // ホ
 #define JP_YA KC_7 // ヤ
 #define JP_YU KC_8 // ユ
 #define JP_YO KC_9 // ヨ
