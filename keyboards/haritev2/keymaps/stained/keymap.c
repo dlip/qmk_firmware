@@ -11,7 +11,8 @@
 #include "drivers/sensors/analog_joystick.c"
 #endif
 #include "features/achordion.h"
-#include "jp.h"
+#include "keymap_japanese.h"
+#include "jk.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -49,9 +50,9 @@ enum custom_keycodes {
 
 enum mylayers {
     _BSE,
+    _JP1,
     _NUM,
     _FUN,
-    _JP1,
     _JP2,
     _GAM,
     _GPD,
@@ -72,6 +73,7 @@ enum mylayers {
 
 #define KC_TAB_FUN LT(_FUN, KC_TAB)
 #define KC_BSP_NUM LT(_NUM, KC_BSPC)
+#define KC_DEL_JP1 LT(_JP1, KC_DEL)
 #define KC_DEL_JP2 LT(_JP2, KC_DEL)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
@@ -101,7 +103,7 @@ enum mylayers {
 #define KC_COMBO_SFT QK_REP
 #define KC_COMBO_ALT1 KC_BSP_NUM
 #define KC_COMBO_ALT2 KC_TAB_FUN
-#define KC_COMBO_ALT3 KC_DEL
+#define KC_COMBO_ALT3 KC_DEL_JP1
 
 #include "g/keymap_combo.h"
 
@@ -112,7 +114,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,            KC_CTL_A,                 KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
                                                                                 KC_TAB_FUN,               KC_COMBO,
-                                                                    KC_BSP_NUM, KC_NO, KC_DEL,    QK_REP, KC_NO, KC_SPC,
+                                                                    KC_BSP_NUM, KC_NO, KC_DEL_JP1,    QK_REP, KC_NO, KC_SPC,
                                                                                 KC_ESC_SFT,               KC_ENT_SFT,
 
                                                                                 MSE_SCR,                    KC_UP,
@@ -122,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT_split_5x6(
                  KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                       KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
         KC_CIRC, KC_NO, KC_PERC,  KC_HASH, KC_NO, KC_AT,  KC_LCBR, KC_NO, KC_RCBR,  KC_UNDS, KC_NO, KC_PLUS,           KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_LPRN,  KC_6, KC_NO, KC_RPRN,  KC_AMPR, KC_NO, KC_ASTR,
-                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                     KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                 KC_TRNS,
+                 KC_SFT_CMA,               KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                     KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                 KC_SFT_DOT,
 
-                                                                                             KC_TRNS,                      KC_TRNS,
+                                                                                             KC_TRNS,                      QK_LLCK,
                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                              KC_TRNS,                      KC_TRNS,
 
@@ -146,11 +148,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                            KC_TRNS,                      KC_PGDN
     ),
     [_JP1] = LAYOUT_split_5x6(
-                JP_TEN,                JP_TO,                JP_N,                 JP_HA,                           JP_TA,                JP_SHI,               JP_A,                  JP_MAR,
-        JP_SEN, KC_NO, JP_LQU,  JP_RI, KC_NO, JP_MA,  JP_KI, KC_JPN, JP_SA, JP_NO, KC_NO, JP_TSU,            JP_KU, KC_NO, JP_WO,  JP_YO, KC_NO, JP_KO,  JP_NA, KC_NO, JP_RE,  JP_RQU, KC_NO, JP_SLS,
-                JP_COM,                JP_SU,                JP_I,                 JP_KA,                           JP_TE,                JP_U,                 JP_NI,                 JP_DOT,
+                JK_TEN,                JK_TO,                JK_N,                 JK_HA,                           JK_TA,                JK_SHI,               JK_A,                  JK_MAR,
+        JK_SEN, KC_NO, JK_LQU,  JK_RI, KC_NO, JK_MA,  JK_KI, KC_JPN, JK_SA, JK_NO, KC_NO, JK_TSU,            JK_KU, KC_NO, JK_WO,  JK_YO, KC_NO, JK_KO,  JK_NA, KC_NO, JK_RE,  JK_RQU, KC_NO, JK_SLS,
+                JK_COM,                JK_SU,                JK_I,                 JK_KA,                           JK_TE,                JK_U,                 JK_NI,                 JK_DOT,
 
-                                                                                   KC_TRNS,                         KC_TRNS,
+                                                                                   KC_TRNS,                         QK_LLCK,
                                                                           KC_TRNS, KC_TRNS, KC_DEL_JP2,    KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                    KC_TRNS,                         KC_TRNS,
 
@@ -159,9 +161,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                    KC_TRNS,                      KC_TRNS
     ),
     [_JP2] = LAYOUT_split_5x6(
-                JP_TEN,                 JP_NE,                JP_WA,                JP_SE,                       JP_CHI,               JP_RA,               JP_HI,                  JP_MAR,
-        JP_SEN, KC_NO, JP_LQU,  JP_LQU, KC_NO, JP_HE,  JP_MU, KC_NO, JP_SO,  JP_ME, KC_NO, JP_MI,         JP_YA, KC_NO, JP_NU,  JP_FU, KC_NO, JP_E,  JP_RO, KC_NO, JP_RQU,  JP_RQU, KC_NO, JP_SLS,
-                JP_COM,                 JP_MO,                JP_O,                 JP_YU,                       JP_KE,                JP_RU,               JP_HO,                  JP_DOT,
+                JK_TEN,                 JK_NE,                JK_WA,                JK_SE,                       JK_CHI,               JK_RA,               JK_HI,                  JK_MAR,
+        JK_SEN, KC_NO, JK_LQU,  JK_LQU, KC_NO, JK_HE,  JK_MU, KC_NO, JK_SO,  JK_ME, KC_NO, JK_MI,         JK_YA, KC_NO, JK_NU,  JK_FU, KC_NO, JK_E,  JK_RO, KC_NO, JK_RQU,  JK_RQU, KC_NO, JK_SLS,
+                JK_COM,                 JK_MO,                JK_O,                 JK_YU,                       JK_KE,                JK_RU,               JK_HO,                  JK_DOT,
 
                                                                                    KC_TRNS,                      KC_TRNS,
                                                                           KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
@@ -766,4 +768,25 @@ void matrix_scan_user(void) {
             scroll_timer_y = timer_read();
         }
     }
+}
+
+bool jp = false;
+bool eisu = false;
+layer_state_t layer_state_set_user(layer_state_t state) {
+    switch (get_highest_layer(state)) {
+    case _BSE:
+    case _NUM:
+        if (jp) {
+            SEND_STRING(SS_LCTL(" "));
+            jp = false;
+        }
+        break;
+    case _JP1:
+        if (!jp) {
+            SEND_STRING(SS_LCTL(" "));
+            jp = true;
+        }
+        break;
+    }
+  return state;
 }
