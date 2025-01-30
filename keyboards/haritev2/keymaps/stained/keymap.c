@@ -11,6 +11,7 @@
 #include "drivers/sensors/analog_joystick.c"
 #endif
 #include "features/achordion.h"
+#include "jp.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -23,6 +24,7 @@ enum custom_keycodes {
     KC_GAM,
     KC_GPD,
     KC_GP2,
+    KC_JPN,
     MSE_SCR,
     GP_DPU,
     GP_DPD,
@@ -49,6 +51,7 @@ enum mylayers {
     _BSE,
     _NUM,
     _FUN,
+    _JP1,
     _GAM,
     _GPD,
     _GP2,
@@ -101,13 +104,13 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                         KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,           KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                     KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
+              KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                          KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,            KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                      KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
-                                                                               KC_TAB_NUM,                   KC_COMBO,
-                                                                      KC_BSPC, KC_NO, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
-                                                                               KC_ESC_SFT,                   KC_ENT_SFT,
+                                                                               KC_TAB_NUM,                    KC_COMBO,
+                                                                      KC_BSPC, KC_JPN, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
+                                                                               KC_ESC_SFT,                    KC_ENT_SFT,
 
                                                                                MSE_SCR,                    KC_UP,
                                                                       KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
@@ -116,7 +119,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT_split_5x6(
                  KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                       KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
         KC_CIRC, KC_NO, KC_PERC,  KC_HASH, KC_NO, KC_AT,  KC_LCBR, KC_NO, KC_RCBR,  KC_UNDS, KC_NO, KC_PLUS,           KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_LPRN,  KC_6, KC_NO, KC_RPRN,  KC_AMPR, KC_NO, KC_ASTR,
-                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                     KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                   KC_TRNS,
+                 KC_TRNS,                  KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                     KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                 KC_TRNS,
 
                                                                                              KC_TRNS,                      KC_TRNS,
                                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
@@ -138,6 +141,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                            KC_TRNS,                      KC_PGUP,
                                                                                   KC_TRNS, KC_TRNS, KC_TRNS,    KC_HOME, KC_TRNS, KC_END,
                                                                                            KC_TRNS,                      KC_PGDN
+    ),
+    [_JP1] = LAYOUT_split_5x6(
+                JP_TEN,                JP_TO,                JP_N,                JP_HA,                        JP_TA,                JP_SHI,               JP_A,                  JP_MAR,
+        JP_SEN, KC_NO, JP_LQU,  JP_RI, KC_NO, JP_MA,  JP_KI, KC_NO, JP_SA, JP_NO, KC_NO, JP_TSU,         JP_KU, KC_NO, JP_WO,  JP_YO, KC_NO, JP_KO,  JP_NA, KC_NO, JP_RE,  JP_RQU, KC_NO, JP_SLS,
+                JP_COM,                JP_SU,                JP_I,                JP_KA,                        JP_TE,                JP_U,                 JP_NI,                 JP_DOT,
+
+                                                                                  KC_TRNS,                      KC_TRNS,
+                                                                         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                  KC_TRNS,                      KC_TRNS,
+
+                                                                                  KC_TRNS,                      KC_TRNS,
+                                                                         KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                  KC_TRNS,                      KC_TRNS
     ),
     [_GAM] = LAYOUT_split_5x6(
                KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                   KC_7,                 KC_8,                KC_9,              KC_NO,
@@ -178,19 +194,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                             KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
                                                                                      KC_BTN2,                  KC_NO
     )
-
     // [_NEW] = LAYOUT_split_5x6(
-    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                            KC_NO,                KC_NO,                KC_NO,                KC_NO,
-    //     KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,              KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
-    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                             KC_NO,                KC_NO,                KC_NO,                KC_NO,
+    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                        KC_NO,                KC_NO,                KC_NO,                KC_NO,
+    //     KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,          KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
+    //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                        KC_NO,                KC_NO,                KC_NO,                KC_NO,
     //
-    //                                                                              KC_TRNS,                          KC_TRNS,
-    //                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-    //                                                                              KC_TRNS,                          KC_TRNS,
+    //                                                                              KC_TRNS,                      KC_TRNS,
+    //                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+    //                                                                              KC_TRNS,                      KC_TRNS,
     //
-    //                                                                              KC_TRNS,                          KC_TRNS,
-    //                                                                     KC_TRNS, KC_TRNS, KC_TRNS,        KC_TRNS, KC_TRNS, KC_TRNS,
-    //                                                                              KC_TRNS,                          KC_TRNS
+    //                                                                              KC_TRNS,                      KC_TRNS,
+    //                                                                     KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+    //                                                                              KC_TRNS,                      KC_TRNS
     // )
 };
 
@@ -408,6 +423,18 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     layer_on(_GAM);
                     combo_disable();
+                }
+                return false;
+            }
+            break;
+        case KC_JPN:
+            if (record->event.pressed) {
+                if (layer_state_is(_JP1)) {
+                    layer_off(_JP1);
+                    SEND_STRING(SS_LCTL(" "));
+                } else {
+                    layer_on(_JP1);
+                    SEND_STRING(SS_LCTL(" "));
                 }
                 return false;
             }
