@@ -69,10 +69,11 @@ enum mylayers {
 #define KC_ALT_D MT(MOD_LALT, KC_D)
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
-#define KC_TAB_NUM LT(_NUM, KC_TAB)
-#define KC_DEL_FUN LT(_FUN, KC_DEL)
+#define KC_TAB_FUN LT(_FUN, KC_TAB)
+#define KC_BSP_NUM LT(_NUM, KC_BSPC)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
+
 // _NUM
 #define KC_CAG_LBC LCAG_T(KC_LBRC)
 #define KC_CAG_8 LCAG_T(KC_8)
@@ -96,21 +97,21 @@ enum mylayers {
 
 // COMBO
 #define KC_COMBO_SFT QK_REP
-#define KC_COMBO_ALT1 KC_BSPC
-#define KC_COMBO_ALT2 KC_TAB_NUM
-#define KC_COMBO_ALT3 KC_DEL_FUN
+#define KC_COMBO_ALT1 KC_BSP_NUM
+#define KC_COMBO_ALT2 KC_TAB_FUN
+#define KC_COMBO_ALT3 KC_DEL
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
               KC_Q,                    KC_F,               KC_CAG_W,           KC_O,                          KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_NO, KC_H,  KC_M, KC_GAM, KC_C,            KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,            KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
               KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                      KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
-                                                                               KC_TAB_NUM,                    KC_COMBO,
-                                                                      KC_BSPC, KC_JPN, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
-                                                                               KC_ESC_SFT,                    KC_ENT_SFT,
+                                                                               KC_TAB_FUN,               KC_COMBO,
+                                                                   KC_BSP_NUM, KC_NO, KC_DEL,    QK_REP, KC_NO, KC_SPC,
+                                                                               KC_ESC_SFT,               KC_ENT_SFT,
 
                                                                                MSE_SCR,                    KC_UP,
                                                                       KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
@@ -275,8 +276,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_TAB_NUM:
-        case KC_DEL_FUN:
+        case KC_TAB_FUN:
+        case KC_BSP_NUM:
         case KC_ESC_SFT:
         case KC_ENT_SFT:
             return true;
