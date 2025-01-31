@@ -1,6 +1,14 @@
 # Stained Layout
 
-![keyboard Layout](./keyboard-layout.png)
+## English
+
+![Keyboard Layout](./keyboard-layout.png)
+
+## Japanese
+
+![Keyboard Layout Ja](./keyboard-layout-ja.png)
+
+## Design
 
 This is a computer generated layout I created in a fork of keyboard layout optimizer <https://github.com/dlip/keyboard_layout_optimizer> and have designed some new metrics for use with "directional keyboards" like Harite.
 

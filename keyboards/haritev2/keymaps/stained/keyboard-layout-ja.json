@@ -4,44 +4,44 @@
       "x": 1,
       "t": "#000000\n\n\n\n\n\n#ff0000"
     },
-    "Q\n\n\n\n\n\n$",
+    "゛\n\n\n\n\n\n$",
     {
       "x": 3,
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "F\nVol +\n\n\n\n\n~",
+    "と\nVol +\nね\n\n\n\n~",
     {
       "x": 3,
       "a": 0
     },
-    "W\nPrint\n\n\nCAG\n\n[",
+    "ん\nPrint\nわ\n\nCAG\n\n[",
     {
       "x": 3,
       "a": 4
     },
-    "O\nPaste\n\n\n\n\n=",
+    "は\nPaste\nせ\n\n\n\n=",
     {
       "x": 4
     },
-    "L\nF7\n\n\n\n\n7",
+    "た\nF7\nち\n\n\n\n7",
     {
       "x": 3
     },
-    "U\nF8\n\n\n\n\n8",
+    "し\nF8\nら\n\n\n\n8",
     {
       "x": 3,
       "a": 0
     },
-    "B\nF9\n\n\nCAG\n\n9",
+    "あ\nF9\nひ\n\nCAG\n\n9",
     {
       "x": 3,
       "t": "#000000\n\n\n\n\n\n#ff0000",
       "a": 4
     },
-    "Z\n\n\n\n\n\n!"
+    "゜\n\n\n\n\n\n!"
   ],
   [
-    "\\\n\n\n\n\n\n^",
+    "ー\n\n\n\n\n\n^",
     {
       "t": "#000000"
     },
@@ -49,89 +49,89 @@
     {
       "t": "#000000\n\n\n\n\n\n#ff0000"
     },
-    "'\n\n\n\n\n\n%",
+    "「\n\n\n\n\n\n%",
     {
       "x": 1,
       "t": "#000000\n#008000\n\n\n\n\n#ff0000"
     },
-    "X\nBri -\n\n\n\n\n#",
+    "り\nBri -\n\n\n\n\n#",
     {
       "t": "#000000",
       "a": 7
     },
     "",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000",
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000",
       "a": 4
     },
-    "K\nBri +\n\n\n\n\n@",
+    "ま\nBri +\nへ\n\n\n\n@",
     {
       "x": 1
     },
-    "Y\nPrev\n\n\n\n\n{",
+    "き\nPrev\nむ\n\n\n\n{",
     {
       "t": "#000000"
     },
-    "Ja",
+    "En",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "H\nNext\n\n\n\n\n}",
+    "さ\nNext\nそ\n\n\n\n}",
     {
       "x": 1
     },
-    "M\nUndo\n\n\n\n\n_",
+    "の\nUndo\nめ\n\n\n\n_",
     {
       "t": "#000000"
     },
     "Game FPS",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "C\nCut\n\n\n\n\n+",
+    "つ\nCut\nみ\n\n\n\n+",
     {
       "x": 2
     },
-    "I\nF4\n\n\n\n\n4",
+    "く\nF4\nや\n\n\n\n4",
     {
       "t": "#000000"
     },
     "Game Pad",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "G\nF10\n\n\n\n\n0",
+    "を\nF10\nぬ\n\n\n\n0",
     {
       "x": 1
     },
-    "R\nF5\n\n\n\n\n5",
+    "よ\nF5\nふ\n\n\n\n5",
     {
       "t": "#000000"
     },
     "Game Fighter",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "V\nF11\n\n\n\n\n(",
+    "こ\nF11\nえ\n\n\n\n(",
     {
       "x": 1
     },
-    "P\nF6\n\n\n\n\n6",
+    "な\nF6\nろ\n\n\n\n6",
     {
       "t": "#000000",
       "a": 7
     },
     "",
     {
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000",
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000",
       "a": 4
     },
-    "V\nF12\n\n\n\n\n)",
+    "れ\nF12\n\n\n\n\n)",
     {
       "x": 1,
       "t": "#000000\n\n\n\n\n\n#ff0000"
     },
-    ";\n\n\n\n\n\n&",
+    "」\n\n\n\n\n\n&",
     {
       "t": "#000000"
     },
@@ -139,7 +139,7 @@
     {
       "t": "#000000\n\n\n\n\n\n#ff0000"
     },
-    "/\n\n\n\n\n\n*"
+    "・\n\n\n\n\n\n*"
   ],
   [
     {
@@ -147,37 +147,37 @@
       "t": "#000000",
       "a": 0
     },
-    ",\n\n\n\nShift",
+    "、\n\n\n\nShift",
     {
       "x": 3,
-      "t": "#000000\n#008000\n\n\n\n\n#ff0000"
+      "t": "#000000\n#008000\n#0000ff\n\n\n\n#ff0000"
     },
-    "S\nVol -\n\n\nAlt\n\n`",
+    "す\nVol -\nも\n\nAlt\n\n`",
     {
       "x": 3
     },
-    "T\nPlay\n\n\nGui\n\n]",
+    "い\nPlay\nお\n\nGui\n\n]",
     {
       "x": 3
     },
-    "A\nCopy\n\n\nCtrl\n\n-",
+    "か\nCopy\nゆ\n\nCtrl\n\n-",
     {
       "x": 4
     },
-    "N\nF1\n\n\nCtrl\n\n1",
+    "て\nF1\nけ\n\nCtrl\n\n1",
     {
       "x": 3
     },
-    "E\nF2\n\n\nGui\n\n2",
+    "う\nF2\nる\n\nGui\n\n2",
     {
       "x": 3
     },
-    "D\nF3\n\n\nAlt\n\n3",
+    "に\nF3\nほ\n\nAlt\n\n3",
     {
       "x": 3,
       "t": "#000000"
     },
-    ".\n\n\n\nShift"
+    "。\n\n\n\nShift"
   ],
   [
     {
@@ -206,11 +206,14 @@
     },
     "",
     {
-      "a": 4
+      "t": "#000000\n\n\n\n#0000ff",
+      "a": 0
     },
-    "Del",
+    "Del\n\n\n\nJa 2",
     {
-      "x": 2
+      "x": 2,
+      "t": "#000000",
+      "a": 4
     },
     "Repeat",
     {
