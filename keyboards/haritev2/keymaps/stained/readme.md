@@ -70,7 +70,7 @@ Layout (layer 1):
   Pinky   Ring    Middle  Index     Index   Middle  Ring    Pinky
 
     ゛       ト       ン       ハ         タ       シ       ア       ゜
-  ー  「   リ  マ   キ  サ   ノ  ツ     ク  ヲ   ヨ  コ   ナ  レ   」  ・
+  ー  「   リ   マ   キ  サ   ノ  ツ     ク   ヲ   ヨ  コ   ナ  レ   」  ・
     、       ス       イ       カ         テ       ウ       ニ       。
 
 Layout string (layer 1):
@@ -106,7 +106,7 @@ Layout (layer 2):
   Pinky   Ring    Middle  Index     Index   Middle  Ring    Pinky
 
     ゛       ネ       ワ       セ         チ       ラ       ヒ       ゜
-  ー  「   「  ヘ   ム  ソ   メ  ミ     ヤ  ヌ   フ  エ   ロ  」   」  ・
+  ー  「        ヘ   ム  ソ   メ  ミ     ヤ   ヌ   フ  エ   ロ       」  ・
     、       モ       オ       ユ         ケ       ル       ホ       。
 
 Layout string (layer 2):
