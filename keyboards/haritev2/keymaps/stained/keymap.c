@@ -12,7 +12,7 @@
 #endif
 #include "features/achordion.h"
 #include "keymap_japanese.h"
-#include "jk.h"
+#include "ja.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -148,9 +148,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                            KC_TRNS,                      KC_PGDN
     ),
     [_JP1] = LAYOUT_split_5x6(
-                JK_TEN,                JK_TO,                JK_N,                 JK_HA,                           JK_TA,                JK_SHI,               JK_A,                  JK_MAR,
-        JK_SEN, KC_NO, JK_LQU,  JK_RI, KC_NO, JK_MA,  JK_KI, KC_JPN, JK_SA, JK_NO, KC_NO, JK_TSU,            JK_KU, KC_NO, JK_WO,  JK_YO, KC_NO, JK_KO,  JK_NA, KC_NO, JK_RE,  JK_RQU, KC_NO, JK_SLS,
-                JK_COM,                JK_SU,                JK_I,                 JK_KA,                           JK_TE,                JK_U,                 JK_NI,                 JK_DOT,
+                JA_TEN,                JA_TO,                JA_N,                 JA_HA,                           JA_TA,                JA_SHI,               JA_A,                  JA_MAR,
+        JA_SEN, KC_NO, JA_LQU,  JA_RI, KC_NO, JA_MA,  JA_KI, KC_JPN, JA_SA, JA_NO, KC_NO, JA_TSU,            JA_KU, KC_NO, JA_WO,  JA_YO, KC_NO, JA_KO,  JA_NA, KC_NO, JA_RE,  JA_RQU, KC_NO, JA_SLS,
+                JA_COM,                JA_SU,                JA_I,                 JA_KA,                           JA_TE,                JA_U,                 JA_NI,                 JA_DOT,
 
                                                                                    KC_TRNS,                         QK_LLCK,
                                                                           KC_TRNS, KC_TRNS, KC_DEL_JP2,    KC_TRNS, KC_TRNS, KC_TRNS,
@@ -161,9 +161,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                    KC_TRNS,                      KC_TRNS
     ),
     [_JP2] = LAYOUT_split_5x6(
-                JK_TEN,                 JK_NE,                JK_WA,                JK_SE,                       JK_CHI,               JK_RA,               JK_HI,                  JK_MAR,
-        JK_SEN, KC_NO, JK_LQU,  JK_LQU, KC_NO, JK_HE,  JK_MU, KC_NO, JK_SO,  JK_ME, KC_NO, JK_MI,         JK_YA, KC_NO, JK_NU,  JK_FU, KC_NO, JK_E,  JK_RO, KC_NO, JK_RQU,  JK_RQU, KC_NO, JK_SLS,
-                JK_COM,                 JK_MO,                JK_O,                 JK_YU,                       JK_KE,                JK_RU,               JK_HO,                  JK_DOT,
+                JA_TEN,                 JA_NE,                JA_WA,                JA_SE,                       JA_CHI,               JA_RA,               JA_HI,                  JA_MAR,
+        JA_SEN, KC_NO, JA_LQU,  JA_LQU, KC_NO, JA_HE,  JA_MU, KC_NO, JA_SO,  JA_ME, KC_NO, JA_MI,         JA_YA, KC_NO, JA_NU,  JA_FU, KC_NO, JA_E,  JA_RO, KC_NO, JA_RQU,  JA_RQU, KC_NO, JA_SLS,
+                JA_COM,                 JA_MO,                JA_O,                 JA_YU,                       JA_KE,                JA_RU,               JA_HO,                  JA_DOT,
 
                                                                                    KC_TRNS,                      KC_TRNS,
                                                                           KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
