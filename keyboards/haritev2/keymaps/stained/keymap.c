@@ -419,7 +419,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                         tap_code16(G(KC_V));
                         break;
                     default:
-                        tap_code16(C(KC_V));
+                        // chrome sometimes missing the hold
+                        send_string_with_delay(SS_LCTL("v"),10);
                         break;
                 }
                 return false;
