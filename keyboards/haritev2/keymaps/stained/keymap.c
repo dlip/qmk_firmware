@@ -26,6 +26,7 @@ enum custom_keycodes {
     KC_GPD,
     KC_GP2,
     KC_JPN,
+    KC_TAB_SNM,
     MSE_SCR,
     GP_DPU,
     GP_DPD,
@@ -71,9 +72,8 @@ enum mylayers {
 #define KC_ALT_D MT(MOD_LALT, KC_D)
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
-#define KC_TAB_FUN LT(_FUN, KC_TAB)
 #define KC_BSP_NUM LT(_NUM, KC_BSPC)
-#define KC_DEL_SNM LM(_NUM, MOD_LSFT)
+#define KC_DEL_FUN LM(_FUN, MOD_LSFT)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
 #define KC_JP2 MO(_JP2)
@@ -102,8 +102,8 @@ enum mylayers {
 // COMBO
 #define KC_COMBO_SFT QK_REP
 #define KC_COMBO_ALT1 KC_BSP_NUM
-#define KC_COMBO_ALT2 KC_TAB_FUN
-#define KC_COMBO_ALT3 KC_DEL_SNM
+#define KC_COMBO_ALT2 KC_TAB_SNM
+#define KC_COMBO_ALT3 KC_DEL_FUN
 
 #include "g/keymap_combo.h"
 
@@ -113,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,           KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
               KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,            KC_CTL_A,                     KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
-                                                                                KC_TAB_FUN,                   KC_COMBO,
-                                                                    KC_BSP_NUM, KC_NO, KC_DEL_SNM,    QK_REP, KC_NO, KC_SPC,
+                                                                                KC_TAB_SNM,                   KC_COMBO,
+                                                                    KC_BSP_NUM, KC_NO, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
                                                                                 KC_ESC_SFT,                   KC_ENT_SFT,
 
                                                                                 MSE_SCR,                      KC_UP,
@@ -153,7 +153,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 JA_COM,                JA_SU,                JA_I,                 JA_KA,                           JA_TE,                JA_U,                 JA_NI,                 JA_DOT,
 
                                                                                    KC_TRNS,                         QK_LLCK,
-                                                                          KC_TRNS, KC_TRNS, KC_DEL_SNM,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_DEL_FUN,    KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                    KC_TRNS,                         KC_TRNS,
 
                                                                                    KC_DEL_JP2,                      KC_TRNS,
@@ -293,9 +293,9 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_TAB_FUN:
+        case KC_TAB_SNM:
         case KC_BSP_NUM:
-        case KC_DEL_SNM:
+        case KC_DEL_FUN:
         case KC_ESC_SFT:
         case KC_ENT_SFT:
             return true;
@@ -483,6 +483,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
+        case KC_TAB_SNM:
+            if (record->tap.count && record->event.pressed) {
+                tap_code16(KC_TAB);
+            } else if (record->event.pressed) {
+                add_mods(MOD_BIT(KC_LSFT));
+                layer_on(_NUM);
+            } else {
+                del_mods(MOD_BIT(KC_LSFT));
+                layer_off(_NUM);
+            }
+            return false;
         case MSE_SCR:
             set_scrolling = record->event.pressed;
 
