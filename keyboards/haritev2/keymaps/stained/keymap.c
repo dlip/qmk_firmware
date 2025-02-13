@@ -73,7 +73,7 @@ enum mylayers {
 
 #define KC_TAB_SNM LT(_NUM, KC_TAB)
 #define KC_BSP_NUM LT(_NUM, KC_BSPC)
-#define KC_DEL_FUN LM(_FUN, MOD_LSFT)
+#define KC_DEL_FUN LT(_FUN, KC_DEL)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
 #define KC_JP2 MO(_JP2)
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_NUM] = LAYOUT_split_5x6(
                KC_NO,                  KC_VOLU,                  KC_CAG_PSC,               KC_CPST,                      KC_7,               KC_CAG_8,               KC_9,                      KC_GRV,
         KC_NO, KC_NO, KC_NO,  KC_BRID, KC_NO, KC_BRIU,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_MINUS,  KC_6, KC_NO, KC_EQUAL,  KC_LBRC, KC_NO, KC_RBRC,
-               KC_LSFT,                KC_ALT_VLD,               KC_MPLY,                  KC_CTL_CPY,                   KC_CTL_1,           KC_GUI_2,               KC_ALT_3,                  KC_SFT_DOT,
+               KC_LSFT,                KC_ALT_VLD,               KC_GUI_PLY,               KC_CTL_CPY,                   KC_CTL_1,           KC_GUI_2,               KC_ALT_3,                  KC_SFT_DOT,
 
                                                                                            KC_TRNS,                      QK_LLCK,
                                                                                   KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
