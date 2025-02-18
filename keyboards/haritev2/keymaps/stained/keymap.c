@@ -497,7 +497,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         case MSE_SCR:
             set_scrolling = record->event.pressed;
 
-#if defined(POINTING_DEVICE_DRIVER_pmw3360)
+#if defined(POINTING_DEVICE_DRIVER_pmw3389)
             if (record->event.pressed) {
                 pointing_device_set_cpi(PMW33XX_SCROLL_CPI);
             } else {
