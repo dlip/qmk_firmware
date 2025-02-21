@@ -5,10 +5,11 @@
 
 #include QMK_KEYBOARD_H
 #include "os_detection.h"
-#ifdef JOYSTICK_ENABLE
+#ifdef ANALOG_JOYSTICK_SCROLL
 #include "analog.h"
 #include "drivers/sensors/analog_joystick.h"
 #include "drivers/sensors/analog_joystick.c"
+bool joystick_scroll_enabled = true;
 #endif
 #include "features/achordion.h"
 #include "keymap_japanese.h"
@@ -440,9 +441,51 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 if (layer_state_is(_GAM)) {
                     layer_off(_GAM);
                     combo_enable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = true;
+#endif
                 } else {
                     layer_on(_GAM);
                     combo_disable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = false;
+#endif
+                }
+                return false;
+            }
+            break;
+        case KC_GPD:
+            if (record->event.pressed) {
+                if (layer_state_is(_GPD)) {
+                    layer_off(_GPD);
+                    combo_enable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = true;
+#endif
+                } else {
+                    layer_on(_GPD);
+                    combo_disable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = false;
+#endif
+                }
+                return false;
+            }
+            break;
+        case KC_GP2:
+            if (record->event.pressed) {
+                if (layer_state_is(_GP2)) {
+                    layer_off(_GP2);
+                    combo_enable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = true;
+#endif
+                } else {
+                    layer_on(_GP2);
+                    combo_disable();
+#ifdef ANALOG_JOYSTICK_SCROLL
+                    joystick_scroll_enabled = false;
+#endif
                 }
                 return false;
             }
@@ -455,30 +498,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 } else {
                     layer_on(_JP1);
                     SEND_STRING(SS_LCTL(" "));
-                }
-                return false;
-            }
-            break;
-        case KC_GPD:
-            if (record->event.pressed) {
-                if (layer_state_is(_GPD)) {
-                    layer_off(_GPD);
-                    combo_enable();
-                } else {
-                    layer_on(_GPD);
-                    combo_disable();
-                }
-                return false;
-            }
-            break;
-        case KC_GP2:
-            if (record->event.pressed) {
-                if (layer_state_is(_GP2)) {
-                    layer_off(_GP2);
-                    combo_enable();
-                } else {
-                    layer_on(_GP2);
-                    combo_disable();
                 }
                 return false;
             }
@@ -675,11 +694,14 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 };
 
 void keyboard_post_init_user(void) {
-  // Customise these values to desired behaviour
-  debug_enable=true;
-  debug_matrix=true;
-  //debug_keyboard=true;
-  debug_mouse=true;
+    // Customise these values to desired behaviour
+    debug_enable=true;
+    debug_matrix=true;
+    //debug_keyboard=true;
+    debug_mouse=true;
+#ifdef ANALOG_JOYSTICK_SCROLL
+    analog_joystick_init();
+#endif
 }
 
 #if defined(DIP_SWITCH_MAP_ENABLE)
@@ -706,19 +728,23 @@ const uint16_t PROGMEM dip_switch_map[NUM_DIP_SWITCHES][NUM_DIP_STATES] = {
 #endif
 
 
-
-#define DEADZONE 5
+#ifdef ANALOG_JOYSTICK_SCROLL
+#define DEADZONE 0
 int16_t scrollMinAxisValues[2] = {0,0};
 int16_t scrollMaxAxisValues[2] = {0,0};
 #define MAX_RATE 50
-#define MIN_RATE 500
+#define MIN_RATE 200
 
+uint16_t joystick_timer = 0;
 uint16_t scroll_timer_x = 0;
 uint16_t scroll_timer_y = 0;
 // auto range with time
 void matrix_scan_user(void) {
-    return;
     if (!is_keyboard_left()) return;
+    if (!joystick_scroll_enabled) return;
+    if (timer_elapsed(joystick_timer) < ANALOG_JOYSTICK_READ_INTERVAL) return;
+    joystick_timer = timer_read();
+
     report_mouse_t mouse_report;
     mouse_report = analog_joystick_get_report(mouse_report);
 
@@ -734,9 +760,9 @@ void matrix_scan_user(void) {
     if (mouse_report.y > scrollMaxAxisValues[1]) {
         scrollMaxAxisValues[1] = mouse_report.y;
     }
+#ifdef JOYSTICK_DEBUG
     uprintf("mouse_report.x: %i\n", mouse_report.x);
     uprintf("mouse_report.y: %i\n", mouse_report.y);
-#ifdef JOYSTICK_DEBUG
     uprintf("scroll_minx: %i\n", scrollMinAxisValues[0]);
     uprintf("scroll_maxx: %i\n", scrollMaxAxisValues[0]);
     uprintf("scroll_miny: %i\n", scrollMinAxisValues[1]);
@@ -782,6 +808,7 @@ void matrix_scan_user(void) {
         }
     }
 }
+#endif
 
 bool jp = false;
 bool eisu = false;
