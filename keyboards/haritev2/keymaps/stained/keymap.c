@@ -11,7 +11,6 @@
 #include "drivers/sensors/analog_joystick.c"
 bool joystick_scroll_enabled = true;
 #endif
-#include "features/achordion.h"
 #include "keymap_japanese.h"
 #include "ja.h"
 
@@ -228,6 +227,20 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     // )
 };
 
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_5x6(
+             'L',            'L',            'L',            'L',              'R',            'R',            'R',            'R',
+        'L', 'L', 'L',  'L', 'L', 'L',  'L', 'L', 'L',  'L', 'L', 'L',    'R', 'R', 'R',  'R', 'R', 'R',  'R', 'R', 'R',  'R', 'R', 'R',
+             'L',            'L',            'L',            'L',              'R',            'R',            'R',            'R',
+
+                                                             '*',              '*',
+                                                        '*', '*', '*',    '*', '*', '*',
+                                                             '*',              '*',
+
+                                                             '*',              '*',
+                                                        '*', '*', '*',    '*', '*', '*',
+                                                             '*',              '*'
+    );
 bool set_scrolling = false;
 report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
     if (set_scrolling) {
@@ -305,29 +318,12 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
-void housekeeping_task_user(void) {
-    achordion_task();
-}
-
-bool achordion_chord(uint16_t tap_hold_keycode,
-                     keyrecord_t* tap_hold_record,
-                     uint16_t other_keycode,
-                     keyrecord_t* other_record) {
-
-    // Allow thumb cluster to be used with same side
-    if (tap_hold_record->event.key.col >= 4 || other_record->event.key.col >= 4) {
-        return true;
-    }
-    return achordion_opposite_hands(tap_hold_record, other_record);
-}
-
 bool DPU_STATE = false;
 bool DPD_STATE = false;
 bool DPL_STATE = false;
 bool DPR_STATE = false;
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    if (!process_achordion(keycode, record)) { return false; }
     switch (keycode) {
         case KC_COMBO:
             if (record->event.pressed) {
