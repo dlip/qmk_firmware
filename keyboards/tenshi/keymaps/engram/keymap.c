@@ -87,7 +87,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
                              KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO,
-                             KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO
+                             KC_BTN1,       KC_BTN2,          KC_ESC,       KC_ENTER
     ),
     [_NUM] = LAYOUT_split_3x4_4(
          KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
