@@ -104,6 +104,7 @@ void cirque_pinnacle_enable_cursor_glide(bool enable);
  * @param trigger_px Movement required to trigger cursor glide, set this to non-zero if you have some amount of hover.
  */
 void cirque_pinnacle_configure_cursor_glide(float trigger_px);
+void cirque_pinnacle_configure_cursor_glide_coef(float coef);
 #endif
 
 /* Process available gestures */

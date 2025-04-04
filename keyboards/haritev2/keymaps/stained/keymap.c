@@ -13,6 +13,9 @@ bool joystick_scroll_enabled = true;
 #endif
 #include "keymap_japanese.h"
 #include "ja.h"
+#ifdef POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
+#include "drivers/sensors/cirque_pinnacle_gestures.h"
+#endif
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -255,8 +258,8 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
 
 #ifdef POINTING_DEVICE_COMBINED
-#define SCROLL_DIVISOR_H 100.0
-#define SCROLL_DIVISOR_V 100.0
+#define SCROLL_DIVISOR_H 50.0
+#define SCROLL_DIVISOR_V 50.0
 
 // Variables to store accumulated scroll values
 float scroll_accumulated_h = 0;
@@ -700,6 +703,11 @@ void keyboard_post_init_user(void) {
     debug_mouse=true;
 #ifdef ANALOG_JOYSTICK_SCROLL
     analog_joystick_init();
+#endif
+#ifdef POINTING_DEVICE_GESTURES_CURSOR_GLIDE_ENABLE
+    if (is_keyboard_left()) {
+        cirque_pinnacle_configure_cursor_glide_coef(300);
+    }
 #endif
 }
 

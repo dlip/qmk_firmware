@@ -368,6 +368,10 @@ void cirque_pinnacle_enable_cursor_glide(bool enable) {
 void cirque_pinnacle_configure_cursor_glide(float trigger_px) {
     glide.config.trigger_px = trigger_px;
 }
+void cirque_pinnacle_configure_cursor_glide_coef(float coef) {
+    glide.config.coef = coef;
+}
+
 #endif
 
 #if CIRQUE_PINNACLE_POSITION_MODE
