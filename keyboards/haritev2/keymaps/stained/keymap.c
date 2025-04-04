@@ -71,12 +71,12 @@ enum mylayers {
 #define KC_ALT_D MT(MOD_LALT, KC_D)
 #define KC_SFT_DOT MT(MOD_LSFT, KC_DOT)
 
-#define KC_TAB_SNM LT(_NUM, KC_TAB)
+#define KC_TAB_FUN LT(_FUN, KC_TAB)
 #define KC_BSP_NUM LT(_NUM, KC_BSPC)
 #define KC_DEL_FUN LT(_FUN, KC_DEL)
 #define KC_ESC_SFT MT(MOD_LSFT, KC_ESC)
 #define KC_ENT_SFT MT(MOD_LSFT, KC_ENT)
-#define KC_JP2 MO(_JP2)
+#define KC_DEL_JP2 LT(_JP2, KC_DEL)
 
 // _NUM
 #define KC_CAG_LBC LCAG_T(KC_LBRC)
@@ -102,37 +102,37 @@ enum mylayers {
 // COMBO
 #define KC_COMBO_SFT QK_REP
 #define KC_COMBO_ALT1 KC_BSP_NUM
-#define KC_COMBO_ALT2 KC_TAB_SNM
-#define KC_COMBO_ALT3 KC_DEL_FUN
+#define KC_COMBO_ALT2 KC_TAB_FUN
+#define KC_COMBO_ALT3 KC_DEL
 
 #include "g/keymap_combo.h"
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_5x6(
-              KC_Q,                    KC_F,               KC_CAG_W,            KC_O,                         KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
-     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,           KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
-              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,            KC_CTL_A,                     KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
+              KC_Q,                    KC_F,               KC_CAG_W,            KC_O,                       KC_L,                KC_CAG_U,            KC_B,                  KC_Z,
+     KC_BSLS, QK_BOOT, KC_QUOT,  KC_X, KC_NO, KC_K,  KC_Y, KC_JPN, KC_H,  KC_M, KC_GAM, KC_C,         KC_I, KC_GPD, KC_G,  KC_R, KC_GP2, KC_V,  KC_P, KC_NO, KC_J,  KC_SCLN, QK_BOOT, KC_SLSH,
+              KC_SFT_CMA,              KC_ALT_S,           KC_GUI_T,            KC_CTL_A,                   KC_CTL_N,            KC_GUI_E,            KC_ALT_D,              KC_SFT_DOT,
 
-                                                                                KC_TAB_SNM,                   KC_COMBO,
-                                                                    KC_BSP_NUM, KC_NO, KC_DEL_FUN,    QK_REP, KC_NO, KC_SPC,
-                                                                                KC_ESC_SFT,                   KC_ENT_SFT,
+                                                                                KC_TAB_FUN,                 KC_COMBO,
+                                                                    KC_BSP_NUM, KC_NO, KC_DEL,      QK_REP, KC_NO, KC_SPC,
+                                                                                KC_ESC_SFT,                 KC_ENT_SFT,
 
-                                                                                MSE_SCR,                      KC_UP,
-                                                                       KC_BTN1, KC_NO, KC_BTN3,      KC_LEFT, KC_NO, KC_RIGHT,
-                                                                                KC_BTN2,                      KC_DOWN
+                                                                                MSE_SCR,                    KC_UP,
+                                                                       KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
+                                                                                KC_BTN2,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
-               KC_NO,                  KC_VOLU,                  KC_CAG_PSC,               KC_CPST,                      KC_7,               KC_CAG_8,               KC_9,                      KC_GRV,
-        KC_NO, KC_NO, KC_NO,  KC_BRID, KC_NO, KC_BRIU,  KC_MPRV, KC_NO, KC_MNXT,  KC_CUDO, KC_NO, KC_CCUT,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_MINUS,  KC_6, KC_NO, KC_EQUAL,  KC_LBRC, KC_NO, KC_RBRC,
-               KC_LSFT,                KC_ALT_VLD,               KC_GUI_PLY,               KC_CTL_CPY,                   KC_CTL_1,           KC_GUI_2,               KC_ALT_3,                  KC_SFT_DOT,
+                 KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
+        KC_CIRC, KC_NO, KC_PERC,  KC_HASH, KC_NO, KC_AT,  KC_LCBR, KC_NO, KC_RCBR,  KC_UNDS, KC_NO, KC_PLUS,         KC_4, KC_NO, KC_0,  KC_5, KC_NO, KC_LPRN,  KC_6, KC_NO, KC_RPRN,  KC_AMPR, KC_NO, KC_ASTR,
+                 KC_SFT_CMA,               KC_ALT_GRV,             KC_GUI_RBC,               KC_CTL_MIN,                   KC_CTL_1,           KC_GUI_2,              KC_ALT_3,                 KC_SFT_DOT,
 
-                                                                                           KC_TRNS,                      QK_LLCK,
-                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                           KC_TRNS,                      KC_TRNS,
+                                                                                             KC_TRNS,                      QK_LLCK,
+                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                             KC_TRNS,                      KC_TRNS,
 
-                                                                                           KC_TRNS,                      KC_TRNS,
-                                                                                  KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
-                                                                                           KC_TRNS,                      KC_TRNS
+                                                                                             KC_TRNS,                      KC_TRNS,
+                                                                                    KC_TRNS, KC_TRNS, KC_TRNS,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                                             KC_TRNS,                      KC_TRNS
     ),
     [_FUN] = LAYOUT_split_5x6(
                KC_NO,                  KC_VOLU,                  KC_CAG_PSC,               KC_CPST,                      KC_F7,                 KC_CAG_F8,             KC_F9,                 KC_NO,
@@ -153,10 +153,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                 JA_COM,                JA_SU,                JA_I,                 JA_KA,                           JA_TE,                JA_U,                 JA_NI,                 JA_DOT,
 
                                                                                    KC_TRNS,                         QK_LLCK,
-                                                                          KC_TRNS, KC_TRNS, KC_DEL_FUN,    KC_TRNS, KC_TRNS, KC_TRNS,
+                                                                          KC_TRNS, KC_TRNS, KC_DEL_JP2,    KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                    KC_TRNS,                         KC_TRNS,
 
-                                                                                   KC_JP2,                          KC_TRNS,
+                                                                                   KC_TRNS,                         KC_TRNS,
                                                                           KC_TRNS, KC_TRNS, KC_TRNS,       KC_TRNS, KC_TRNS, KC_TRNS,
                                                                                    KC_TRNS,                         KC_TRNS
     ),
@@ -297,6 +297,9 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
+        case KC_TAB_FUN:
+        case KC_BSP_NUM:
+        case KC_DEL_FUN:
         case KC_ESC_SFT:
         case KC_ENT_SFT:
             return 0;
@@ -307,7 +310,7 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_TAB_SNM:
+        case KC_TAB_FUN:
         case KC_BSP_NUM:
         case KC_DEL_FUN:
         case KC_ESC_SFT:
@@ -498,17 +501,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 return false;
             }
             break;
-        case KC_TAB_SNM:
-            if (record->tap.count && record->event.pressed) {
-                tap_code16(KC_TAB);
-            } else if (record->event.pressed) {
-                add_mods(MOD_BIT(KC_LSFT));
-                layer_on(_NUM);
-            } else {
-                del_mods(MOD_BIT(KC_LSFT));
-                layer_off(_NUM);
-            }
-            return false;
+        // case KC_TAB_SNM:
+        //     if (record->tap.count && record->event.pressed) {
+        //         tap_code16(KC_TAB);
+        //     } else if (record->event.pressed) {
+        //         add_mods(MOD_BIT(KC_LSFT));
+        //         layer_on(_NUM);
+        //     } else {
+        //         del_mods(MOD_BIT(KC_LSFT));
+        //         layer_off(_NUM);
+        //     }
+        //     return false;
         case MSE_SCR:
             set_scrolling = record->event.pressed;
 
