@@ -9,7 +9,8 @@
         "console": false,
         "extrakey": true,
         "mousekey": true,
-        "nkro": true
+        "nkro": true,
+        "pointing_device": true
     },
     "diode_direction": "COL2ROW",
     "matrix_pins": {
@@ -28,6 +29,12 @@
         ]
     },
     "processor": "RP2040",
+    "split": {
+        "enabled": true,
+        "serial": {
+            "driver": "vendor"
+        }
+    },
     "url": "https://github.com/dlip/tenshi",
     "usb": {
         "device_version": "1.0.0",
