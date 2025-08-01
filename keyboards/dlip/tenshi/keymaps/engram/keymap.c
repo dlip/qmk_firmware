@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
-#include "os_detection.h"
 
 enum custom_keycodes {
     KC_COMBO = SAFE_RANGE,
@@ -195,16 +194,6 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case STORE_SETUPS:
-            if (record->event.pressed) {
-                store_setups_in_eeprom();
-            }
-            return false;
-        case PRINT_SETUPS:
-            if (record->event.pressed) {
-                print_stored_setups();
-            }
-            return false;
         case KC_COMBO:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
