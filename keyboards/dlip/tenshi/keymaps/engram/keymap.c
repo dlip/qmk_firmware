@@ -192,6 +192,15 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_3x4_4(
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+                  '*', '*',  '*', '*',
+                  '*', '*',  '*', '*'
+    );
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
         case KC_COMBO:
