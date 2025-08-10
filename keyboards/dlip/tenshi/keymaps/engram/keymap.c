@@ -168,6 +168,21 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
     // Clear the X and Y values of the mouse report
     left_report.x = 0;
     left_report.y = 0;
+
+    if (set_scrolling || layer_state_is(_FUN)) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)right_report.x / SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)right_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        right_report.h = (int8_t)scroll_accumulated_h;
+        right_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        right_report.x = 0;
+        right_report.y = 0;
+    }
+
     return pointing_device_combine_reports(left_report, right_report);
 }
 #endif
