@@ -148,10 +148,10 @@ bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
 
 void keyboard_post_init_user(void) {
   // Customise these values to desired behaviour
-  // debug_enable=true;
+  debug_enable=true;
   // debug_matrix=true;
   // debug_keyboard=true;
-  // debug_mouse=true;
+  debug_mouse=true;
 #ifdef POINTING_DEVICE_COMBINED
     // Hack to fix slave side being a lower sensitivity
     // if (!is_keyboard_master()) {

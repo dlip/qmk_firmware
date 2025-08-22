@@ -1,15 +1,20 @@
 {
     "manufacturer": "Dane Lipscombe",
-    "keyboard_name": "tamatama",
+    "keyboard_name": "Tamatama",
     "maintainer": "dlip",
     "bootloader": "rp2040",
     "features": {
         "bootmagic": true,
         "command": false,
-        "console": false,
+        "console": true,
         "extrakey": true,
         "mousekey": true,
         "nkro": true
+    },
+    "host": {
+        "default": {
+            "nkro": true
+        }
     },
     "diode_direction": "COL2ROW",
     "matrix_pins": {
@@ -30,8 +35,8 @@
     "url": "https://github.com/dlip/tamatama",
     "usb": {
         "device_version": "1.0.0",
-        "pid": "0x0212",
-        "vid": "0xBAAD"
+        "pid": "0x5432",
+        "vid": "0x444C"
     },
     "layouts": {
         "LAYOUT_split_3x4_2": {
