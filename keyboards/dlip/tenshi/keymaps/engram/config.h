@@ -8,7 +8,7 @@
 #define COMBO_VARIABLE_LEN
 #define COMBO_TERM 80
 #define TAPPING_TERM 190
-#define FLOW_TAP_TERM 30
+#define FLOW_TAP_TERM 20
 #define CHORDAL_HOLD
 #define PERMISSIVE_HOLD
 

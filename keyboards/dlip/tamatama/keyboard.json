@@ -9,6 +9,7 @@
         "console": true,
         "extrakey": true,
         "mousekey": true,
+        "pointing_device": true,
         "nkro": true
     },
     "host": {
