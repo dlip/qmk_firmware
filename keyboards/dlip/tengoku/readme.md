@@ -1,6 +1,6 @@
 # tengoku
 
-![tengoku](https://raw.githubusercontent.com/dlip/tengoku/main/tengoku.jpg)
+![tengoku](https://raw.githubusercontent.com/dlip/tengoku/main/images/tengoku.jpg)
 
 <https://github.com/dlip/tengoku>
 
