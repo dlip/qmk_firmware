@@ -1,8 +1,8 @@
-# tamatama
+# tengoku
 
-![tamatama](https://raw.githubusercontent.com/dlip/tamatama/main/tamatama.jpg)
+![tengoku](https://raw.githubusercontent.com/dlip/tengoku/main/tengoku.jpg)
 
-<https://github.com/dlip/tamatama>
+<https://github.com/dlip/tengoku>
 
 *A short description of the keyboard/project*
 
@@ -12,12 +12,12 @@
 
 Make example for this keyboard (after setting up your build environment):
 
-    make tamatama:default
+    make tengoku:default
 
 Flashing example for this keyboard:
 
-    qmk flash -kb tamatama -km engram -bl uf2-split-left
-    qmk flash -kb tamatama -km engram -bl uf2-split-right
+    qmk flash -kb tengoku -km engram -bl uf2-split-left
+    qmk flash -kb tengoku -km engram -bl uf2-split-right
 
 See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_tools) and the [make instructions](https://docs.qmk.fm/#/getting_started_make_guide) for more information. Brand new to QMK? Start with our [Complete Newbs Guide](https://docs.qmk.fm/#/newbs).
 
