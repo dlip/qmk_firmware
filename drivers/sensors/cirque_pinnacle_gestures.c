@@ -29,43 +29,44 @@ static cirque_pinnacle_features_t features = {.tap_enable = true, .circular_scro
 #endif
 
 #if defined(CIRQUE_PINNACLE_TAP_ENABLE) && CIRQUE_PINNACLE_POSITION_MODE
-// static trackpad_tap_context_t tap;
-static bool tap_disable = false;
+static trackpad_tap_context_t tap;
+// static bool tap_disable = false;
 
 static report_mouse_t trackpad_tap(report_mouse_t mouse_report, pinnacle_data_t touchData) {
-    uint16_t          scale     = cirque_pinnacle_get_scale();
-    cirque_pinnacle_scale_data(&touchData, scale, scale);
-    if (touchData.touchDown) {
-        if (!tap_disable) {
-            if (touchData.xValue < 50) {
-                mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON1);
-            } else if (touchData.yValue > 550) {
-                mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON2);
-            } else if (touchData.xValue > 400) {
-                mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON3);
-            } else {
-                tap_disable = true;
-            }
-        }
-    } else {
-        tap_disable = false;
-        mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON1);
-        mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON2);
-        mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON3);
-    }
-    // if (touchData.touchDown != tap.touchDown) {
-    //     tap.touchDown = touchData.touchDown;
-    //     if (!touchData.zValue) {
-    //         mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON1);
-    //         if (timer_elapsed(tap.timer) < CIRQUE_PINNACLE_TAPPING_TERM && tap.timer != 0) {
+    // Dane: dedicated tap/scroll
+    // uint16_t          scale     = cirque_pinnacle_get_scale();
+    // cirque_pinnacle_scale_data(&touchData, scale, scale);
+    // if (touchData.touchDown) {
+    //     if (!tap_disable) {
+    //         if (touchData.xValue < 50) {
     //             mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON1);
+    //         } else if (touchData.yValue > 550) {
+    //             mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON2);
+    //         } else if (touchData.xValue > 400) {
+    //             mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON3);
+    //         } else {
+    //             tap_disable = true;
     //         }
     //     }
-    //     tap.timer = timer_read();
+    // } else {
+    //     tap_disable = false;
+    //     mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON1);
+    //     mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON2);
+    //     mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, false, POINTING_DEVICE_BUTTON3);
     // }
-    // if (timer_elapsed(tap.timer) > (CIRQUE_PINNACLE_TOUCH_DEBOUNCE)) {
-    //     tap.timer = 0;
-    // }
+    if (touchData.touchDown != tap.touchDown) {
+        tap.touchDown = touchData.touchDown;
+        if (!touchData.zValue) {
+            mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON1);
+            if (timer_elapsed(tap.timer) < CIRQUE_PINNACLE_TAPPING_TERM && tap.timer != 0) {
+                mouse_report.buttons = pointing_device_handle_buttons(mouse_report.buttons, true, POINTING_DEVICE_BUTTON1);
+            }
+        }
+        tap.timer = timer_read();
+    }
+    if (timer_elapsed(tap.timer) > (CIRQUE_PINNACLE_TOUCH_DEBOUNCE)) {
+        tap.timer = 0;
+    }
 
     return mouse_report;
 }
