@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
                              KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO,
-                             KC_BTN1,       KC_BTN2,          KC_ESC,       KC_ENTER
+                             MS_BTN2,       MS_BTN1,          MS_BTN3,      MS_BTN4
     ),
     [_NUM] = LAYOUT_split_3x4_4(
          KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
@@ -96,7 +96,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
     ),
     [_NAV] = LAYOUT_split_3x4_4(
-         KC_PSCR,      KC_BTN3,    KC_BTN2,    KC_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
+         KC_PSCR,      MS_BTN3,    MS_BTN2,    MS_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
          KC_SFT_BSP,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
          KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
                                    KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS,
@@ -113,8 +113,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_TAB,  KC_Q,  KC_W,    KC_E,      KC_ESC,  KC_UP,   KC_ENTER, KC_NO,
          KC_LSFT, KC_A,  KC_S,    KC_D,      KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,
          KC_LCTL, KC_Z,  KC_GA2,  KC_C,      KC_NO,   KC_NO,   KC_NO, KC_NO,
-                         KC_SPC,  KC_BTN1,   KC_NO,   KC_NO,
-                         KC_GA2,  KC_SPC,    KC_BTN2, KC_BSPC
+                         KC_SPC,  MS_BTN1,   KC_NO,   KC_NO,
+                         KC_GA2,  KC_SPC,    MS_BTN2, KC_BSPC
     ),
     [_GA2] = LAYOUT_split_3x4_4(
          KC_4,   KC_5, KC_6,  KC_R,     KC_F7, KC_F8, KC_F9, KC_F11,

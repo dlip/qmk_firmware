@@ -2,7 +2,7 @@
 
 COMB(c_fun, KC_FUN, KC_COMBO_ALT2, KC_COMBO_ALT1, KC_COMBO_SFT, KC_COMBO)
 
-COMB(c_btn3, KC_BTN1, KC_BTN2, KC_BTN3)
+COMB(c_btn3, MS_BTN1, MS_BTN2, MS_BTN3)
 
 COMB(c_grv, KC_GRV, KC_B, KC_SFT_C)
 COMB(c_del, KC_DEL, KC_Y, KC_ALT_I)
@@ -24,12 +24,12 @@ COMB(c_q, KC_Q, KC_CAG_M, KC_GUI_T)
 COMB(c_z, KC_Z, KC_F, KC_ALT_S)
 COMB(c_sl, KC_SLSH, KC_P, KC_SFT_N)
 
-// COMB(c_lm, KC_BTN1, KC_U, KC_CTL_A)
-// COMB(c_rm, KC_BTN2, KC_O, KC_GUI_E)
-// COMB(c_mm, KC_BTN3, KC_Y, KC_ALT_I)
+// COMB(c_lm, MS_BTN1, KC_U, KC_CTL_A)
+// COMB(c_rm, MS_BTN2, KC_O, KC_GUI_E)
+// COMB(c_mm, MS_BTN3, KC_Y, KC_ALT_I)
 
-// COMB(c_clm, LCTL(KC_BTN1), KC_CTL_A, KC_K)
-// COMB(c_dlm, LSFT(KC_BTN1), KC_GUI_E, KC_CAG_J)
+// COMB(c_clm, LCTL(MS_BTN1), KC_CTL_A, KC_K)
+// COMB(c_dlm, LSFT(MS_BTN1), KC_GUI_E, KC_CAG_J)
 
 COMB(c_rpt, QK_REP, KC_COMBO, KC_COMBO_SFT)
 

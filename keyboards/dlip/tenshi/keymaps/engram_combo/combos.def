@@ -36,7 +36,7 @@ COMB(c_pip, KC_PIPE, KC_COMBO, KC_F)
 COMB(c_que, KC_QUES, KC_COMBO, KC_P)
 
 // Special
-COMB(c_mms, KC_BTN3, KC_BTN2, KC_BTN1)
+COMB(c_mms, MS_BTN3, MS_BTN2, MS_BTN1)
 
 // Punctuation
 COMB(c_bsen, KC_BSEN, KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT2)

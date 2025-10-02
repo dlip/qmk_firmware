@@ -82,8 +82,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_Z, QK_BOOT, KC_ENTER,  KC_G, KC_NO, KC_J,  KC_B, KC_NO, KC_O,  KC_C, TG(_GAM), KC_E,            KC_T, TG(_GA2), KC_N,  KC_D, KC_NO, KC_V,  KC_M, KC_NO, KC_P,  KC_COMMA, QK_BOOT, KC_Q,
               KC_DEL,                   KC_K,               KC_CAG_U,           KC_A,                            KC_H,                  KC_CAG_L,           KC_R,                   KC_QUOTE,
 
-                                                                                KC_BTN1,                         KC_FUN,
-                                                                 KC_COMBO_ALT2, KC_BTN3, KC_BTN2,        QK_REP, KC_NO, KC_COMBO_SFT,
+                                                                                MS_BTN1,                         KC_FUN,
+                                                                 KC_COMBO_ALT2, MS_BTN3, MS_BTN2,        QK_REP, KC_NO, KC_COMBO_SFT,
                                                                                 KC_COMBO_ALT1,                   KC_COMBO
     ),
     [_NUM] = LAYOUT_split_5x5(
@@ -119,13 +119,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_NO,                KC_Z,                KC_S,                KC_C,                         KC_4,                KC_5,                KC_6,                KC_0,
 
                                                                                KC_LSFT,                      KC_NO,
-                                                                       KC_SPC, KC_NO, KC_BTN1,        KC_NO, KC_NO, KC_NO,
-                                                                               KC_BTN2,                      KC_NO
+                                                                       KC_SPC, KC_NO, MS_BTN1,        KC_NO, KC_NO, KC_NO,
+                                                                               MS_BTN2,                      KC_NO
     ),
     [_GA2] = LAYOUT_split_5x5(
-               KC_NO,                KC_Q,                KC_SPC,              KC_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
+               KC_NO,                KC_Q,                KC_SPC,              MS_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
         KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_NO, KC_R,        KC_1, TG(_GA2), KC_NO,  KC_2, KC_NO, KC_NO,  KC_3, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
-               KC_NO,                KC_Z,                KC_C,                KC_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
+               KC_NO,                KC_Z,                KC_C,                MS_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
 
                                                                                KC_W,                      KC_NO,
                                                                          KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,

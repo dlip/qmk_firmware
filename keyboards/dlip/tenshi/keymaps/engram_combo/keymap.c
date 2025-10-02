@@ -83,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
-                             KC_BTN2,       KC_BTN1,          KC_NO,        KC_NO,
+                             MS_BTN2,       MS_BTN1,          KC_NO,        KC_NO,
                              KC_COMBO_ALT1, KC_COMBO_ALT2,    KC_COMBO_SFT, KC_COMBO
     ),
     [_NUM] = LAYOUT_split_3x4_4(
@@ -111,8 +111,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_TAB,  KC_Q,  KC_W,    KC_E,      KC_ESC,  KC_UP,   KC_ENTER, KC_NO,
          KC_LSFT, KC_A,  KC_S,    KC_D,      KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,
          KC_LCTL, KC_Z,  KC_X,    KC_C,      KC_NO,   KC_NO,   KC_NO, KC_NO,
-                         KC_BTN2, KC_BTN1,   KC_NO,   KC_NO,
-                         KC_GA2,  KC_SPC,    KC_BTN2, KC_BSPC
+                         MS_BTN2, MS_BTN1,   KC_NO,   KC_NO,
+                         KC_GA2,  KC_SPC,    MS_BTN2, KC_BSPC
     ),
     [_GA2] = LAYOUT_split_3x4_4(
          KC_4,   KC_5, KC_6,  KC_R,     KC_F7, KC_F8, KC_F9, KC_F11,

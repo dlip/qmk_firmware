@@ -121,8 +121,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                 KC_ESC_SFT,                 KC_ENT_SFT,
 
                                                                                 MSE_SCR,                    KC_UP,
-                                                                       KC_BTN1, KC_NO, KC_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
-                                                                                KC_BTN2,                    KC_DOWN
+                                                                       MS_BTN1, KC_NO, MS_BTN3,    KC_LEFT, KC_NO, KC_RIGHT,
+                                                                                MS_BTN2,                    KC_DOWN
     ),
     [_NUM] = LAYOUT_split_5x6(
                  KC_DLR,                   KC_TILD,                KC_CAG_LBC,               KC_EQUAL,                     KC_7,               KC_CAG_8,              KC_9,                     KC_EXLM,
@@ -177,17 +177,17 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                    KC_TRNS,                      KC_TRNS
     ),
     [_GAM] = LAYOUT_split_5x6(
-               KC_NO,                KC_Q,                KC_SPC,              KC_BTN2,                   KC_7,                 KC_8,                KC_9,              KC_NO,
+               KC_NO,                KC_Q,                KC_SPC,              MS_BTN2,                   KC_7,                 KC_8,                KC_9,              KC_NO,
         KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_GAM, KC_R,        KC_4, KC_GPD, KC_0,   KC_5, KC_NO, KC_NO,  KC_6, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
-               KC_NO,                KC_C,                KC_SPC,              KC_BTN1,                   KC_1,                 KC_2,                KC_3,              KC_NO,
+               KC_NO,                KC_C,                KC_SPC,              MS_BTN1,                   KC_1,                 KC_2,                KC_3,              KC_NO,
 
                                                                                KC_W,                      KC_UP,
                                                                          KC_A, KC_NO, KC_D,      KC_LEFT, KC_NO, KC_RIGHT,
                                                                                KC_S,                      KC_DOWN,
 
                                                                                MSE_SCR,                   KC_NO,
-                                                                      KC_BTN1, KC_NO, KC_BTN3,    KC_ESC, KC_NO, KC_ENTER,
-                                                                               KC_BTN2,                   KC_LSFT
+                                                                      MS_BTN1, KC_NO, MS_BTN3,    KC_ESC, KC_NO, KC_ENTER,
+                                                                               MS_BTN2,                   KC_LSFT
     ),
     [_GPD] = LAYOUT_split_5x6(
                 GP_HOM,                   KC_NO,                GP_Y,                GP_LT,                    KC_7,                 KC_8,                KC_9,              KC_NO,
@@ -199,8 +199,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                      GP_DPD,                   GP_A,
 
                                                                                      MSE_SCR,                  KC_NO,
-                                                                            KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
-                                                                                     KC_BTN2,                  KC_NO
+                                                                            MS_BTN1, KC_NO, MS_BTN3,    KC_NO, KC_NO, KC_NO,
+                                                                                     MS_BTN2,                  KC_NO
     ),
     [_GP2] = LAYOUT_split_5x6(
                 GP_HOM,                   GP_DPL,               GP_DPU,              GP_DPR,                    GP_RB,                  GP_Y,                   GP_X,              KC_NO,
@@ -212,8 +212,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                                      GP_DPD,                   GP_A,
 
                                                                                      MSE_SCR,                  KC_NO,
-                                                                            KC_BTN1, KC_NO, KC_BTN3,    KC_NO, KC_NO, KC_NO,
-                                                                                     KC_BTN2,                  KC_NO
+                                                                            MS_BTN1, KC_NO, MS_BTN3,    KC_NO, KC_NO, KC_NO,
+                                                                                     MS_BTN2,                  KC_NO
     )
     // [_NEW] = LAYOUT_split_5x6(
     //            KC_NO,                KC_NO,                KC_NO,                KC_NO,                        KC_NO,                KC_NO,                KC_NO,                KC_NO,

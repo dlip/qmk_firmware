@@ -73,7 +73,7 @@ enum mylayers {
 #define KC_COMBO_SFT KC_ESC
 #define KC_COMBO_ALT1 LT(_NUM, KC_TAB)
 #define KC_COMBO_ALT2 LT(_FUN, KC_SPC)
-#define KC_COMBO_ALT3 KC_BTN2
+#define KC_COMBO_ALT3 MS_BTN2
 
 #include "g/keymap_combo.h"
 
@@ -84,8 +84,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               KC_SFT_CMA,               KC_ALT_S,           KC_GUI_T,           KC_CTL_A,                                   KC_CTL_N,              KC_GUI_E,           KC_ALT_D,              KC_SFT_DOT,
 
                                                                                 KC_COMBO_ALT1,                               KC_COMBO,
-                                                                 KC_COMBO_ALT2, KC_BTN3, KC_COMBO_ALT3,        KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
-                                                                                KC_BTN1,                                     KC_FUN
+                                                                 KC_COMBO_ALT2, MS_BTN3, KC_COMBO_ALT3,        KC_COMBO_SFT, KC_NO, KC_BSP_SFT,
+                                                                                MS_BTN1,                                     KC_FUN
     ),
     [_NUM] = LAYOUT_split_5x5(
                  KC_GRV,                   KC_LBRC,                  KC_CAG_PGU,              KC_UP,                            KC_7,                  KC_CAG_8,                 KC_9,                        KC_NO,
@@ -111,13 +111,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_NO,                KC_Z,                KC_S,                KC_C,                         KC_4,                KC_5,                KC_6,                KC_0,
 
                                                                                KC_LSFT,                      KC_NO,
-                                                                       KC_SPC, KC_NO, KC_BTN1,        KC_NO, KC_NO, KC_NO,
-                                                                               KC_BTN2,                      KC_NO
+                                                                       KC_SPC, KC_NO, MS_BTN1,        KC_NO, KC_NO, KC_NO,
+                                                                               MS_BTN2,                      KC_NO
     ),
     [_GA2] = LAYOUT_split_5x5(
-               KC_NO,                KC_Q,                KC_SPC,              KC_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
+               KC_NO,                KC_Q,                KC_SPC,              MS_BTN1,                         KC_7,                KC_8,                KC_9,                KC_NO,
         KC_NO, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,  KC_A, KC_NO, KC_D,  KC_E,  KC_NO, KC_R,        KC_1, TG(_GA2), KC_NO,  KC_2, KC_NO, KC_NO,  KC_3, KC_NO, KC_NO,  KC_NO, KC_NO, KC_NO,
-               KC_NO,                KC_Z,                KC_C,                KC_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
+               KC_NO,                KC_Z,                KC_C,                MS_BTN2,                         KC_4,                KC_5,                KC_6,                KC_0,
 
                                                                                KC_W,                      KC_NO,
                                                                          KC_A, KC_NO, KC_D,        KC_NO, KC_NO, KC_NO,
