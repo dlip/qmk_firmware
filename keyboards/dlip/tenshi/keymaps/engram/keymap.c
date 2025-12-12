@@ -125,7 +125,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                        KC_NO, KC_NO,    KC_NO, KC_NO
     ),
     [_MSE] = LAYOUT_split_3x4_4(
-         KC_TRNS,    MS_BTN3,    MS_BTN2,    MS_BTN1,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_PSCR,    MS_BTN3,    MS_BTN2,    MS_BTN1,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_SFT_BSP, KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
          KC_CUDO,    KC_CCUT,    KC_CAG_CPY, KC_CPST,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
                                  KC_TRNS,    KC_TRNS,     KC_TRNS, KC_TRNS,
