@@ -14,8 +14,8 @@
         "pointing_device": true
     },
     "matrix_pins": {
-        "cols": ["GP10", "GP11", "GP12", "GP13"],
-        "rows": ["GP29", "GP28", "GP27", "GP0", "GP1", "GP6", "GP7"]
+        "rows": ["GP29", "GP28", "GP27", "GP0", "GP1", "GP6", "GP7"],
+        "cols": ["GP10", "GP11", "GP12", "GP13"]
     },
     "processor": "RP2040",
     "url": "https://github.com/dlip/tenshi",
@@ -27,34 +27,40 @@
     "layouts": {
         "LAYOUT_split_3x8_4": {
             "layout": [
-                {"matrix": [0, 0], "x": 0, "y": 0},
-                {"matrix": [0, 1], "x": 1, "y": 0},
-                {"matrix": [0, 2], "x": 2, "y": 0},
-                {"matrix": [0, 3], "x": 3, "y": 0},
-                {"matrix": [5, 3], "x": 6, "y": 0},
-                {"matrix": [5, 2], "x": 7, "y": 0},
-                {"matrix": [5, 1], "x": 8, "y": 0},
-                {"matrix": [5, 0], "x": 9, "y": 0},
-                {"matrix": [1, 0], "x": 0, "y": 1},
-                {"matrix": [1, 1], "x": 1, "y": 1},
-                {"matrix": [1, 2], "x": 2, "y": 1},
-                {"matrix": [1, 3], "x": 3, "y": 1},
-                {"matrix": [6, 3], "x": 6, "y": 1},
-                {"matrix": [6, 2], "x": 7, "y": 1},
-                {"matrix": [6, 1], "x": 8, "y": 1},
-                {"matrix": [6, 0], "x": 9, "y": 1},
-                {"matrix": [2, 0], "x": 0, "y": 2},
-                {"matrix": [2, 1], "x": 1, "y": 2},
-                {"matrix": [2, 2], "x": 2, "y": 2},
-                {"matrix": [2, 3], "x": 3, "y": 2},
-                {"matrix": [7, 3], "x": 6, "y": 2},
-                {"matrix": [7, 2], "x": 7, "y": 2},
-                {"matrix": [7, 1], "x": 8, "y": 2},
-                {"matrix": [7, 0], "x": 9, "y": 2},
-                {"matrix": [4, 2], "x": 2, "y": 3},
-                {"matrix": [4, 3], "x": 3, "y": 3},
-                {"matrix": [9, 3], "x": 6, "y": 3},
-                {"matrix": [9, 2], "x": 7, "y": 3}
+                {"matrix": [X29, X10], "x": 0, "y": 0},
+                {"matrix": [X29, X11], "x": 1, "y": 0},
+                {"matrix": [X29, X12], "x": 2, "y": 0},
+                {"matrix": [X29, X13], "x": 3, "y": 0},
+
+                {"matrix": [X0, X13], "x": 5, "y": 0},
+                {"matrix": [X0, X12], "x": 6, "y": 0},
+                {"matrix": [X0, X11], "x": 7, "y": 0},
+                {"matrix": [X0, X10], "x": 8, "y": 0},
+
+                {"matrix": [X28, X10], "x": 0, "y": 1},
+                {"matrix": [X28, X11], "x": 1, "y": 1},
+                {"matrix": [X28, X12], "x": 2, "y": 1},
+                {"matrix": [X28, X13], "x": 3, "y": 1},
+
+                {"matrix": [X1, X13], "x": 5, "y": 1},
+                {"matrix": [X1, X12], "x": 6, "y": 1},
+                {"matrix": [X1, X11], "x": 7, "y": 1},
+                {"matrix": [X1, X10], "x": 8, "y": 1},
+
+                {"matrix": [X27, X10], "x": 0, "y": 2},
+                {"matrix": [X27, X11], "x": 1, "y": 2},
+                {"matrix": [X27, X12], "x": 2, "y": 2},
+                {"matrix": [X27, X13], "x": 3, "y": 2},
+
+                {"matrix": [X6, X13], "x": 5, "y": 2},
+                {"matrix": [X6, X12], "x": 6, "y": 2},
+                {"matrix": [X6, X11], "x": 7, "y": 2},
+                {"matrix": [X6, X10], "x": 8, "y": 2},
+
+                {"matrix": [X7, X13], "x": 2, "y": 3},
+                {"matrix": [X7, X12], "x": 3, "y": 3},
+                {"matrix": [X7, X11], "x": 5, "y": 3},
+                {"matrix": [X7, X10], "x": 6, "y": 3}
             ]
         }
     }
