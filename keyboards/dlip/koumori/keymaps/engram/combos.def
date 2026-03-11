@@ -1,6 +1,6 @@
-#include "abbr.def"
+#include "chords.def"
 
-// COMB(c_fun, KC_COMBO_ALT1, KC_COMBO_ALT2, KC_FUN)
+// COMB(c_fun, KC_CHORD_ALT1, KC_CHORD_ALT2, KC_FUN)
 
 // COMB(c_btn3, MS_BTN1, MS_BTN2, MS_BTN3)
 
@@ -31,15 +31,15 @@
 // COMB(c_clm, LCTL(MS_BTN1), KC_CTL_A, KC_K)
 // COMB(c_dlm, LSFT(MS_BTN1), KC_GUI_E, KC_CAG_J)
 
-COMB(c_rpt, QK_REP, KC_COMBO, KC_COMBO_SFT)
+COMB(c_rpt, QK_REP, KC_CHORD, KC_CHORD_SFT)
 
 // Punctuation
-COMB(c_bsen, KC_BSEN, KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT1)
-SUBS(p_bcomma, SS_TAP(X_BSPC)", ", KC_COMBO, KC_COMBO_SFT, KC_COMBO_ALT2)
-COMB(c_sen, KC_SEN, KC_COMBO, KC_COMBO_ALT1)
-SUBS(p_comma, ", ", KC_COMBO, KC_COMBO_ALT2)
+COMB(c_bsen, KC_BSEN, KC_CHORD, KC_CHORD_SFT, KC_CHORD_ALT1)
+SUBS(p_bcomma, SS_TAP(X_BSPC)", ", KC_CHORD, KC_CHORD_SFT, KC_CHORD_ALT2)
+COMB(c_sen, KC_SEN, KC_CHORD, KC_CHORD_ALT1)
+SUBS(p_comma, ", ", KC_CHORD, KC_CHORD_ALT2)
 
 // Personal
-SUBS(b_Dane, "Dane", KC_COMBO, KC_D, KC_X)
-SUBS(b_Lipscombe, "Lipscombe", KC_COMBO, KC_L, KC_X)
-SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_COMBO, KC_G, KC_X)
+SUBS(b_Dane, "Dane", KC_CHORD, KC_D, KC_X)
+SUBS(b_Lipscombe, "Lipscombe", KC_CHORD, KC_L, KC_X)
+SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_CHORD, KC_G, KC_X)

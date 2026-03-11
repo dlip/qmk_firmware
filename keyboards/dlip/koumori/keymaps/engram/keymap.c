@@ -4,7 +4,7 @@
 #include QMK_KEYBOARD_H
 
 enum custom_keycodes {
-    KC_COMBO = SAFE_RANGE,
+    KC_CHORD = SAFE_RANGE,
     KC_CALL,
     KC_CUDO,
     KC_CCUT,
@@ -75,9 +75,9 @@ enum mylayers {
 
 #define KC_FUN MO(_FUN)
 #define KC_GA2 MO(_GA2)
-#define KC_COMBO_SFT MT(MOD_LSFT, KC_BSPC)
-#define KC_COMBO_ALT2 LT(_NUM, KC_TAB)
-#define KC_COMBO_ALT1 LT(_NAV, KC_SPC)
+#define KC_CHORD_SFT MT(MOD_LSFT, KC_BSPC)
+#define KC_CHORD_ALT2 LT(_NUM, KC_TAB)
+#define KC_CHORD_ALT1 LT(_NAV, KC_SPC)
 
 #include "g/keymap_combo.h"
 
@@ -86,7 +86,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
          KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
          KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
-                             KC_COMBO_ALT2, KC_COMBO_ALT1,    KC_COMBO_SFT, KC_COMBO
+                             KC_CHORD_ALT2, KC_CHORD_ALT1,    KC_CHORD_SFT, KC_CHORD
     ),
     [_NUM] = LAYOUT_split_3x8_4(
          KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
@@ -171,9 +171,9 @@ report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
 
 uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_COMBO_SFT:
+        case KC_CHORD_SFT:
             return 0;
-        case KC_COMBO_ALT2:
+        case KC_CHORD_ALT2:
             return 0;
         default:
             return QUICK_TAP_TERM;
@@ -182,8 +182,8 @@ uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
 
 bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_COMBO_SFT:
-        case KC_COMBO_ALT2:
+        case KC_CHORD_SFT:
+        case KC_CHORD_ALT2:
             return true;
         default:
             return false;
@@ -200,7 +200,7 @@ const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case KC_COMBO:
+        case KC_CHORD:
             if (record->event.pressed) {
                 switch(detected_host_os()) {
                     case OS_MACOS:
