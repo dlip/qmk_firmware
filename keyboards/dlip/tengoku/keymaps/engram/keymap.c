@@ -201,7 +201,7 @@ report_mouse_t pointing_device_task_combined_user(report_mouse_t left_report, re
     left_report.x = 0;
     left_report.y = 0;
 
-    if (set_scrolling || layer_state_is(_FUN)) {
+    if (set_scrolling || layer_state_is(_NAV)) {
         // Calculate and accumulate scroll values based on mouse movement and divisors
         scroll_accumulated_h += (float)right_report.x / SCROLL_DIVISOR_H;
         scroll_accumulated_v += (float)right_report.y / SCROLL_DIVISOR_V;
