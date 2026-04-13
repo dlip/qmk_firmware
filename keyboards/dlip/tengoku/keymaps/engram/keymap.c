@@ -25,6 +25,7 @@ enum mylayers {
     _FUN,
     _GA1,
     _GA2,
+    _MSE,
 };
 
 #define KC_SFT_C MT(MOD_LSFT, KC_C)
@@ -115,7 +116,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
          KC_1,   KC_2, KC_3,  KC_F,     KC_F4, KC_F5, KC_F6, KC_F10,
          KC_GA1, KC_7, KC_8,  KC_G,     KC_F1, KC_F2, KC_F3, KC_F12,
                        KC_NO, KC_NO,    KC_NO, KC_NO
-    )
+    ),
+    [_MSE] = LAYOUT_split_3x4_2(
+         KC_PSCR,    MS_BTN3,    MS_BTN2,    MS_BTN1,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_SFT_BSP, KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_CUDO,    KC_CCUT,    KC_CAG_CPY, KC_CPST,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                 KC_TRNS,    KC_TRNS,     KC_TRNS, KC_TRNS
+    ),
     // [_BLANK] = LAYOUT_split_3x4_2(
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
     //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
@@ -162,6 +169,10 @@ void keyboard_post_init_user(void) {
   // debug_mouse=true;
 }
 
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true); // always required before the auto mouse feature will work
+}
 
 // Modify these values to adjust the scrolling speed
 #define SCROLL_DIVISOR_H 100.0
