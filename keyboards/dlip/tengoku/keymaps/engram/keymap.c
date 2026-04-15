@@ -100,7 +100,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                    KC_FUN,     KC_TRNS,           KC_TRNS,    KC_TRNS
     ),
     [_FUN] = LAYOUT_split_3x4_2(
-         QK_BOOT,    KC_NO,      KC_VOLD,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
+         QK_BOOT,    KC_VOLD,    KC_MUTE,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
          KC_SFT_MUT, KC_ALT_PRV, KC_GUI_PLY,  KC_CTL_NXT,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
          KC_GA1,     KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
                                  KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
