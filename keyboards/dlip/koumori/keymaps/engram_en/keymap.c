@@ -29,16 +29,16 @@ enum mylayers {
     _MSE,
 };
 
-#define KC_SFT_C MT(MOD_LSFT, KC_C)
+#define KC_SFT_H MT(MOD_LSFT, KC_H)
 #define KC_ALT_I MT(MOD_LALT, KC_I)
-#define KC_GUI_E MT(MOD_LGUI, KC_E)
-#define KC_CTL_A MT(MOD_LCTL, KC_A)
-#define KC_CAG_J LCAG_T(KC_J)
-#define KC_CAG_M LCAG_T(KC_M)
-#define KC_CTL_H MT(MOD_LCTL, KC_H)
-#define KC_GUI_T MT(MOD_LGUI, KC_T)
+#define KC_GUI_A MT(MOD_LGUI, KC_A)
+#define KC_CTL_E MT(MOD_LCTL, KC_E)
+#define KC_CAG_X LCAG_T(KC_X)
+#define KC_CAG_L LCAG_T(KC_L)
+#define KC_CTL_T MT(MOD_LCTL, KC_T)
+#define KC_GUI_R MT(MOD_LGUI, KC_R)
 #define KC_ALT_S MT(MOD_LALT, KC_S)
-#define KC_SFT_N MT(MOD_LSFT, KC_N)
+#define KC_SFT_C MT(MOD_LSFT, KC_C)
 
 #define KC_SFT_Q MT(MOD_LSFT, KC_Q)
 #define KC_ALT_QUO MT(MOD_LALT, KC_QUOTE)
@@ -83,9 +83,9 @@ enum mylayers {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     [_BSE] = LAYOUT_split_3x8_4(
-         KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
-         KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
-         KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
+         KC_B,     KC_Y,     KC_O,          KC_U,             KC_D,         KC_N,        KC_G,     KC_V,
+         KC_SFT_H, KC_ALT_I, KC_GUI_A,      KC_CTL_E,         KC_CTL_T,     KC_GUI_R,    KC_ALT_S, KC_SFT_C,
+         KC_K,     KC_J,     KC_CAG_X,      KC_W,             KC_M,         KC_CAG_L,    KC_F,     KC_P,
                              KC_CHORD_ALT2, KC_CHORD_ALT1,    KC_CHORD_SFT, KC_CHORD
     ),
     [_NUM] = LAYOUT_split_3x8_4(
