@@ -1,0 +1,363 @@
+// Copyright 2023 Dane Lipscombe (@dlip)
+// SPDX-License-Identifier: GPL-2.0-or-later
+
+#include QMK_KEYBOARD_H
+
+enum custom_keycodes {
+    KC_CHORD = SAFE_RANGE,
+    KC_CALL,
+    KC_CUDO,
+    KC_CCUT,
+    KC_CCPY,
+    KC_CPST,
+    KC_BSEN,
+    KC_SEN,
+    KC_MSCL,
+    KC_GA1,
+    STORE_SETUPS,
+    PRINT_SETUPS,
+};
+
+
+enum mylayers {
+    _BSE,
+    _NAV,
+    _NUM,
+    _FUN,
+    _GA1,
+    _GA2,
+    _MSE,
+};
+
+#define KC_SFT_C MT(MOD_LSFT, KC_C)
+#define KC_ALT_I MT(MOD_LALT, KC_I)
+#define KC_GUI_E MT(MOD_LGUI, KC_E)
+#define KC_CTL_A MT(MOD_LCTL, KC_A)
+#define KC_CAG_J LCAG_T(KC_J)
+#define KC_CAG_M LCAG_T(KC_M)
+#define KC_CTL_H MT(MOD_LCTL, KC_H)
+#define KC_GUI_T MT(MOD_LGUI, KC_T)
+#define KC_ALT_S MT(MOD_LALT, KC_S)
+#define KC_SFT_N MT(MOD_LSFT, KC_N)
+
+#define KC_SFT_Q MT(MOD_LSFT, KC_Q)
+#define KC_ALT_QUO MT(MOD_LALT, KC_QUOTE)
+#define KC_GUI_CMA MT(MOD_LGUI, KC_COMMA)
+#define KC_CTL_DOT MT(MOD_LCTL, KC_DOT)
+#define KC_CAG_LBC LCAG_T(KC_LBRC)
+#define KC_CAG_CPY LCAG_T(KC_CCPY)
+#define KC_CAG_2 LCAG_T(KC_2)
+#define KC_CTL_4 MT(MOD_LCTL, KC_4)
+#define KC_GUI_5 MT(MOD_LGUI, KC_5)
+#define KC_ALT_6 MT(MOD_LALT, KC_6)
+#define KC_SFT_0 MT(MOD_LSFT, KC_0)
+
+#define KC_SFT_BSP MT(MOD_LSFT, KC_BSPC)
+#define KC_ALT_DEL MT(MOD_LALT, KC_DEL)
+#define KC_GUI_ESC MT(MOD_LGUI, KC_ESC)
+#define KC_CTL_ENT MT(MOD_LCTL, KC_ENTER)
+#define KC_CAG_NO LCAG_T(KC_NO)
+#define KC_CTL_LFT MT(MOD_LCTL, KC_LEFT)
+#define KC_GUI_DWN MT(MOD_LGUI, KC_DOWN)
+#define KC_ALT_RGT MT(MOD_LALT, KC_RIGHT)
+#define KC_SFT_PGD MT(MOD_LSFT, KC_PGDN)
+
+#define KC_SFT_STP MT(MOD_LSFT, KC_MSTP)
+#define KC_ALT_PRV MT(MOD_LALT, KC_MPRV)
+#define KC_GUI_PLY MT(MOD_LGUI, KC_MPLY)
+#define KC_CTL_NXT MT(MOD_LCTL, KC_MNXT)
+#define KC_CAG_BRD LCAG_T(KC_BRID)
+#define KC_CAG_F2 LCAG_T(KC_F2)
+#define KC_CTL_F4 MT(MOD_LCTL, KC_F4)
+#define KC_GUI_F5 MT(MOD_LGUI, KC_F5)
+#define KC_ALT_F6 MT(MOD_LALT, KC_F6)
+#define KC_SFT_F10 MT(MOD_LSFT, KC_F10)
+
+#define KC_FUN MO(_FUN)
+#define KC_GA2 MO(_GA2)
+#define KC_CHORD_SFT MT(MOD_LSFT, KC_BSPC)
+#define KC_CHORD_ALT2 LT(_NUM, KC_TAB)
+#define KC_CHORD_ALT1 LT(_NAV, KC_SPC)
+
+#include "g/keymap_combo.h"
+
+const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+    [_BSE] = LAYOUT_split_3x8_4(
+         KC_B,     KC_Y,     KC_O,          KC_U,             KC_L,         KC_D,        KC_W,     KC_V,
+         KC_SFT_C, KC_ALT_I, KC_GUI_E,      KC_CTL_A,         KC_CTL_H,     KC_GUI_T,    KC_ALT_S, KC_SFT_N,
+         KC_G,     KC_X,     KC_CAG_J,      KC_K,             KC_R,         KC_CAG_M,    KC_F,     KC_P,
+                             KC_CHORD_ALT2, KC_CHORD_ALT1,    KC_CHORD_SFT, KC_CHORD
+    ),
+    [_NUM] = LAYOUT_split_3x8_4(
+         KC_GRV,       KC_SCLN,    KC_MINUS,   KC_EQUAL,      KC_7,       KC_8,     KC_9,     KC_BSLS,
+         KC_SFT_Q,     KC_ALT_QUO, KC_GUI_CMA, KC_CTL_DOT,    KC_CTL_4,   KC_GUI_5, KC_ALT_6, KC_SFT_0,
+         KC_Z,         KC_SPC,     KC_CAG_LBC, KC_RBRC,       KC_1,       KC_CAG_2, KC_3,     KC_SLSH,
+                                   KC_TRNS,    KC_FUN,        KC_TRNS,    KC_TRNS
+    ),
+    [_NAV] = LAYOUT_split_3x8_4(
+         KC_PSCR,      MS_BTN3,    MS_BTN2,    MS_BTN1,       KC_HOME,    KC_UP,      KC_END,     KC_PGUP,
+         KC_SFT_BSP,   KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,    KC_CTL_LFT, KC_GUI_DWN, KC_ALT_RGT, KC_SFT_PGD,
+         KC_CUDO,      KC_CCUT,    KC_CAG_CPY, KC_CPST,       KC_NO,      KC_CAG_NO,  KC_NO,      KC_NO,
+                                   KC_FUN,     KC_TRNS,       KC_TRNS,    KC_TRNS
+    ),
+    [_FUN] = LAYOUT_split_3x8_4(
+         QK_BOOT,    KC_VOLD,    KC_MUTE,     KC_VOLU,       KC_F7,     KC_F8,     KC_F9,     KC_F11,
+         KC_SFT_STP, KC_ALT_PRV, KC_GUI_PLY,  KC_CTL_NXT,    KC_CTL_F4, KC_GUI_F5, KC_ALT_F6, KC_SFT_F10,
+         KC_GA1,     KC_NO,      KC_CAG_BRD,  KC_BRIU,       KC_F1,     KC_CAG_F2, KC_F3,     KC_F12,
+                                 KC_TRNS,     KC_TRNS,       KC_TRNS,   KC_TRNS
+    ),
+    [_GA1] = LAYOUT_split_3x8_4(
+         KC_TAB,  KC_Q,  KC_W,    KC_E,      KC_ESC,  KC_UP,   KC_ENTER, KC_NO,
+         KC_LSFT, KC_A,  KC_S,    KC_D,      KC_LEFT, KC_DOWN, KC_RIGHT, KC_NO,
+         KC_LCTL, KC_Z,  KC_GA2,  KC_C,      KC_NO,   KC_NO,   KC_NO, KC_NO,
+                         KC_SPC,  MS_BTN1,   KC_NO,   KC_NO
+    ),
+    [_GA2] = LAYOUT_split_3x8_4(
+         KC_4,   KC_5, KC_6,  KC_R,     KC_F7, KC_F8, KC_F9, KC_F11,
+         KC_1,   KC_2, KC_3,  KC_F,     KC_F4, KC_F5, KC_F6, KC_F10,
+         KC_GA1, KC_7, KC_8,  KC_G,     KC_F1, KC_F2, KC_F3, KC_F12,
+                       KC_NO, KC_NO,    KC_NO, KC_NO
+    ),
+    [_MSE] = LAYOUT_split_3x8_4(
+         KC_PSCR,    MS_BTN3,    MS_BTN2,    MS_BTN1,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_SFT_BSP, KC_ALT_DEL, KC_GUI_ESC, KC_CTL_ENT,  KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+         KC_CUDO,    KC_CCUT,    KC_CAG_CPY, KC_CPST,     KC_TRNS, KC_TRNS, KC_TRNS, KC_TRNS,
+                                 KC_TRNS,    KC_TRNS,     KC_TRNS, KC_TRNS
+    ),
+    // [_BLANK] = LAYOUT_split_3x8_4(
+    //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
+    //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
+    //      KC_NO, KC_NO, KC_NO, KC_NO,    KC_NO, KC_NO, KC_NO, KC_NO,
+    //                    KC_NO, KC_NO,    KC_NO, KC_NO
+    // ),
+};
+
+void pointing_device_init_user(void) {
+    set_auto_mouse_layer(_MSE); // only required if AUTO_MOUSE_DEFAULT_LAYER is not set to index of <mouse_layer>
+    set_auto_mouse_enable(true); // always required before the auto mouse feature will work
+}
+
+bool set_scrolling=false;
+
+// Modify these values to adjust the scrolling speed
+#define SCROLL_DIVISOR_H 50.0
+#define SCROLL_DIVISOR_V 50.0
+
+// Variables to store accumulated scroll values
+float scroll_accumulated_h = 0;
+float scroll_accumulated_v = 0;
+
+report_mouse_t pointing_device_task_user(report_mouse_t mouse_report) {
+    if (set_scrolling || layer_state_is(_NAV)) {
+        // Calculate and accumulate scroll values based on mouse movement and divisors
+        scroll_accumulated_h += (float)mouse_report.x / SCROLL_DIVISOR_H;
+        scroll_accumulated_v += (float)mouse_report.y / SCROLL_DIVISOR_V;
+
+        // Assign integer parts of accumulated scroll values to the mouse report
+        mouse_report.h = (int8_t)scroll_accumulated_h;
+        mouse_report.v = -(int8_t)scroll_accumulated_v;
+
+        // Update accumulated scroll values by subtracting the integer parts
+        scroll_accumulated_h -= (int8_t)scroll_accumulated_h;
+        scroll_accumulated_v -= (int8_t)scroll_accumulated_v;
+
+        // Clear the X and Y values of the mouse report
+        mouse_report.x = 0;
+        mouse_report.y = 0;
+    }
+
+    return mouse_report;
+}
+
+uint16_t get_quick_tap_term(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_CHORD_SFT:
+            return 0;
+        case KC_CHORD_ALT2:
+            return 0;
+        default:
+            return QUICK_TAP_TERM;
+    }
+}
+
+bool get_hold_on_other_key_press(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_CHORD_SFT:
+        case KC_CHORD_ALT2:
+            return true;
+        default:
+            return false;
+    }
+}
+
+const char chordal_hold_layout[MATRIX_ROWS][MATRIX_COLS] PROGMEM =
+    LAYOUT_split_3x8_4(
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+        'L', 'L', 'L', 'L',  'R', 'R', 'R', 'R',
+                  '*', '*',  '*', '*'
+    );
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+        case KC_CHORD:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(A(KC_BSPC));
+                        break;
+                    default:
+                        tap_code16(C(KC_BSPC));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CALL:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_A));
+                        break;
+                    default:
+                        tap_code16(C(KC_A));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CUDO:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_Z));
+                        break;
+                    default:
+                        tap_code16(C(KC_Z));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CCUT:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_X));
+                        break;
+                    default:
+                        tap_code16(C(KC_X));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CCPY:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CAG_CPY:
+            if (record->tap.count && record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_C));
+                        break;
+                    default:
+                        tap_code16(C(KC_C));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_CPST:
+            if (record->event.pressed) {
+                switch(detected_host_os()) {
+                    case OS_MACOS:
+                    case OS_IOS:
+                        tap_code16(G(KC_V));
+                        break;
+                    default:
+                        tap_code16(C(KC_V));
+                        break;
+                }
+                return false;
+            }
+            break;
+        case KC_SEN:
+            if (record->event.pressed) {
+                SEND_STRING(". ");
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                return false;
+            }
+            break;
+        case KC_BSEN:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_BSPC)". ");
+                set_oneshot_mods(MOD_BIT(KC_LSFT));
+                return false;
+            }
+            break;
+        case KC_MSCL:
+            if (record->event.pressed) {
+                set_scrolling = true;
+            } else {
+                set_scrolling = false;
+            }
+            return false;
+        case KC_GA1:
+            if (record->event.pressed) {
+                if (layer_state_is(_GA1)) {
+                    layer_off(_GA1);
+                } else {
+                    layer_on(_GA1);
+                }
+                // Combos mess with game input
+                combo_toggle();
+                return false;
+            }
+            break;
+    }
+
+    return true;
+};
+
+#if defined(OS_DETECTION_ENABLE)
+bool process_detected_host_os_user(os_variant_t detected_os) {
+    if (is_keyboard_master()) {
+        switch (detected_os) {
+            case OS_LINUX:
+                xprintf("Linux Detected\n");
+                break;
+            case OS_WINDOWS:
+                xprintf("Windows Detected\n");
+                break;
+            case OS_MACOS:
+                xprintf("MacOS Detected\n");
+                break;
+            case OS_IOS:
+                xprintf("iOS Detected\n");
+                break;
+            default:
+                xprintf("Unknown OS Detected\n");
+                break;
+        }
+    }
+
+    return true;
+}
+#endif // OS_DETECTION_ENABLE
