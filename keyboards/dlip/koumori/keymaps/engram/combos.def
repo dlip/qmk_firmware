@@ -40,6 +40,8 @@ COMB(c_sen, KC_SEN, KC_CHORD, KC_CHORD_ALT1)
 SUBS(p_comma, ", ", KC_CHORD, KC_CHORD_ALT2)
 
 // Personal
-SUBS(b_Dane, "Dane", KC_CHORD, KC_D, KC_X)
-SUBS(b_Lipscombe, "Lipscombe", KC_CHORD, KC_L, KC_X)
-SUBS(b_danelipscombeatgmaildotcom, "danelipscombe@gmail.com", KC_CHORD, KC_G, KC_X)
+SUBS(b_dane, "dane", KC_CHORD, KC_D, KC_CTL_A, KC_X)
+SUBS(b_Dane, "Dane", KC_CHORD, KC_CHORD_SFT, KC_D, KC_CTL_A, KC_X)
+SUBS(b_lipscombe, "lipscombe", KC_CHORD, KC_L, KC_X)
+SUBS(b_Lipscombe, "Lipscombe", KC_CHORD_SFT, KC_CHORD, KC_L, KC_X)
+SUBS(b_email, "danelipscombe@gmail.com", KC_CHORD, KC_G, KC_X)
