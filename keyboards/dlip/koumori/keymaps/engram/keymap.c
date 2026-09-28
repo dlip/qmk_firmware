@@ -325,8 +325,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                     layer_off(_GA1);
                     set_auto_mouse_enable(true);
                 } else {
-                    layer_on(_GA1);
+                    auto_mouse_layer_off();
                     set_auto_mouse_enable(false);
+                    layer_on(_GA1);
                 }
                 // Combos mess with game input
                 combo_toggle();
